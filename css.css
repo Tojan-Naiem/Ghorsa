@@ -1,0 +1,43 @@
+html,body{
+    height: 100%;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: 0;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .1s linear;
+}
+
+.iconlink{
+width: 100%;
+height: 70px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+
+}
+.icons{
+margin-top: 8px;
+margin-left: 30px;
+font-size: 1.3rem;
+display: flex;
+gap: 30px;
+justify-content: center;
+
+}
+.link{
+    margin-top: 8px;
+    margin-right: 50px;
+    font-size: 1.1rem;
+    display: flex;
+    gap: 38px;
+    justify-content: space-between;
+}
+.line{
+    border: none; 
+    border-top: 1px solid #0000006b; 
+}

@@ -100,3 +100,28 @@ body {
     justify-content: space-around;
     place-items: center;
 }
+.img1{
+width: 100%;
+height: 100%;
+margin-top: 7px;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+
+.img2left{
+    width: 100%;
+display: grid;
+justify-content: center;
+text-align: center;
+margin-left: 3rem
+}
+.img2right{
+width: 100%;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+
+}

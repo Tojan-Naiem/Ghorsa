@@ -138,13 +138,25 @@ body {
     border-radius: 15px;
 
 }
+.menuIcon{
+    display: none;
+}
 
-@media screen and (max-width: 410px) {
+@media screen and (max-width: 800px) {
+    .links{
+display: none;
+    }
     .links a {
         flex-direction: row;
         gap: 5px;
     }
-
+.iconlink .icons{
+font-size: 12px;   
+margin-left: 18px; 
+}
+.iconlink .link{
+    font-size: 12px;
+}
     .links a {
         font-size: 0.9
     }
@@ -153,10 +165,20 @@ body {
         flex-direction: row-reverse;
         align-items: center;
     }
+    .menuIcon{
+        display: block;
+        
+    }
+    .menuIcon i{
+        color: green;
+    }
 
 
     .card p {
         font-size: 1rem;
+    }
+    .search-container{
+        display: none;
     }
 }
 

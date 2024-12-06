@@ -21,6 +21,16 @@
         crossorigin="anonymous"></script>
 
     <title>Document</title>
+   
+    
+    <!-- إضافة CSS الخاصة بـ Slick -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+
+<!-- إضافة JS الخاصة بـ Slick -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
 
 </head>
 
@@ -85,34 +95,62 @@
                     <a style="color: aliceblue;" href="">About</a>
                 </div>
                
-                <!-- <a style="color: white;" href="#" id="menuIcon"><i class="fas fa-bars"></i></a> -->
+                <a style="color: white;" href="#" id="menuIcon"><i class="fas fa-bars"></i></a>
 
             </nav>
         </div>
     </header>
 
     <main>
-        <!-- صورة الواجة مع صورتين لنباتات الداخلية  -->
+        
+    <!-- صورة الواجة مع صورتين لنباتات الداخلية  -->
+    <div class="slider">
+        <div class="card">
+            <img src="img/6ad143202d1d58d8a2710f437258a806.png" alt="Card 2" class="card-image">
+          
+        </div>
+        <div class="card">
+            <img src="img/6ad143202d1d58d8a2710f437258a806.png" alt="Card 2" class="card-image">
+           
+        </div>
+        <div class="card">
+            <img src="img/6ad143202d1d58d8a2710f437258a806.png" alt="Card 2" class="card-image">
+         
+        </div>
+        <!-- يمكن إضافة المزيد من البطاقات هنا -->
+    </div>
         <div class="img1">
-            <img src="img/6ad143202d1d58d8a2710f437258a806.png" alt="" style=" width: 95%; border-radius: 15px; ">
+         
 
         </div>
 
 
-        <div class="container " id="cards" style="margin-left: 0; padding-left: 0; margin-right: 0; padding-right: 0;">
+        <div class="container" id="cards">
 
 
-            <div class="card" style="  width: 200px; border: none;  text-align: center; justify-content: center; ">
+            <div class="card">
 
                 <img src="img/161bce0e8b3ac2e68a7d86c9c59957e3.png" alt="Indoor Plants" class="img2left" />
-                <p style="margin-left: 4rem; ">Indoor Plants</p>
+                <p >Indoor Plants</p>
             </div>
 
 
-            <div class="card" style="  width: 200px; border: none;  text-align: center; justify-content: center;">
+            <div class="card" >
                 <img src="img/1.png" alt="Outdoor Plants" class="img2right" />
                 <p>Outdoor Plants</p>
             </div>
+            
+            <div class="card" >
+                <img src="img/1.png" alt="Outdoor Plants" class="img2right" />
+                <p>Outdoor Plants</p>
+            </div>
+
+            
+            <div class="card" >
+                <img src="img/1.png" alt="Outdoor Plants" class="img2right" />
+                <p>Outdoor Plants</p>
+            </div>
+
 
         </div>
 
@@ -239,6 +277,22 @@
 
 
         </section>
+      
+        <script>
+           $(document).ready(function(){
+    $('.slider').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+        nextArrow: '<button type="button" class="slick-next">Next</button>',
+        autoplay: true,
+        autoplaySpeed: 2000,
+        dots: true
+    });
+});
+
+        </script>
+        
 
 
 

@@ -173,8 +173,8 @@ body {
 }
 
 .products .heading h1 {
-    font-size: 1rem;
-    margin-left: 2.2rem;
+    font-size: 1.47rem;
+    margin-left: 2.55rem;
 }
 
 .products .heading a {
@@ -193,7 +193,7 @@ body {
     flex-wrap: wrap;
     gap: 20px;
     width: 96%;
-    margin: 10px 30px 0 30px;
+    margin: 10px 25px 0 35px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 20px 0;
 
@@ -202,7 +202,7 @@ body {
 .products .box-container .box {
     flex: 1 1 5rem;
     background-color: rgba(209, 209, 209, 0.285);
-    border-radius: .5rem;
+    border-radius: 15px;
     width: 60%;
     text-align: center;
 height: fit-content;

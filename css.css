@@ -1,3 +1,10 @@
+:root{
+
+    --main-color:#28a44c;
+
+}
+
+
 html,
 body {
   height: 100%;
@@ -48,11 +55,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 18px;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-bottom: 18px;
 }
 .col1 {
   color: #28a44c;
   margin-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
 }
 
 /* .col2 {
@@ -144,12 +157,15 @@ body {
 
 @media screen and (max-width: 800px) {
     .links{
-        justify-content: start;
-        padding-left: 20px;
+        /* justify-content: start;
+        padding-left: 20px; */
     }
   .links .menu{
-    display: none;
+    font-size: 10px;
+    gap: 40px;
+    width: 100%;
   }
+
   .links a{
 
   }

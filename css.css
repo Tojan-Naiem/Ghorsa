@@ -94,7 +94,6 @@ body {
     background-color: #28a44c;
     margin-top: -6px;
     display: flex;
-    /* justify-content: space-evenly; */
     gap: 150px;
     justify-content: center;
     place-items: center;
@@ -111,8 +110,6 @@ body {
 
 #cards {
     display: flex;
-    /* justify-content: space-around; */
-    /* align-items: center; */
     gap: 100px; 
     /* flex-wrap: wrap;  */
     margin-top: 30px ; 

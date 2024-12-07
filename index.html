@@ -6,16 +6,31 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
+
     <title>Document</title>
+   
+    
+    <!-- إضافة CSS الخاصة بـ Slick -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+
+<!-- إضافة JS الخاصة بـ Slick -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
 
 </head>
 
@@ -41,11 +56,11 @@
         <hr>
         <!-- <h1>عباره عن اسم الموقع وسيرش البحث وايقونات القلب والتسجيل والسله</h1> -->
         <div class="container-fluid">
-            <div class="row ">
+            <div class="row">
                 <div class="col-4 ">
                     <div class="col1">
-                        <h5>غُرسة</h5>
-                        <h4>GHORSA</h4>
+                        <h5 style="margin-left: 3px; margin-bottom: -12px;margin-top: 0; font-family: Tajawal; font-weight: bold;font-size: 24px;">غُرسة</h5>
+                        <h4 style="margin-bottom: 0;margin-top: 0;  font-family: Marcellus SC; font-size: 45px;">GHORSA</h4>
                     </div>
                 </div>
                 <div class="col-4 ">
@@ -72,38 +87,70 @@
 
 
             <nav class="links">
-                <a style="color: aliceblue ;" href="">Home</a>
-                <a style="color: aliceblue;" href="">Indoor Plants</a>
-                <a style="color: aliceblue;" href="">Outdoor Plants</a>
-                <a style="color: aliceblue;" href="">Agricultural Supplies</a>
-                <a style="color: aliceblue;" href="">About</a>
+                <div class="menu">
+                    <a style="color: aliceblue ;" href="">Home</a>
+                    <a style="color: aliceblue;" href="">Indoor Plants</a>
+                    <a style="color: aliceblue;" href="">Outdoor Plants</a>
+                    <a style="color: aliceblue;" href="">Agricultural Supplies</a>
+                    <a style="color: aliceblue;" href="">About</a>
+                </div>
+               
+                <a style="color: white;" href="#" id="menuIcon"><i class="fas fa-bars"></i></a>
 
             </nav>
         </div>
     </header>
 
     <main>
-        <!-- صورة الواجة مع صورتين لنباتات الداخلية  -->
+        
+    <!-- صورة الواجة مع صورتين لنباتات الداخلية  -->
+    <div class="slider">
+        <div class="card">
+            <img src="img/6ad143202d1d58d8a2710f437258a806.png" alt="Card 2" class="card-image">
+          
+        </div>
+        <div class="card">
+            <img src="img/6ad143202d1d58d8a2710f437258a806.png" alt="Card 2" class="card-image">
+           
+        </div>
+        <div class="card">
+            <img src="img/6ad143202d1d58d8a2710f437258a806.png" alt="Card 2" class="card-image">
+         
+        </div>
+        <!-- يمكن إضافة المزيد من البطاقات هنا -->
+    </div>
         <div class="img1">
-            <img src="img/6ad143202d1d58d8a2710f437258a806.png" alt="" style=" width: 95%; border-radius: 15px; ">
+         
 
         </div>
 
 
-        <div class="container " id="cards" style="margin-left: 0; padding-left: 0; margin-right: 0; padding-right: 0;">
+        <div class="container" id="cards">
 
 
-            <div class="card" style="  width: 200px; border: none;  text-align: center; justify-content: center; ">
+            <div class="card">
 
                 <img src="img/161bce0e8b3ac2e68a7d86c9c59957e3.png" alt="Indoor Plants" class="img2left" />
-                <p style="margin-left: 4rem; ">Indoor Plants</p>
+                <p >Indoor Plants</p>
             </div>
 
 
-            <div class="card" style="  width: 200px; border: none;  text-align: center; justify-content: center;">
+            <div class="card" >
                 <img src="img/1.png" alt="Outdoor Plants" class="img2right" />
                 <p>Outdoor Plants</p>
             </div>
+            
+            <div class="card" >
+                <img src="img/1.png" alt="Outdoor Plants" class="img2right" />
+                <p>Outdoor Plants</p>
+            </div>
+
+            
+            <div class="card" >
+                <img src="img/1.png" alt="Outdoor Plants" class="img2right" />
+                <p>Outdoor Plants</p>
+            </div>
+
 
         </div>
 
@@ -128,28 +175,9 @@
                         <h5>Wild Session Plant</h5>
                         <h6>35<strong>₪</strong></h6>
                     </div>
-                    <div class="icon2">
-                        <a href="" style="padding: 0 20px 0 20px ;">Add to Cart</a>
-                        <a href="" class="fa-regular fa-heart"></a>
-                    </div>
-
-
-                </div>
-
-
-                <div class="box">
-                    <div class="img2">
-                        <img src="2.png" alt="">
-                    </div>
-                    <hr>
-                    <div class="des">
-                        <h5>Wild Session Plant</h5>
-                        <h6>35<strong>₪</strong></h6>
-                    </div>
-                    <div class="icon2">
-                        <a href="" style="padding: 0 20px 0 20px ;">Add to Cart</a>
-
-                        <a href="" class="fa-regular fa-heart"></a>
+                    <div class="icon2" style="" >
+                        <a href="" >Add to Cart</a>
+                        <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
                     </div>
 
 
@@ -163,13 +191,61 @@
                     <div class="des">
                         <h5>Wild Session Plant</h5>
                         <h6>35<strong>₪</strong></h6>
+                    </div>
+                    <div class="icon2" >
+                        <a href="" style="">Add to Cart</a>
+                        <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                    </div>
 
+
+                </div>
+                <div class="box">
+                    <div class="img2">
+                        <img src="2.png" alt="">
+                    </div>
+                    <hr>
+                    <div class="des">
+                        <h5>Wild Session Plant</h5>
+                        <h6>35<strong>₪</strong></h6>
+                    </div>
+                    <div class="icon2" >
+                        <a href="" style="">Add to Cart</a>
+                        <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                    </div>
+
+
+                </div>
+                <div class="box">
+                    <div class="img2">
+                        <img src="2.png" alt="">
+                    </div>
+                    <hr>
+                    <div class="des">
+                        <h5>Wild Session Plant</h5>
+                        <h6>35<strong>₪</strong></h6>
                     </div>
                     <div class="icon2">
-                        <a href="" style="padding: 0 20px 0 20px ;">Add to Cart</a>
-
-                        <a href="" class="fa-regular fa-heart"></a>
+                        <a href="" style="">Add to Cart</a>
+                        <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
                     </div>
+
+
+                </div>
+                <div class="box">
+                    <div class="img2">
+                        <img src="2.png" alt="">
+                    </div>
+                    <hr>
+                    <div class="des">
+                        <h5>Wild Session Plant</h5>
+                        <h6>35<strong>₪</strong></h6>
+                    </div>
+                    <div class="icon2" >
+                        <a href="" style="">Add to Cart</a>
+                        <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                    </div>
+
+
                 </div>
 
                 <div class="box">
@@ -180,56 +256,36 @@
                     <div class="des">
                         <h5>Wild Session Plant</h5>
                         <h6>35<strong>₪</strong></h6>
-
                     </div>
-                    <div class="icon2">
-                        <a href="#" style="padding: 0 20px 0 20px ;">Add to Cart</a>
-                        <a href="" class="fa-regular fa-heart"></a>
-                    </div>
-
-
-                </div>
-
-                <div class="box">
-                    <div class="img2">
-                        <img src="2.png" alt="">
-                    </div>
-                    <hr>
-                    <div class="des">
-                        <h5>Wild Session Plant</h5>
-                        <h6>35<strong>₪</strong></h6>
-
-                    </div>
-                    <div class="icon2">
-                        <a href="" style="padding: 0 20px 0 20px ;">Add to Cart</a>
-                        <a href="" class="fa-regular fa-heart"></a>
+                    <div class="icon2" >
+                        <a href="" >Add to Cart</a>
+                        <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
                     </div>
 
 
                 </div>
-
-                <div class="box">
-                    <div class="img2">
-                        <img src="2.png" alt="">
-                    </div>
-                    <hr>
-                    <div class="des">
-                        <h5>Wild Session Plant</h5>
-                        <h6>35<strong>₪</strong></h6>
-
-                    </div>
-                    <div class="icon2">
-                        <a href="" style="padding: 0 20px 0 20px ;">Add to Cart</a>
-                        <a href="" class="fa-regular fa-heart"></a>
-                    </div>
-
-
-                </div>
+               
 
             </div>
 
 
         </section>
+      
+        <script>
+           $(document).ready(function(){
+    $('.slider').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+        nextArrow: '<button type="button" class="slick-next">Next</button>',
+        autoplay: true,
+        autoplaySpeed: 2000,
+        dots: true
+    });
+});
+
+        </script>
+        
 
 
 

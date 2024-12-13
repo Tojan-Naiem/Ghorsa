@@ -105,18 +105,25 @@ body {
 .links {
   width: 100%;
   height: 2.5rem;
-  background-color: #28a44c;
+  background-color: white;
   margin-top: -6px;
   display: flex;
   gap: 100px;
   justify-content: center;
   place-items: center;
+  color: #28a44c;
+}
+.links a{
+  color: #28a44c;
 }
 .links .menu{
     display: flex;
     gap: 100px;
     justify-content: center;
     place-items: center; 
+}
+.links #menuIcon{
+  display: none;
 }
 
 @media screen and (max-width: 800px) {
@@ -126,18 +133,19 @@ body {
     }
   .links .menu{
     display: none;
-    /* font-size: 10px;
-    gap: 40px;
-    width: 100%; */
   }
 
-  .links a{
+  /* .links a{
    display: block;
   }
   .links a {
     flex-direction: row;
     gap: 5px;
+  } */
+  #menuIcon {
+    display: block;
   }
+ 
   .iconlink .icons {
     font-size: 12px;
     margin-left: 18px;
@@ -155,12 +163,7 @@ body {
     flex-direction: row-reverse;
     align-items: center;
   }
-  .menuIcon {
-    display: block;
-  }
-  .menuIcon i {
-    color: green;
-  }
+  
 
   .card p {
     font-size: 1rem;
@@ -178,7 +181,7 @@ body {
 
 
 .slider {
-  width: 80%;
+  width: 90%;
   margin: auto;
   padding: 20px 0;
 }
@@ -187,6 +190,7 @@ body {
   background-color: #f0f0f0;
   text-align: center;
   border-radius: 10px;
+  border: none;
 }
 
 .slider .card-image {
@@ -198,14 +202,15 @@ body {
 
 
 #cards {
+  width: 100%;
   display: flex;
   gap: 15px;
   padding-top: 45px;
   /* width: fit-content; */
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   margin: 0 auto;
   flex-direction: row;
-  margin-left: 18px;
+  /* margin-left: 18px; */
   font-family: "Tajawal";
   
 }
@@ -233,10 +238,6 @@ body {
   text-align: center;
   border-radius: 15px;
 } */
-.menuIcon {
-  display: none;
-}
-
 
 
 .products {

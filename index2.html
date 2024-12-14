@@ -23,72 +23,111 @@
 
 <body>
     <header>
-        <!-- <h1> ايقونات المواقع التواصل مع اللينكات الطرفية</h1> -->
         <div class="iconlink">
             <div class="icons">
-                <a style="color: #28a44c ;" href="" class="fas fa-phone"></a>
-                <a style="color: #28a44c ;" href="" class="fa-brands fa-facebook"></a>
-                <a style="color: #28a44c ;" href="" class="fa-brands fa-instagram"> </a>
+                <a href="#"><i class="fas fa-phone"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"> <i class="fa-brands fa-instagram"></i></a>
             </div>
 
             <div>
                 <nav class="link">
-                    <a style="color: #080909 ;" href="">Setting</a>
-                    <a style="color: #080909 ;" href="">Send a Gift</a>
-                    <a style="color: #080909 ;" href="">Blog</a>
+                    <a href="#">Setting</a>
+                    <a href="#">Send a Gift</a>
+                    <a href="#">Blog</a>
 
                 </nav>
             </div>
         </div>
         <hr>
         <!-- <h1>عباره عن اسم الموقع وسيرش البحث وايقونات القلب والتسجيل والسله</h1> -->
-        <div class="container-fluid">
+        <div class="container-fluid" id="navbarTitle">
             <div class="row">
                 <div class="col-4 ">
                     <div class="col1">
-                        <h5
-                            style="margin-left: 3px; margin-bottom: -12px;margin-top: 0; font-family: Tajawal; font-weight: bold;font-size: 24px;">
-                            غُرسة</h5>
-                        <h4 style="margin-bottom: 0;margin-top: 0;  font-family: Marcellus SC; font-size: 45px;">GHORSA
-                        </h4>
+                        <a href="#" style="color: #28a44c;">
+                            <h4 style="margin-bottom: 0;margin-top: 0;  font-family: Marcellus SC; font-size: 45px;">
+                                GHORSA</h4>
+                        </a>
+
                     </div>
                 </div>
                 <div class="col-4 ">
                     <div class="search-container">
-                        <input type="search" class="form-control" placeholder="Search here"
-                            style=" box-shadow:none ; outline: none ; border: 2px solid rgba(0, 0, 0, 0.225); border-radius: 20px;">
+                        <input type="search" class="form-control" placeholder="Search here for plant">
                         <i class="fas fa-search"
                             style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="icon">
-                        <a style="color: #28a44c ;" href="#" class="fas fa-shopping-cart"></a>
-                        <a style="color: #28a44c ;" href="#" class="fas fa-heart"></a>
-                        <a style="color: #28a44c ;" href="#" class="fas fa-user"></a>
+                    <div class="icons-account">
+                        <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                        <a href="#"><i class="fas fa-heart"></i></a>
+                        <a href="#"><i class="fas fa-user"></i></a>
 
                     </div>
                 </div>
             </div>
         </div>
+        <hr>
         <!-- <h1>شريط الواجهات الاخرى</h1> -->
-        <div class="container-fluid"
-            style=" width: 100%; margin-left: 0; padding-left: 0; margin-right: 0; padding-right: 0;">
-
-
-            <nav class="links">
-                <div class="menu">
-                    <a style="color: aliceblue ;" href="">Home</a>
-                    <a style="color: aliceblue;" href="">Indoor Plants</a>
-                    <a style="color: aliceblue;" href="">Outdoor Plants</a>
-                    <a style="color: aliceblue;" href="">Agricultural Supplies</a>
-                    <a style="color: aliceblue;" href="">About</a>
+        <div class="container-fluid " id="menuBar" style="padding-left: 18px; padding-top: 0; ">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-white" style="padding-top: 0;">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" style="background-color: #28a44c; font-size: 12px; z-index: 1000;"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav" style=" align-items: center;">
+                        <ul class="navbar-nav me-auto" style="align-items: center;margin: 0;">
+                            <li class="nav-item ">
+                                <a class="nav-link" id="home" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="indoorDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Indoor Plants
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="indoorDropdown">
+                                    <li><a class="dropdown-item" href="#">Small Indoor Plants</a></li>
+                                    <li><a class="dropdown-item" href="#">Medium Indoor Plants</a></li>
+                                    <li><a class="dropdown-item" href="#">Large Indoor Plants</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="outdoorDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Outdoor Plants
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="outdoorDropdown">
+                                    <li><a class="dropdown-item" href="#">Flowering Plants</a></li>
+                                    <li><a class="dropdown-item" href="#">Shrubs</a></li>
+                                    <li><a class="dropdown-item" href="#">Trees</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="suppliesDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Agricultural Supplies
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="suppliesDropdown">
+                                    <li><a class="dropdown-item" href="#">Fertilizers</a></li>
+                                    <li><a class="dropdown-item" href="#">Pesticides</a></li>
+                                    <li><a class="dropdown-item" href="#">Tools</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="about" href="about.html">About</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-
-                <a style="color: white;" href="#" id="menuIcon"><i class="fas fa-bars"></i></a>
-
             </nav>
         </div>
+
+        <hr style="margin: 0;">
+
     </header>
 
     <main>
@@ -99,48 +138,88 @@
                 </div>
                 <div class=" col-md-6 " style="margin-top: 10px; display: grid; gap: 10px; ">
                     <h2 class="product-title" style="font-family: Judson;
-                        width: 300px; font-size: 48px;">Hivarn int lnd</h2>
+                        width: 300px; font-size: 30px;">Hivarn int lnd</h2>
                     <p class="product-price text-success"
-                        style="width: 200px; font-size:48px ;color: #1b5c2ddd; font-family:Judson ;">20₪</p>
+                        style="width: 200px; font-size:48px ;color: #28a44c; font-family:Judson ;">20₪</p>
 
 
                     <div class="d-flex align-items-center mb-3"
                         style="width: fit-content; border-radius: 15px ; background-color: #f0f0f0;">
                         <button class="btn btn-outline-secondary"
-                            style="color: #1b5c2ddd; font-size: 12px; border-radius: 30px;">+</button>
+                            style="color: #28a44c; font-size: 12px; border-radius: 30px;">+</button>
                         <input type="number" class="form-control text-center mx-2" value="1"
                             style="width: 60px; border: none;  background-color: #f0f0f0; box-shadow: none;">
                         <button class="btn btn-outline-secondary"
-                            style="color: #1b5c2ddd; border-radius: 3rem; font-size: 12px;">-</button>
+                            style="color: #28a44c; border-radius: 3rem; font-size: 12px;">-</button>
                     </div>
 
                     <div class="class= mb-3" style="display: flex; gap: 8px;">
-                        <a href="#" class="btn btn-success btn-block" style="width: 90%; border-radius: 20px;">Add to
-                            Cart</a>
+                        <a href="#" class="btn btn-block" id="add-button">Add to Cart</a>
                         <a href="" class="fa-regular fa-heart"
                             style="text-decoration: none; color:#1b5c2ddd ; font-size: 25px; margin-top: 5px;"></a>
 
 
                     </div>
-                    <div class="d-flex justify-content-between" style=" background-color: #E3FFEC;border-radius: 20px;">
-                        <button class="btn btn-outline-success w-50 me-1" style="border: none;">Description</button>
-                        <button class="btn btn-outline-success w-50 ms-1" style="border: none;">Plant Care</button>
+                    
+                    <!-- التبويبات -->
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" style="color: black;" id="description-tab"
+                                data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab"
+                                aria-controls="description" aria-selected="true">Description</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="plantcare-tab" style="color: black;" data-bs-toggle="tab"
+                                data-bs-target="#plantcare" type="button" role="tab" aria-controls="plantcare"
+                                aria-selected="false">Plant Care</button>
+                        </li>
+                    </ul>
+
+                    <!-- محتوى التبويبات -->
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="description" role="tabpanel"
+                            aria-labelledby="description-tab">
+                            <p>Pothos plant in an orange ceramic pot inside an elegant holder with an autumn theme
+                                designAn
+                                ideal gift for the fall season
+                            <ul>
+                                <li> The density of leaves may vary from one plant to another of the same product</li>
+                            </ul>
+                            The pothos plant is considered a very strong and successful indoor plant. It has a beautiful
+                            color, expands relatively quickly, and does not require a lot of care. It can be placed in
+                            bathrooms, living rooms, or offices.
+                            <ul>
+                                <li>
+                                    The height of the holder is 34 cm.</li>
+                                <li>The width of the holder is 12 cm.</li>
+                            </ul>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="plantcare" role="tabpanel" aria-labelledby="plantcare-tab">
+                            <p>
+                                Taking care of your plants ensures their health and longevity. Here are some simple tips
+                                to keep your plants thriving:
+
+                                Watering: Water your plants regularly but avoid overwatering, as it can lead to root
+                                rot. Allow the soil to dry slightly between watering sessions.
+                                Light Requirements: Place your plants in areas with sufficient natural light. Some
+                                plants prefer indirect sunlight, while others thrive in bright, direct light.
+                                Soil and Fertilizer: Use well-draining soil and consider adding fertilizer every few
+                                weeks to provide essential nutrients.
+                                Pruning: Trim dead leaves and branches to promote healthy growth and prevent pests.
+                                Temperature and Humidity: Keep your plants in a stable temperature range and maintain
+                                adequate humidity levels, especially for tropical plants.
+                                With regular care and attention, your plants will reward you with beauty and vitality.
+
+
+
+                            </p>
+                        </div>
                     </div>
+
+
                     <div>
-                        <p>Pothos plant in an orange ceramic pot inside an elegant holder with an autumn theme designAn
-                            ideal gift for the fall season
-                        <ul>
-                            <li> The density of leaves may vary from one plant to another of the same product</li>
-                        </ul>
-                        The pothos plant is considered a very strong and successful indoor plant. It has a beautiful
-                        color, expands relatively quickly, and does not require a lot of care. It can be placed in
-                        bathrooms, living rooms, or offices.
-                        <ul>
-                            <li>
-                                The height of the holder is 34 cm.</li>
-                            <li>The width of the holder is 12 cm.</li>
-                        </ul>
-                        </p>
+
                     </div>
                 </div>
             </div>
@@ -148,134 +227,269 @@
 
         <hr>
 
-        
+
         <!-- قائمة المنتجات -->
 
-        <section class="products" id="products" style="margin-top: 4rem;">
+        <section class="products-cards">
             <div class="heading">
-                <h1>Our Most Popular Plants</h1>
-                <a href="" class="fa-solid fa-angle-left" style="margin-right: 30px;"></a>
-                <a href="" class="fa-solid fa-angle-right"></a>
+                <h1>Plants may you like</h1>
+
             </div>
 
             <div class="box-container">
 
+                <div class="box" onclick="goToPage()">
 
-                <div class="box">
                     <div class="img2">
+
+
                         <img src="2.png" alt="">
-                    <a href="" class="fa-regular fa-heart"></a>
+
+                        <a href="" class="fa-regular fa-heart"></a>
                     </div>
                     <hr>
-                    <div class="des">
-                        <h5>Wild Session Plant</h5>
-                        <h6>35<strong>₪</strong></h6>
-                    </div>
-                    <div class="icon2">
-                        <a href="" class="icon2link">Add to Cart</a>
-                        <a href="" style="padding-top: 3px;"  class="fa-solid fa-cart-shopping "></a>
+                    <div class="desc">
+                        <div class="des">
+                            <h5>Wild Session Plant</h5>
+                            <h6>35<strong>₪</strong></h6>
+                        </div>
+                        <div class="icon2">
+                            <a href="#">Add to Cart</a>
+                            <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                        </div>
+
                     </div>
 
 
                 </div>
 
-                <div class="box">
+
+                <div class="box" onclick="goToPage()">
                     <div class="img2">
                         <img src="2.png" alt="">
                         <a href="" class="fa-regular fa-heart"></a>
                     </div>
                     <hr>
-                    <div class="des">
-                        <h5>Wild Session Plant</h5>
-                        <h6>35<strong>₪</strong></h6>
-                    </div>
-                    <div class="icon2" >
-                        <a href="" style="">Add to Cart</a>
-                        <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                    <div class="desc">
+                        <div class="des">
+                            <h5>Wild Session Plant</h5>
+                            <h6>35<strong>₪</strong></h6>
+                        </div>
+                        <div class="icon2">
+                            <a href="#">Add to Cart</a>
+                            <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                        </div>
+
                     </div>
 
 
                 </div>
-                <div class="box">
+                <div class="box" onclick="goToPage()">
                     <div class="img2">
                         <img src="2.png" alt="">
                         <a href="" class="fa-regular fa-heart"></a>
                     </div>
                     <hr>
-                    <div class="des">
-                        <h5>Wild Session Plant</h5>
-                        <h6>35<strong>₪</strong></h6>
+                    <div class="desc">
+                        <div class="des">
+                            <h5>Wild Session Plant</h5>
+                            <h6>35<strong>₪</strong></h6>
+                        </div>
+                        <div class="icon2">
+                            <a href="#">Add to Cart</a>
+                            <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                        </div>
+
                     </div>
-                    <div class="icon2" >
-                        <a href="" style="">Add to Cart</a>
-                        <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
-                    </div>
+
 
 
                 </div>
-                <div class="box">
+                <div class="box" onclick="goToPage()">
                     <div class="img2">
                         <img src="2.png" alt="">
                         <a href="" class="fa-regular fa-heart"></a>
                     </div>
                     <hr>
-                    <div class="des">
-                        <h5>Wild Session Plant</h5>
-                        <h6>35<strong>₪</strong></h6>
-                    </div>
-                    <div class="icon2">
-                        <a href="" style="">Add to Cart</a>
-                        <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                    <div class="desc">
+                        <div class="des">
+                            <h5>Wild Session Plant</h5>
+                            <h6>35<strong>₪</strong></h6>
+                        </div>
+                        <div class="icon2">
+                            <a href="#">Add to Cart</a>
+                            <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                        </div>
+
                     </div>
 
 
                 </div>
-                <div class="box">
+                <div class="box" onclick="goToPage()">
                     <div class="img2">
                         <img src="2.png" alt="">
                         <a href="" class="fa-regular fa-heart"></a>
                     </div>
                     <hr>
-                    <div class="des">
-                        <h5>Wild Session Plant</h5>
-                        <h6>35<strong>₪</strong></h6>
-                    </div>
-                    <div class="icon2" >
-                        <a href="" style="">Add to Cart</a>
-                        <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                    <div class="desc">
+                        <div class="des">
+                            <h5>Wild Session Plant</h5>
+                            <h6>35<strong>₪</strong></h6>
+                        </div>
+                        <div class="icon2">
+                            <a href="#">Add to Cart</a>
+                            <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                        </div>
+
                     </div>
 
 
                 </div>
-
-                <div class="box">
+                <div class="box" onclick="goToPage()">
                     <div class="img2">
                         <img src="2.png" alt="">
                         <a href="" class="fa-regular fa-heart"></a>
                     </div>
                     <hr>
-                    <div class="des">
-                        <h5>Wild Session Plant</h5>
-                        <h6>35<strong>₪</strong></h6>
-                    </div>
-                    <div class="icon2" >
-                        <a href="" >Add to Cart</a>
-                        <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                    <div class="desc">
+                        <div class="des">
+                            <h5>Wild Session Plant</h5>
+                            <h6>35<strong>₪</strong></h6>
+                        </div>
+                        <div class="icon2">
+                            <a href="#">Add to Cart</a>
+                            <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                        </div>
+
                     </div>
 
 
                 </div>
-               
+                <div class="box" onclick="goToPage()">
+                    <div class="img2">
+                        <img src="2.png" alt="">
+                        <a href="" class="fa-regular fa-heart"></a>
+                    </div>
+                    <hr>
+                    <div class="desc">
+                        <div class="des">
+                            <h5>Wild Session Plant</h5>
+                            <h6>35<strong>₪</strong></h6>
+                        </div>
+                        <div class="icon2">
+                            <a href="#">Add to Cart</a>
+                            <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="box" onclick="goToPage()">
+                    <div class="img2">
+                        <img src="2.png" alt="">
+                        <a href="" class="fa-regular fa-heart"></a>
+                    </div>
+                    <hr>
+                    <div class="desc">
+                        <div class="des">
+                            <h5>Wild Session Plant</h5>
+                            <h6>35<strong>₪</strong></h6>
+                        </div>
+                        <div class="icon2">
+                            <a href="#">Add to Cart</a>
+                            <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="box" onclick="goToPage()">
+                    <div class="img2">
+                        <img src="2.png" alt="">
+                        <a href="" class="fa-regular fa-heart"></a>
+                    </div>
+                    <hr>
+                    <div class="desc">
+                        <div class="des">
+                            <h5>Wild Session Plant</h5>
+                            <h6>35<strong>₪</strong></h6>
+                        </div>
+                        <div class="icon2">
+                            <a href="#">Add to Cart</a>
+                            <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                <div class="box" onclick="goToPage()">
+                    <div class="img2">
+                        <img src="2.png" alt="">
+                        <a href="" class="fa-regular fa-heart"></a>
+                    </div>
+                    <hr>
+                    <div class="desc">
+                        <div class="des">
+                            <h5>Wild Session Plant</h5>
+                            <h6>35<strong>₪</strong></h6>
+                        </div>
+                        <div class="icon2">
+                            <a href="#">Add to Cart</a>
+                            <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="box" onclick="goToPage()">
+
+                    <div class="img2">
+                        <img src="2.png" alt="">
+                        <a href="" class="fa-regular fa-heart"></a>
+                    </div>
+                    <hr>
+                    <div class="desc">
+                        <div class="des">
+                            <h5>Wild Session Plant</h5>
+                            <h6>35<strong>₪</strong></h6>
+                        </div>
+                        <div class="icon2">
+                            <a href="#">Add to Cart</a>
+                            <a href="" style="padding-top: 3px;" class="fa-solid fa-cart-shopping "></a>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
 
             </div>
 
 
         </section>
-
     </main>
-    <footer style="width: 100%; background-color: #53565A; height: 290px;">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+            <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+          </a>
+          <span class="mb-3 mb-md-0 text-muted">© 2022 Company, Inc</span>
+        </div>
+    
+     
+      </footer>
 
-    </footer>
+    <script>
+        function goToPage() { window.location.href = "index2.html"; }
+    </script>
 </body>
 
 </html>

@@ -20,7 +20,7 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
 
-    <title>Document</title>
+    <title>GHORSA</title>
    
     
     <!-- إضافة CSS الخاصة بـ Slick -->
@@ -37,45 +37,47 @@
 <body>
     <header>
         <!-- <h1> ايقونات المواقع التواصل مع اللينكات الطرفية</h1> -->
-        <div class="iconlink">
+        <div class="iconlink" >
             <div class="icons">
-                <a  href="" class="fas fa-phone"></a>
-                <a  href="" class="fa-brands fa-facebook"></a>
-                <a href="" class="fa-brands fa-instagram"> </a>
+                <a  href="#" ><i class="fas fa-phone"></i></a>
+                <a  href="#" ><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" > <i class="fa-brands fa-instagram"></i></a>
             </div>
 
             <div>
                 <nav class="link">
-                    <a  href="">Setting</a>
-                    <a  href="">Send a Gift</a>
-                    <a  href="">Blog</a>
+                    <a  href="#">Setting</a>
+                    <a  href="#">Send a Gift</a>
+                    <a  href="#">Blog</a>
 
                 </nav>
             </div>
         </div>
         <hr>
         <!-- <h1>عباره عن اسم الموقع وسيرش البحث وايقونات القلب والتسجيل والسله</h1> -->
-        <div class="container-fluid">
+        <div class="container-fluid" id="navbarTitle">
             <div class="row">
                 <div class="col-4 ">
                     <div class="col1">
-                        <h5 style="margin-left: 3px; margin-bottom: -12px;margin-top: 0; font-family: Tajawal; font-weight: bold;font-size: 24px;">غُرسة</h5>
-                        <h4 style="margin-bottom: 0;margin-top: 0;  font-family: Marcellus SC; font-size: 45px;">GHORSA</h4>
+                        <a href="#" style="color: #28a44c;">
+                            <h4 style="margin-bottom: 0;margin-top: 0;  font-family: Marcellus SC; font-size: 45px;">GHORSA</h4>
+                        </a>
+                        
                     </div>
                 </div>
                 <div class="col-4 ">
                     <div class="search-container">
-                        <input type="search" class="form-control" placeholder="Search here"
-                            style=" box-shadow:none ; outline: none ; border: 2px solid rgba(0, 0, 0, 0.225); border-radius: 20px;">
+                        <input type="search" class="form-control" placeholder="Search here for plant"
+                            >
                         <i class="fas fa-search"
                             style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="icon">
-                        <a style="color: #28a44c ;" href="#" class="fas fa-shopping-cart"></a>
-                        <a style="color: #28a44c ;" href="#" class="fas fa-heart"></a>
-                        <a style="color: #28a44c ;" href="#" class="fas fa-user"></a>
+                    <div class="icons-account">
+                        <a  href="#" ><i class="fas fa-shopping-cart"></i></a>
+                        <a  href="#" ><i class="fas fa-heart"></i></a>
+                        <a  href="#" ><i class="fas fa-user"></i></a>
 
                     </div>
                 </div>
@@ -83,63 +85,63 @@
         </div>
         <hr>
         <!-- <h1>شريط الواجهات الاخرى</h1> -->
-        <div class="container-fluid p-0">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-white">
-              <div class="container-fluid">
-                <!-- Toggle Button for Small Screens -->
-                <button class="navbar-toggler" style="background-color: #28a44c;" type="button"  data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
+        <div class="container-fluid " id="menuBar" style="padding-left: 18px; padding-top: 0; ">
+            <nav  class="navbar navbar-expand-lg navbar-dark bg-white" style="padding-top: 0;" >
+              <div class="container-fluid" >
+                <button class="navbar-toggler" style="background-color: #28a44c; font-size: 12px; z-index: 1000;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
-                <!-- Navbar Links -->
-                <div class="collapse navbar-collapse" id="navbarNav" >
-                  <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                      <a class="nav-link" style="color: black;" href="#">Home</a>
+                <div class="collapse navbar-collapse" id="navbarNav"style=" align-items: center;">
+                  <ul class="navbar-nav me-auto" style="align-items: center;margin: 0;">
+                    <li class="nav-item ">
+                      <a class="nav-link"  id="home"href="#">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#"style="color: black;"  id="indoorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="indoorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Indoor Plants
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="indoorDropdown">
-                        <li><a class="dropdown-item" style="color: black;"  href="#">Small Indoor Plants</a></li>
-                        <li><a class="dropdown-item"style="color: black;"  href="#">Medium Indoor Plants</a></li>
-                        <li><a class="dropdown-item" style="color: black;" href="#">Large Indoor Plants</a></li>
+                        <li><a class="dropdown-item"  href="#">Small Indoor Plants</a></li>
+                        <li><a class="dropdown-item"  href="#">Medium Indoor Plants</a></li>
+                        <li><a class="dropdown-item" href="#">Large Indoor Plants</a></li>
                       </ul>
                     </li>
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle"style="color: black;"  href="#" id="outdoorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle"  href="#" id="outdoorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Outdoor Plants
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="outdoorDropdown">
-                        <li><a class="dropdown-item"style="color: black;"  href="#">Flowering Plants</a></li>
-                        <li><a class="dropdown-item"style="color: black;"  href="#">Shrubs</a></li>
-                        <li><a class="dropdown-item"style="color: black;"  href="#">Trees</a></li>
+                        <li><a class="dropdown-item" href="#">Flowering Plants</a></li>
+                        <li><a class="dropdown-item" href="#">Shrubs</a></li>
+                        <li><a class="dropdown-item" href="#">Trees</a></li>
                       </ul>
                     </li>
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle"style="color: black;"  href="#" id="suppliesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle"  href="#" id="suppliesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Agricultural Supplies
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="suppliesDropdown">
-                        <li><a class="dropdown-item"style="color: black;"  href="#">Fertilizers</a></li>
-                        <li><a class="dropdown-item"style="color: black;"  href="#">Pesticides</a></li>
-                        <li><a class="dropdown-item" style="color: black;" href="#">Tools</a></li>
+                        <li><a class="dropdown-item"  href="#">Fertilizers</a></li>
+                        <li><a class="dropdown-item"  href="#">Pesticides</a></li>
+                        <li><a class="dropdown-item"  href="#">Tools</a></li>
                       </ul>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link"style="color: black;"  href="#">About</a>
+                      <a class="nav-link" id="about" href="#">About</a>
                     </li>
                   </ul>
                 </div>
               </div>
             </nav>
           </div>
-        <hr>
+          
+        <hr style="margin: 0;">
+        
     </header>
 
     <main>
         
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="margin: 0;">
             <div class="carousel-indicators">
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>

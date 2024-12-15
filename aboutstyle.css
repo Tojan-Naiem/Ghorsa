@@ -462,6 +462,10 @@ transition: all 0.5s ease-in-out;
         .journey-section{
             margin-top: 200px;
         }
+        .journey-section .journey-cards{
+          flex-direction: column;
+  
+      }
         
     }
 
@@ -477,17 +481,19 @@ transition: all 0.5s ease-in-out;
         font-weight: 700;
     }
     .journey-section .journey-cards{
-        /* display: grid;
-        grid-template-columns: 1fr 1fr; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
     }
     .journey-cards .first-section{
-        margin-top: 50px;
+        margin-top: 10px;
         display: flex;
         justify-content: start;
-        gap: 50px;
+        gap: 10px;
     }
     .journey-cards .first-section .desc-journey{
-        width: 40%;
+        width: 50%;
     }
     .journey-cards .first-section .desc-journey p:first-of-type{
        font-size: 40px;
@@ -498,4 +504,153 @@ transition: all 0.5s ease-in-out;
     .journey-cards .first-section .desc-journey hr{
         color: #28a44c;
      }
+     .journey-section  .action{
+      display: flex;
+      /* top: 10px;
+      left: 50px; */
+      flex-direction: row;
+      gap: 5px;
+      width: 100%;
+      align-items: center;
+     }
+     .journey-section .action a{
+      color: black;
+     }
      
+     .journey-section  .action p{
+      position: relative;
+      top: 6px;
+     }
+
+/* OUR TEAM */
+     .our-team{
+      background-color: rgb(247, 248, 249);
+      padding: 30px;
+      padding-left: 40px;
+      padding-right: 80px;
+      display: flex;
+      flex-direction: column;
+      padding-top:70px;
+      height: 100vh;
+  }
+  .our-team .team-members{
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+  }
+  .our-team .team-members .card1{
+      height: 100%;
+      width: 30%;
+      background: url('./img/tojan.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+  }
+  .our-team .team-members .card2{
+      height: 100%;
+      width: 30%;
+      background: url('./img/tamara.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+  }
+  .our-team .team-members .card3{
+      height: 100%;
+      width: 30%;
+      background: url('./img/ruba.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+  }
+  .team-members .desc-team{
+      background-color: white;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 70px;
+      text-align: center;
+      overflow: hidden;
+      transition:  0.5s ;
+   
+  
+  }
+  .team-members .contact-team{
+      color: var(--main-color);
+  }
+  
+  .team-members .desc-team:hover{
+      height: 100px;
+  
+  }
+  @media (max-width:700px){
+      .our-team .team-members{
+       flex-direction: column;
+       padding: 5px;
+      }
+      .our-team .team-members .card1{
+          width: 100%;
+      }
+      .our-team .team-members .card2{
+          width: 100%;
+      }
+  
+      .our-team .team-members .card3{
+          width: 100%;
+      }
+  
+  
+  }
+   /* Review Section */
+
+
+   .review{
+    width: 100%;
+    padding: 40px;
+  }
+  .review h1{
+    margin-bottom: 100px;
+  }
+  .review .review-cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+  }
+  .review .review-cards .review-card{
+    box-shadow: 0px 0px 2px 1px var(--main-color);
+   padding: 10px;
+  
+  }
+  .review .review-cards .review-card img{
+    border-radius: 50%;
+    width: 90px;
+
+  }
+  .review .review-cards .review-card p{
+    font-size: 13px;
+    margin-bottom: 0;
+
+  }
+
+  .review .review-cards .review-card .review-section{
+    color: var(--main-color);
+    margin-left: 10px;
+  }
+  .review .review-cards .review-card #quote{
+    float: right;
+    position: relative;
+    right: 0;
+    top: 0;
+    font-size: 80px;
+    color: #eaeaea;
+  }
+  @media (max-width:700px){
+    .review .review-cards{
+        grid-template-columns: 1fr  ;
+    }
+  }
+

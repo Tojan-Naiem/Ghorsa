@@ -73,7 +73,10 @@
                 </div>
                 <div class="col-4">
                     <div class="icons-account">
-                        <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                        <div class="shop-cart">
+                            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                           <span>0</span>
+                        </div>
                         <a href="#"><i class="fas fa-heart"></i></a>
                         <a href="#"><i class="fas fa-user"></i></a>
 
@@ -209,39 +212,218 @@
 
         <div class="journey-section">
             <h1>The journey of your new plant!</h1>
-            <div class="journey-cards">
-                <div class="first-section">
-                    <div class="desc-journey">
-                        <p>01.<br><hr></p>
-                        <h3>Packing</h3>
-                        <p>Your order will be hand picked and packed in our strong and sustainable packaging as soon as possible!</p>
+            <div class="first-part">
+                <div class="journey-cards">
+                    <div class="first-section">
+                        <div class="desc-journey">
+                            <p id="step-number">01.<br><hr></p>
+                            <h3 id="step-title">Packing</h3>
+                            <p id="step-descreption">Your order will be hand picked and packed in our strong and sustainable packaging as soon as possible!</p>
+                        </div>
+                        
                     </div>
-                    <img src="img/paking.png">
-                    
-                </div>
-                <div class="first-section">
-                    <div class="desc-journey">
-                        <p>02.<br><hr></p>
-                        <h3>Shipping</h3>
-                        <p>Your order will be delivered straight from our greenhouse to your door by your chosen carrier. You can follow the journey of your plants via the tracking link you receive in your mail.</p>
+                    <div class="first-section">
+                        <div class="desc-journey">
+                            <p>02.<br><hr></p>
+                            <h3>Shipping</h3>
+                            <p>Your order will be delivered straight from our greenhouse to your door by your chosen carrier. You can follow the journey of your plants via the tracking link you receive in your mail.</p>
+                        </div>
+                        <!-- <img src="img/shipping.png"> -->
+                        
                     </div>
-                    <img src="img/shipping.png">
-                    
+                    <img id="step-image" src="img/paking.png">
+
+                
+               </div>
+            
+                <div class="action">
+                   
+                    <button onclick="previous()"> <i class="fa-solid fa-angle-left"></i></button>
+                    <p><span id="current-step">1</span>/3</p>
+                    <button onclick="next()"><i class="fa-solid fa-angle-right"></i></button>
                 </div>
-                <div class="first-section">
-                    <div class="desc-journey">
-                        <p>03.<br><hr></p>
-                        <h3>Unboxing</h3>
-                        <p>Carefully unpack your new plants, check their condition and give them a sip of water when needed. Place them in a nice spot and they are ready to shine! Happy growing!</p>
-                    </div>
-                    <img src="img/unboxing.png">
-                    
-                </div>
+
+               
     
             </div>
            
         </div>
+        <div class="our-team" id="our-team">
+            <div class="title">
+              <h2>Our Team</h2>
+            </div>
+            <div class="team-members">
+              <div class="card1">
+                <div class="desc-team">
+                  <h3>Tojan Naiem</h3>
+                  <h6>CEO</h6>
+                  <div class="contact-team">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-google"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="card2">
+                <div class="desc-team">
+                  <h3>Tamara Tomeh</h3>
+                  <h6>Manger</h6>
+                  <div class="contact-team">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-google"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="card3">
+                <div class="desc-team">
+                  <h3>Ruba abed</h3>
+                  <h6>Manger</h6>
+                  <div class="contact-team">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-google"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+      
+      
+          </div>
+
+
+          <div class="review" id="review">
+            <h1>Reviews</h1>
+            <div class="review-cards">
+                <div class="review-card">
+                    <i class="fa-solid fa-quote-left"id="quote"></i>
+                    <h3>John Deo</h3>
+                    <p>Lorem ipsum dolor, sit amet temporibus quae recusandae sit ea assumenda, corporis, suscipit voluptates minus molestias cupiditate natus blanditiis fugit magnam cum consequuntur architecto reprehenderit dolor soluta? Earum, facere nulla eveniet quia harum, blanditiis incidunt at sapiente explicabo ipsum laborum unde laudantium nostrum distinctio.</p>
+                    <div class="review-section">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <i class="fa-solid fa-quote-left"id="quote"></i>
+                    <h3>John Deo</h3>
+                    <p>Lorem ipsum dolor, sit amet  recusandae sit ea assumenda, corporis, suscipit voluptates minus molestias cupiditate natus blanditiis fugit magnam cum consequuntur architecto reprehenderit dolor soluta? Earum, facere nulla eveniet quia harum, blanditiis incidunt at sapiente explicabo ipsum laborum unde laudantium nostrum distinctio.</p>
+                    <div class="review-section">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <i class="fa-solid fa-quote-left"id="quote"></i>
+                    <h3>John Deo</h3>
+                    <p>Lorem ipsum dolor, olestiae temporibus quae recusandae sit ea assumenda, corporis, suscipit voluptates minus molestias cupiditate natus blanditiis fugit magnam cum consequuntur architecto reprehenderit dolor soluta? Earum, facere nulla eveniet quia harum, blanditiis incidunt at sapiente explicabo ipsum laborum unde laudantium nostrum distinctio.</p>
+                    <div class="review-section">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <i class="fa-solid fa-quote-left" id="quote"></i>
+                    <h3>John Deo</h3>
+                    <p>Lorem ipsum dolor,, expedita ae sit ea assumenda, corporis, suscipit voluptates minus molestias cupiditate natus blanditiis fugit magnam cum consequuntur architecto reprehenderit dolor soluta? Earum, facere nulla eveniet quia harum, blanditiis incidunt at sapiente explicabo ipsum laborum unde laudantium nostrum distinctio.</p>
+                    <div class="review-section">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+            <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+          </a>
+          <span class="mb-3 mb-md-0 text-muted">© 2022 Company, Inc</span>
+        </div>
+    
+     
+      </footer>
+   
+
+    <script>
+         const steps = [
+            {
+                number: "01.<br>",
+                title: "Packing",
+                description: "Your order will be hand picked and packed in our strong and sustainable packaging as soon as possible!",
+                image: "img/paking.png"
+            },
+            {
+                number: "02.<br>",
+                title: "Shipping",
+                description: "Your order will be delivered straight from our greenhouse to your door by your chosen carrier. You can follow the journey of your plants via the tracking link you receive in your mail.",
+                image: "img/shipping.png"
+            },
+            {
+                number: "03.<br>",
+                title: "Delivery",
+                description: "Your plants have arrived! Unbox them carefully, give them some water, and place them in their new home.",
+                image: "img/unboxing.png"
+            }
+        ];
+        var current=0;
+        function next(){
+         
+            if(current<steps.length-1){
+                current++;
+                document.getElementById('step-number').innerHTML=steps[current].number;
+                document.getElementById('step-title').textContent=steps[current].title;
+                document.getElementById('step-descreption').textContent=steps[current].description;
+                document.getElementById('step-image').src=steps[current].image;
+                document.getElementById('current-step').textContent=current+1;
+
+
+
+
+            }
+
+
+
+        }
+
+        function previous(){
+         
+         if(current>0){
+             current--;
+             document.getElementById('step-number').innerHTML=steps[current].number;
+             document.getElementById('step-title').textContent=steps[current].title;
+             document.getElementById('step-descreption').textContent=steps[current].description;
+             document.getElementById('step-image').src=steps[current].image;
+             document.getElementById('current-step').textContent=current+1;
+
+
+
+
+         }
+
+
+
+     }
+
+
+    </script>
 
     
 </body>

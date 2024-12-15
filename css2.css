@@ -117,6 +117,25 @@
     align-items: center;
     height: 100%;
   }
+  .icons-account .shop-cart {
+    width: 40px;
+    display: flex;
+  }
+  .icons-account .shop-cart span{
+    position: relative;
+    top: 10px;
+    left: 0px;
+    background-color: red;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 12px;
+
+  }
   .icons-account a {
     color: var(--main-color);
   }
@@ -570,4 +589,85 @@
     }   
 }
 
+
+/* cart-tab */
+
+.cart-tab{
+  width: 30%;
+  height: 100vh;
+  background-color: #6c757d;
+  z-index: 2000;
+  position: fixed;
+  display: grid;
+  inset: 0 0 0 -400px;
+  /* تعني قسملي الجزء : أول صف طوله 70 والثاني غير محدود والثالث 70 */
+  grid-template-rows: 70px 1fr 70px;
+}
+.cart-tab .btn{
+  width: 100%;
+  display: grid;
+  /* معناه الشبكة بتحتبوي على عمودين ، وكل عمود 1fr  */
+  grid-template-columns: repeat(2,1fr);
+}
+.cart-tab .list-cart .item{
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 50px 150px 40px 1fr;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.cart-tab .list-cart .item .title{
+  margin: 0;
+}
+.cart-tab img{
+  width: 50px;
+  margin: 0;
+
+}
+
+.cart-tab .list-cart .item .quantity span{
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: #1a7d36;
+  text-align: center;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+
+
+}
+.cart-tab .list-cart .item .quantity span:nth-child(2){
+ background-color: transparent;
+color: #eee;
+
+}
+.cart-tab .list-cart .item:nth-child(even){
+  background-color: #eee;
+
+}
+.list-cart {
+  overflow: auto;
+}
+.list-cart::-webkit-scrollbar{
+  width: 0;
+}
+body.show-cart .cart-tab{
+  inset: 0 0 0 0;
+}
+@media screen and (max-width:786px) {
+  .cart-tab{
+width: 50%;
+
+  }
+  .cart-tab .list-cart .item{
+    margin: 0;
+    grid-template-columns: 40px 100px 40px 1fr ;
+
+
+
+}
+  
+}
 

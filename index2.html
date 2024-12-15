@@ -21,7 +21,40 @@
     <title>Document</title>
 </head>
 
-<body>
+<body >
+   
+      
+      
+     
+
+    <!-- <div class="cart-tab">
+        <h1>Shopping Cart</h1>
+        <div class="list-cart">
+            <div class="item">
+                <div class="image">
+                    <img src="img/outdoorPlants.png">
+                </div>
+                <div class="title">
+                    Name
+                </div>
+                <div class="total-price">
+                    200
+                </div>
+                <div class="quantity">
+                    <span class="minus"><</span>
+                    <span>1</span>
+                    <span class="plus">></span>
+                </div>
+            </div>
+            
+        </div>
+        <div class="btn">
+            <button class="close">CLOSE</button>
+            <button class="check-out">CHECK OUT</button>
+
+        </div>
+    </div> -->
+
     <header>
         <div class="iconlink">
             <div class="icons">
@@ -61,8 +94,10 @@
                 </div>
                 <div class="col-4">
                     <div class="icons-account">
-                        <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                        <a href="#"><i class="fas fa-heart"></i></a>
+                        <div class="shop-cart">
+                            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                           <span>0</span>
+                        </div>                        <a href="#"><i class="fas fa-heart"></i></a>
                         <a href="#"><i class="fas fa-user"></i></a>
 
                     </div>
@@ -127,7 +162,7 @@
         </div>
 
         <hr style="margin: 0;">
-
+        
     </header>
 
     <main>
@@ -154,9 +189,33 @@
                     </div>
 
                     <div class="class= mb-3" style="display: flex; gap: 8px;">
-                        <a href="#" class="btn btn-block" id="add-button">Add to Cart</a>
-                        <a href="" class="fa-regular fa-heart"
-                            style="text-decoration: none; color:#1b5c2ddd ; font-size: 25px; margin-top: 5px;"></a>
+                        <button class="btn" style="background-color: #28a44c; width: 90%; color: white;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                           Add to Cart
+                          </button>
+                          <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                            <div class="offcanvas-header">
+                              <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                              <div>
+                                Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+                              </div>
+                              <div class="dropdown mt-3">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                                  Dropdown button
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <li><a class="dropdown-item" href="#">Action</a></li>
+                                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                    
+                             <button href="" class="fa-regular fa-heart"
+                            style="text-decoration: none; color:#28a44c ; font-size: 25px; margin-top: 5px;"></button>
 
 
                     </div>
@@ -488,6 +547,8 @@
       </footer>
 
     <script>
+       let iconCart=document.querySelector()
+
         function goToPage() { window.location.href = "index2.html"; }
     </script>
 </body>

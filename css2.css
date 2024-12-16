@@ -592,41 +592,37 @@
 
 /* cart-tab */
 
-.cart-tab{
-  width: 30%;
-  height: 100vh;
-  background-color: #6c757d;
-  z-index: 2000;
-  position: fixed;
+.offcanvas-body{
+  
   display: grid;
-  inset: 0 0 0 -400px;
   /* تعني قسملي الجزء : أول صف طوله 70 والثاني غير محدود والثالث 70 */
   grid-template-rows: 70px 1fr 70px;
 }
-.cart-tab .btn{
+ .btn{
   width: 100%;
   display: grid;
   /* معناه الشبكة بتحتبوي على عمودين ، وكل عمود 1fr  */
   grid-template-columns: repeat(2,1fr);
 }
-.cart-tab .list-cart .item{
+ .list-cart .item{
   margin: 10px;
   display: grid;
-  grid-template-columns: 50px 150px 40px 1fr;
+  grid-template-columns: 50px 100px 40px 1fr;
   gap: 10px;
   align-items: center;
   justify-content: center;
+  border-radius: 8px;
 }
-.cart-tab .list-cart .item .title{
+ .list-cart .item .title{
   margin: 0;
 }
-.cart-tab img{
+.list-cart  img{
   width: 50px;
   margin: 0;
 
 }
 
-.cart-tab .list-cart .item .quantity span{
+.list-cart .item .quantity span{
   display: inline-block;
   width: 25px;
   height: 25px;
@@ -638,13 +634,13 @@
 
 
 }
-.cart-tab .list-cart .item .quantity span:nth-child(2){
+.list-cart .item .quantity span:nth-child(2){
  background-color: transparent;
-color: #eee;
+color: black;
 
 }
-.cart-tab .list-cart .item:nth-child(even){
-  background-color: #eee;
+ .list-cart .item:nth-child(even){
+  background-color: #ddd;
 
 }
 .list-cart {

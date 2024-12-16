@@ -79,7 +79,7 @@
                     <div class="icons-account">
                         <a  href="#" ><i class="fas fa-shopping-cart"></i></a>
                         <a  href="#" ><i class="fas fa-heart"></i></a>
-                        <a  href="#" ><i class="fas fa-user"></i></a>
+                        <a  href="auth/login.html" ><i class="fas fa-user"></i></a>
 
                     </div>
                 </div>
@@ -1237,7 +1237,30 @@
 
       
         
-<script> function goToPage() { window.location.href = "index2.html"; } </script>
+<script>
+    const products = [
+    { id: 1, name: "Aloe Vera", price: 15, image: "images/aloe-vera.jpg" },
+    { id: 2, name: "Snake Plant", price: 20, image: "images/snake-plant.jpg" },
+    { id: 3, name: "Fiddle Leaf Fig", price: 25, image: "images/fiddle-leaf.jpg" },
+];
+const productsContainer = document.getElementById("products-cards");
+
+function displayProducts() {
+    productsContainer.innerHTML = "";
+    products.forEach((product) => {
+        productsContainer.innerHTML += `
+            <div class="product">
+                <img src="${product.image}" alt="${product.name}">
+                <h4>${product.name}</h4>
+                <p>Price: $${product.price}</p>
+                <button onclick="addToCart(${product.id})">Add to Cart</button>
+                <button onclick="addToFavorites(${product.id})">Add to Favorites</button>
+            </div>
+        `;
+    });
+}
+
+function goToPage() { window.location.href = "index2.html"; } </script>
 
 
 

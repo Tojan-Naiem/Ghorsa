@@ -1,0 +1,95 @@
+CREATE DATABASE PlantMarketSystem;
+USE PlantMarketSystem;
+-- 1. Category Table
+CREATE TABLE category (
+    category_id INT PRIMARY KEY AUTO_INCREMENT,  -- Primary Key
+    name VARCHAR(30) NOT NULL                    -- Category Name
+);
+-- 2. Product Table
+CREATE TABLE product (
+    product_id INT PRIMARY KEY AUTO_INCREMENT,  -- Primary Key
+    name VARCHAR(50) NOT NULL,                  -- Product Name
+    description VARCHAR(300),                   -- Product Description
+    image VARCHAR(100) NOT NULL,                -- Product Image URL
+    pot_color VARCHAR(50),                      -- Pot Color (Optional)
+    stock INT DEFAULT 0 CHECK (stock >= 0),      -- Product Stock
+    category_id INT,                            -- Category Reference
+    FOREIGN KEY (category_id) REFERENCES category(category_id)  -- Foreign Key to category table
+);
+
+-- 3. User Table
+CREATE TABLE user (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,  -- Primary Key
+    first_name VARCHAR(20) NOT NULL,          -- First Name
+    last_name VARCHAR(20) NOT NULL,           -- Last Name
+    phone VARCHAR(15),                        -- Phone Number
+    password VARCHAR(255) NOT NULL,           -- Encrypted Password
+    country VARCHAR(20) NOT NULL,             -- Country
+    city VARCHAR(20) NOT NULL,                -- City
+    pin_code INT NOT NULL                     -- Postal Code
+);
+
+-- 4. Order Table
+CREATE TABLE order_table (
+    order_id INT PRIMARY KEY AUTO_INCREMENT,  -- Primary Key
+    order_amount DECIMAL(10, 2) NOT NULL,     -- Order Amount
+    order_date DATETIME DEFAULT CURRENT_TIMESTAMP,  -- Order Date with Time
+    status VARCHAR(20) DEFAULT 'Pending' CHECK (status IN ('Pending', 'Completed', 'Shipped')),  -- Status (Pending, Shipped, etc.)
+    user_id INT,                              -- User Reference
+    FOREIGN KEY (user_id) REFERENCES user(user_id)  -- Foreign Key to user table
+);
+
+-- 5. Payment Method Table
+CREATE TABLE payment_method (
+    method_id INT PRIMARY KEY AUTO_INCREMENT,  -- Primary Key
+    method_name VARCHAR(50) NOT NULL           -- Payment Method Name (e.g., Credit Card, PayPal)
+);
+
+-- 6. Payment Table
+CREATE TABLE payment (
+    payment_id INT PRIMARY KEY AUTO_INCREMENT,  -- Primary Key
+    method_id INT,                              -- Payment Method Reference
+    amount DECIMAL(10, 2) NOT NULL,             -- Payment Amount
+    order_id INT,                               -- Order Reference
+    FOREIGN KEY (order_id) REFERENCES order_table(order_id),  -- Foreign Key to order table
+    FOREIGN KEY (method_id) REFERENCES payment_method(method_id)  -- Foreign Key to payment_method table
+);
+
+-- 7. Tracking Detail Table
+CREATE TABLE tracking_detail (
+    tracking_id INT PRIMARY KEY AUTO_INCREMENT,  -- Primary Key
+    status VARCHAR(30) CHECK (status IN ('Pending', 'Shipped', 'Delivered')),  -- Tracking Status
+    shipped_date DATETIME,                      -- Shipped Date and Time
+    delivery_date DATETIME,                     -- Delivery Date and Time
+    order_id INT,                               -- Order Reference
+    FOREIGN KEY (order_id) REFERENCES order_table(order_id)  -- Foreign Key to order table
+);
+
+-- 8. Cart Table
+CREATE TABLE cart (
+    cart_id INT PRIMARY KEY AUTO_INCREMENT,  -- Primary Key
+    user_id INT,                             -- User Reference
+    FOREIGN KEY (user_id) REFERENCES user(user_id)  -- Foreign Key to user table
+);
+
+-- 9. Cart Item Table
+CREATE TABLE cart_item (
+    cart_item_id INT PRIMARY KEY AUTO_INCREMENT,  -- Primary Key
+    cart_id INT,                                 -- Cart Reference
+    product_id INT,                              -- Product Reference
+    quantity INT NOT NULL DEFAULT 1 CHECK (quantity > 0),  -- Quantity of Product
+    note VARCHAR(300),                           -- Additional Notes
+    FOREIGN KEY (cart_id) REFERENCES cart(cart_id),  -- Foreign Key to cart table
+    FOREIGN KEY (product_id) REFERENCES product(product_id)  -- Foreign Key to product table
+);
+
+-- 10. Admin Table
+CREATE TABLE admin (
+    admin_id INT PRIMARY KEY AUTO_INCREMENT,    -- Primary Key
+    first_name VARCHAR(50),                    -- Admin First Name
+    last_name VARCHAR(50),                     -- Admin Last Name
+    email VARCHAR(50) UNIQUE,                  -- Admin Email (Unique)
+    password VARCHAR(255) NOT NULL,            -- Admin Password
+    role VARCHAR(20) DEFAULT 'Admin'           -- Admin Role (e.g., Admin, Manager)
+);
+

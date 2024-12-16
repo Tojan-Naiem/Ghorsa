@@ -19,7 +19,6 @@ if(localStorage.getItem('product')!=null){
     data=JSON.parse(localStorage.getItem('product'));
 }
 else data=[];
-localStorage.clear();
 
 submitBtn.onclick=function(){
   let pro={
@@ -45,3 +44,5 @@ function cleanData(){
     descreption.value='';
     plantCare.value='';
 }
+
+

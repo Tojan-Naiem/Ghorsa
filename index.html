@@ -226,34 +226,14 @@
                
             </div>
 
-            <div class="box-container">
+            <div class="box-container" id="card-product">
 
-                <div class="box" onclick="goToPage()">
-                    
-                    <div class="img2">
-                    
-
-                        <img src="2.png" alt="">
-                   
-                    <a href="" class="fa-regular fa-heart"></a>
-                    </div>
-                    <hr>
-                 <div class="desc">
-                    <div class="des">
-                        <h5>Wild Session Plant</h5>
-                        <h6>35<strong>₪</strong></h6>
-                    </div>
-                    <div class="icon2">
-                        <a href="#" >Add to Cart</a>
-                        <a href="" style="padding-top: 3px;"  class="fa-solid fa-cart-shopping "></a>
-                    </div>
-
-                 </div>
+            
                     
               
                 </div>
 
-
+<!-- 
                 <div class="box" onclick="goToPage()">
                     <div class="img2">
                         <img src="2.png" alt="">
@@ -461,7 +441,7 @@
                 </div>
                
 
-            </div>
+            </div> -->
 
 
         </section>
@@ -1237,30 +1217,13 @@
 
       
         
-<script>
-    const products = [
-    { id: 1, name: "Aloe Vera", price: 15, image: "images/aloe-vera.jpg" },
-    { id: 2, name: "Snake Plant", price: 20, image: "images/snake-plant.jpg" },
-    { id: 3, name: "Fiddle Leaf Fig", price: 25, image: "images/fiddle-leaf.jpg" },
-];
-const productsContainer = document.getElementById("products-cards");
+<script src="script.js">
 
-function displayProducts() {
-    productsContainer.innerHTML = "";
-    products.forEach((product) => {
-        productsContainer.innerHTML += `
-            <div class="product">
-                <img src="${product.image}" alt="${product.name}">
-                <h4>${product.name}</h4>
-                <p>Price: $${product.price}</p>
-                <button onclick="addToCart(${product.id})">Add to Cart</button>
-                <button onclick="addToFavorites(${product.id})">Add to Favorites</button>
-            </div>
-        `;
-    });
-}
 
-function goToPage() { window.location.href = "index2.html"; } </script>
+     
+     
+     
+     </script>
 
 
 

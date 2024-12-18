@@ -1,13 +1,12 @@
-function goToPage() {
-    window.location.href = "index2.html";
-    
-    } 
+
+
+
 
 let data=JSON.parse(localStorage.getItem('product'));
 card=document.getElementById('card-product');
 for(let i=0;i<data.length;i++){
     card.innerHTML+=`
-      <div class="box"  onclick="goToPage()">
+      <div class="box"  onclick="goToPage(${i})">
                     <div class="img2">
                     
 
@@ -32,3 +31,12 @@ for(let i=0;i<data.length;i++){
     
     `;
 }
+
+function goToPage(index) {
+    let data = JSON.parse(localStorage.getItem('product'));
+    console.log(data);
+    localStorage.setItem('selectedPlant',JSON.stringify(data[index]))
+
+    window.location.href = "index2.html";
+    
+    } 

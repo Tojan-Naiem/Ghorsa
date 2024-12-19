@@ -80,3 +80,13 @@ CREATE TABLE cart_item(
     FOREIGN KEY (cart_id) REFERENCES cart(cart_id),
     FOREIGN KEY (product_id) REFERENCES product(product_id)
 );
+
+CREATE TABLE user_favorites (
+    favorite_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,                     
+    product_id INT NOT NULL,                  
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id), 
+    FOREIGN KEY (product_id) REFERENCES product(product_id), 
+    UNIQUE (user_id, product_id)               
+);

@@ -15,13 +15,21 @@ CREATE TABLE category(
     name VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE user(
-    user_id INT PRIMARY KEY AUTO_INCREMENT,
-    first_name VARCHAR(20) NOT NULL,
-    last_name VARCHAR(30) NOT NULL,
-    phome VARCHAR(15),
-    password VARCHAR(255) NOT NULL
+CREATE TABLE roles (
+    id INT PRIMARY KEY AUTO_INCREMENT,  
+    role_name VARCHAR(50) NOT NULL UNIQUE  
 );
+
+
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT, 
+    name VARCHAR(100) NOT NULL, 
+    email VARCHAR(100) NOT NULL UNIQUE,  
+    role_id INT,
+    FOREIGN KEY (role_id) REFERENCES roles(id) 
+);
+
+
 
 CREATE TABLE address(
     address_id INT PRIMARY KEY AUTO_INCREMENT,

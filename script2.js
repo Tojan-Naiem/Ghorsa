@@ -1,5 +1,6 @@
 detalis=document.getElementById('detalis-product');
 
+
 selectedPlant=JSON.parse(localStorage.getItem('selectedPlant'));
 console.log(selectedPlant);  // طباعة القيمة قبل الـ JSON.parse
 if(selectedPlant){
@@ -26,125 +27,28 @@ detalis.innerHTML=
                     </div>
 
                     <div class="class= mb-3" style="display: flex; gap: 8px;">
-                        <button class="btn" style="background-color: #28a44c; width: 90%; color: white;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                        <button class="btn" id="addToCart" style="background-color: #28a44c; width: 90%; color: white;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                            Add to Cart
                           </button>
-                          <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                          
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
                             <div class="offcanvas-header">
                               <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body">
                                 <h1>Shopping Cart</h1>
-        <div class="list-cart">
-            <div class="item">
-                <div class="image">
-                    <img src="img/outdoorPlants.png">
-                </div>
-                <div class="title">
-                    Name
-                </div>
-                <div class="total-price">
-                    200
-                </div>
-                <div class="quantity">
-                    <span class="minus"><</span>
-                    <span>1</span>
-                    <span class="plus">></span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <img src="img/outdoorPlants.png">
-                </div>
-                <div class="title">
-                    Name
-                </div>
-                <div class="total-price">
-                    200
-                </div>
-                <div class="quantity">
-                    <span class="minus"><</span>
-                    <span>1</span>
-                    <span class="plus">></span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <img src="img/outdoorPlants.png">
-                </div>
-                <div class="title">
-                    Name
-                </div>
-                <div class="total-price">
-                    200
-                </div>
-                <div class="quantity">
-                    <span class="minus"><</span>
-                    <span>1</span>
-                    <span class="plus">></span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <img src="img/outdoorPlants.png">
-                </div>
-                <div class="title">
-                    Name
-                </div>
-                <div class="total-price">
-                    200
-                </div>
-                <div class="quantity">
-                    <span class="minus"><</span>
-                    <span>1</span>
-                    <span class="plus">></span>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <img src="img/outdoorPlants.png">
-                </div>
-                <div class="title">
-                    Name
-                </div>
-                <div class="total-price">
-                    200
-                </div>
-                <div class="quantity">
-                    <span class="minus"><</span>
-                    <span>1</span>
-                    <span class="plus">></span>
-                </div>
-            </div>
-            
-        </div>
-        <div class="btn">
+                              <div class="list-cart" id="carts-list"></div>  
+                           <div class="btn">
             <button class="close">CLOSE</button>
             <button class="check-out">CHECK OUT</button>
 
-        </div>
-                              <!-- <div>
-                                Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-                              </div>
-                              <div class="dropdown mt-3">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                                  Dropdown button
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <li><a class="dropdown-item" href="#">Action</a></li>
-                                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                              </div> -->
-                            </div>
-                          </div>
-                    
-                             <button href="" class="fa-regular fa-heart"
-                            style="text-decoration: none; color:#28a44c ; font-size: 25px; margin-top: 5px;"></button>
+    </div>
+                                   </div>
+                                   </div>
+                                                                  </div>
 
 
-                    </div>
-                    
+                            
                     <!-- التبويبات -->
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -181,4 +85,43 @@ detalis.innerHTML=
             </div>
 `;
 
+}
+
+addToCart=document.getElementById('addToCart');
+addToCart.onclick= function (){
+    let cart = JSON.parse(localStorage.getItem('addToCart')) || [];
+    
+    cart.push(selectedPlant);
+
+    localStorage.setItem('addToCart',JSON.stringify(cart));
+    cartsList = document.getElementById('carts-list');
+    for(let i=0;i<data.length;i++){
+        cartsList.innerHTML+=
+        `<div class="item">
+                <div class="image">
+                    <img src=" ${data[i].image}">
+                </div>
+                <div class="${data[i].plantName}">
+                    Name
+                </div>
+                <div class="total-price">
+                ${data[i].price}
+                </div>
+                <div class="quantity">
+                    <span class="minus"><</span>
+                    <span>1</span>
+                    <span class="plus">></span>
+                </div>
+          
+        
+        
+        `;
+    }
+
+        
+           
+       
+                    
+                            
+     
 }

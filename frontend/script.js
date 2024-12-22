@@ -1,5 +1,8 @@
 
+function focus(){
+    document.getElementById('answers').style.display=block;
 
+}
 
 
 let data=JSON.parse(localStorage.getItem('product'));

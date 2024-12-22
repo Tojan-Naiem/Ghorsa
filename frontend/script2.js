@@ -101,8 +101,8 @@ addToCart.onclick= function (){
                 <div class="image">
                     <img src=" ${data[i].image}">
                 </div>
-                <div class="${data[i].plantName}">
-                    Name
+                <div class="name">
+                ${data[i].plantName}
                 </div>
                 <div class="total-price">
                 ${data[i].price}

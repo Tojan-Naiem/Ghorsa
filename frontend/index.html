@@ -6,6 +6,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="header.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
@@ -57,40 +58,57 @@
         </div>
         <hr>
         <!-- <h1>عباره عن اسم الموقع وسيرش البحث وايقونات القلب والتسجيل والسله</h1> -->
-        <div class="container-fluid" id="navbarTitle">
-            <div class="row">
-                <div class="col-4 ">
+        <div class="mid-header" >
                     <div class="col1">
                         <a href="index.html" style="color: #28a44c;">
                             <h4 style="margin-bottom: 0;margin-top: 0;  font-family: Marcellus SC; font-size: 45px;">GHORSA</h4>
                         </a>
                         
                     </div>
-                </div>
-                <div class="col-4 ">
+               
                     <div class="search-container">
-                        <input type="search" class="form-control" placeholder="Search here for plant"
+                        <div class="search-box">
+                            <input id="input" onfocus="focus()" type="search" class="form-control" placeholder="Search here for plant"
                             >
                         <i class="fas fa-search"
-                            style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
-                    </div>
-                </div>
-                <div class="col-4">
+                            style="position: absolute; right: 10px; top: 70%; transform: translateY(-50%);"></i>
+                        </div>
+                      
+                    
+
+
+                        <div class="search-ans" id="answers">
+                            <div class="item">
+                                <div class="image">
+                                    <img src="img/outdoorPlants.png">
+                                </div>
+                                <div class="name">
+                                    Name
+                                </div>
+                                <div class="total-price">
+                                5
+                                </div>
+                                <div class="quantity">
+                                    <span class="minus"><</span>
+                                    <span>1</span>
+                                    <span class="plus">></span>
+                                </div>
+                             </div>
+                        </div>
+                      </div>
                     <div class="icons-account">
                         <a  href="" ><i class="fas fa-shopping-cart"></i></a>
                         <a  href="favorates.html" ><i class="fas fa-heart"></i></a>
                         <a  href="auth/login.html" ><i class="fas fa-user"></i></a>
 
                     </div>
-                </div>
-            </div>
         </div>
         <hr>
         <!-- <h1>شريط الواجهات الاخرى</h1> -->
         <div class="container-fluid " id="menuBar" style="padding-left: 18px; padding-top: 0; ">
             <nav  class="navbar navbar-expand-lg navbar-dark bg-white" style="padding-top: 0;" >
               <div class="container-fluid" >
-                <button class="navbar-toggler" style="background-color: #28a44c; font-size: 12px; z-index: 1000;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" style="background-color: #28a44c; font-size: 12px;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav"style=" align-items: center;">
@@ -1203,6 +1221,13 @@
      
      
      </script>
+     <!-- <script>
+        input=document.getElementById('input');
+    
+ 
+
+
+     </script> -->
 
 
 

@@ -83,6 +83,15 @@
   }
   
   /* Second Part of Header */
+.mid-header{
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
+  align-items: center;
+
+}
   
   .row {
     display: flex;
@@ -125,7 +134,24 @@
     box-shadow: 0 0 2px var(--main-color);
     border-color: var(--main-color);
   }
+  .search-container {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    height: 30px;
+    border-radius:8px ;
+
+  }
+  .search-container .search-ans{
+    width: 100%;
+    background-color: red;
+    z-index: 1000;
+    display: none;
+  }
   
+  .search-container .search-ans .image img{
+    width: 50px;
+  }
   input {
     border-radius: 20px;
   }
@@ -134,6 +160,36 @@
     width: 100%;
   }
   
+  .item{
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 50px 100px 40px 1fr;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+  }
+  .item .quantity span{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-color: #1a7d36;
+    text-align: center;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+  
+  
+  }
+ .item .quantity span:nth-child(2){
+   background-color: transparent;
+  color: black;
+  
+  }
+ .item:nth-child(even){
+    background-color: #ddd;
+  
+  }
   .form-control {
     width: 100%;
     padding-right: 30px;

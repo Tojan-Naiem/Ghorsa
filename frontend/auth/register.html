@@ -81,21 +81,21 @@
     
     <div class="login-container">
         <h3 class="text-center mb-4">Register</h3>
-        <form action="#">
+        <form action="POST">
             <div class="mb-3">
                 <label for="text" class="form-label">Username</label>
-                <input type="text" class="form-control" id="text" placeholder="Your Username" required
+                <input type="text" name="username" class="form-control" id="text" placeholder="Your Username" required
                     style="box-shadow: none;">
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="email" placeholder="Your Email" required
+                <label for="email"  class="form-label">Email Address</label>
+                <input type="email" name="password" class="form-control" id="email" placeholder="Your Email" required
                     style="box-shadow: none;">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <div class="input-group">
-                    <input type="password" class="form-control" id="password" placeholder="Enter Your Password" required
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Enter Your Password" required
                         style="box-shadow: none; border-radius: 5px;">
                     <i class="bi bi-eye" style="color: #28a44c;"></i>
                     </button>

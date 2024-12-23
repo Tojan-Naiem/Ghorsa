@@ -1,3 +1,20 @@
+<?php 
+include("../../backend/connect.php");
+
+session_start();
+
+if(!isset($_SESSION['name'])){
+
+  echo $_SESSION['name'];
+   header('location:../auth/login.php');
+   exit();
+}
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -184,7 +201,7 @@
                 </div>
                     <div id="content">
                         <h4 style="margin-bottom:15px ; margin-top: 20px; color: #000000; font-size: 20px;">Dashboard</h4>
-                        <div class="row" style="  margin: 0%; padding: 0%; margin-bottom:50px ;">
+                        <div class="row" style="  margin: 0%; padding: 0%; margin-bottom:50px ; margin-right: 50px">
                             <div class="con" style="display: flex; margin-right: 30px; gap: 15px;">
                                 <div class="col-md-4  col-sm-4 col-xs-4">
                                     <div class="card  text-white"style="background-color: #28a44c;">
@@ -206,14 +223,30 @@
                                     <div class="card  text-white"style="background-color: #28a44c;">
                                         <div class="card-body">
                                             <h5>Total Users</h5>
-                                            <h2>100</h2>
+                                            <h2>
+
+                                            <?php
+
+                                            $sql= "SELECT COUNT(*) AS user_count FROM user";
+
+                                            $result=  mysqli_query($conn, $sql);
+                                           $row= mysqli_fetch_assoc($result);
+                                           echo $row['user_count'];
+
+
+
+
+?>
+
+
+                                            </h2>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
             
-                        <div class="recent-orders">
+                        <div class="recent-orders" style="margin-right: 50px; margin-left:10px">
                             <h5 style="margin-bottom:15px ; background-color:#28a44c; color: aliceblue;  padding: 10px 0 10px 10px; width: 100%;">Recent Order</h5>
                             <table class="table table-bordered table-striped">
                                 <thead>

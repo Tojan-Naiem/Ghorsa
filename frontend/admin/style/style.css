@@ -1,8 +1,8 @@
 
 
-
 body {
     font-family: "Tajawal";
+    padding: 50px;
 }
 
 .sidebar {
@@ -51,6 +51,7 @@ body {
 
 .recent-orders {
   margin-top: 20px;
+  margin-right: 50px
   
 }
 

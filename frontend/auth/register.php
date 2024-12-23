@@ -130,10 +130,18 @@ include("../../backend/connect.php");
            else {
             $hash=password_hash($password,PASSWORD_DEFAULT);
 
-            $sql = " INSERT INTO user (name, email, role_id,password) VALUES ('$username', '$email', '2','$hash')";
+            $sql = " INSERT INTO user (name, email, role_id,password) VALUES ('$username', '$email', '1','$hash')";
             try{
                 mysqli_query($conn, $sql);
-                echo"You are now Registed";
+                if($_SESSION['role_id']==1){
+                    header('location:../admin/main.html');
+                
+                
+                }
+                else {
+                    header('location:../user/main.php');
+                
+                }
             }
            catch(mysqli_sql_exception $e){
             echo "This email is using before";
@@ -145,7 +153,7 @@ include("../../backend/connect.php");
         <div class="text-center mt-3" style="display: grid; ">
             <p>Already have account?
             </p>
-            <a href="login.html" class="link">Click to Login</a>
+            <a href="login.php" class="link">Click to Login</a>
         </div>
         <a href="../index.html" id="return">return to home page</a>
 

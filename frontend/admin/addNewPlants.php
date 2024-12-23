@@ -1,3 +1,21 @@
+<?php 
+include("../../backend/connect.php");
+
+session_start();
+
+if(!isset($_SESSION['name'])){
+
+  echo $_SESSION['name'];
+   header('location:../auth/login.php');
+   exit();
+}
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -115,7 +133,13 @@
     <main>
 
       <div class="col sidebar">
-        <h4>Admin Name</h4>
+        <h4>
+<?php 
+
+echo $_SESSION['name'];
+
+?>
+        </h4>
         <a href="main.html" onclick="changeContant('dashboard')" id="dashboard">Dashboard</a>
     
         <div class="accordion" id="categoryAccordion">
@@ -163,7 +187,7 @@
     </div>
                     <div id="content">
                          
-<div class="col-md-10 col-sm-10 col-xs-10">
+<div class=" col-sm-10 col-xs-10" style="margin-left=50px">
   <div class="row">
     <div
       class="col-md-12 col-sm-12 col-xs-12 form-container"

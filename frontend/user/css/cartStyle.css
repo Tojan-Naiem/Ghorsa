@@ -1,0 +1,92 @@
+
+  .order-container {
+    margin-top: 50px;
+margin-bottom: 50px;
+    margin-right: 50px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 5px #28a745;
+}
+
+.form-title {
+    border-bottom: 2px solid #28a745;
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+
+
+.product-image {
+    width: 80px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.order-details th,
+.order-details td {
+    vertical-align: middle;
+}
+
+
+.total-price {
+    font-weight: bold;
+}
+
+.btn-confirmation {
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    padding: 8px 20px;
+    transition: all 0.3s;
+}
+
+.btn-confirmation:hover {
+    background-color: #218838;
+    color: #fff;
+}
+.cont-icon{
+  display: flex;
+}
+
+.icon-btn {
+    font-size: 1.1rem;
+    color: #28a745;
+    cursor: pointer;
+    margin-top: 5px;
+
+}
+
+.icon-btn:hover {
+    color: #218838;
+}
+
+.delete-icon {
+    color: #dc3545;
+    cursor: pointer;
+}
+
+.delete-icon:hover {
+    color: #c82333;
+}
+
+@media (max-width: 700px) {
+    .order-details img {
+        width: 60px;
+    }
+
+    .btn-confirmation {
+        font-size: 0.9rem;
+    }
+
+    .icon-btn {
+        font-size: 0.9rem;
+    }
+}

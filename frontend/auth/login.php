@@ -114,6 +114,8 @@ include("../../backend/connect.php");
             <button type="submit" class="btn" style="background-color: #28a44c; color: white;">Log in</button>
         </form>
         <?php
+                    session_start();
+
 
 $password=filter_input(INPUT_POST,"password",FILTER_SANITIZE_SPECIAL_CHARS);
 $email=filter_input(INPUT_POST,"email",FILTER_SANITIZE_SPECIAL_CHARS);
@@ -122,16 +124,25 @@ echo"Please Enter your password/email";
 }
 else {
     $hash=password_hash($password,PASSWORD_DEFAULT);
-    $sql="Select*From user where email='$email'";
-    $resutl= mysqli_query($conn, $sql);
-    if(mysqli_num_rows($resutl)>0){
-        $user=mysqli_fetch_assoc($resutl);
+    $sql="Select*From user WHERE email='$email'";
+    $result= mysqli_query($conn, $sql);
+    if(mysqli_num_rows($result)>0){
+        $user=mysqli_fetch_assoc($result);
         if(password_verify($password,$user['password'])){
-            $_SESSION['username']=$user['username'];
+            $_SESSION['name']=$user['name'];
+            $_SESSION['user_id']=$user['user_id'];
             $_SESSION['role_id']=$user['role_id'];
             $_SESSION['phone']=$user['phone'];
             $_SESSION['email']=$user['email'];
-
+            if($_SESSION['role_id']==1){
+                header('location:../admin/main.html');
+            
+            
+            }
+            else {
+                header('location:../user/main.php');
+            
+            }
         }
         else {
             echo '<p style=color="red">Wrong Password</p>';
@@ -140,22 +151,13 @@ else {
 
 
 }
-session_start();
-if($_SESSION['role_id']==1){
-    header('location:../admin/main.html');
 
-
-}
-else {
-    header('location:../user/user.html');
-
-}
 
 
 ?>
         <div class="text-center mt-3" style="display: grid; ">
             <p>Don't have an account? </p>
-            <a href="register.html" class="link">Click to Register</a>
+            <a href="register.php" class="link">Click to Register</a>
         </div>
         <a href="../index.html" id="return">return to home page</a>
 

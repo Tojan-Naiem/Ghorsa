@@ -1,10 +1,17 @@
+<?php
+include("../../backend/connect.php");
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="header.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
@@ -19,8 +26,7 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="icon" href="img/icon.png" >
+        <link rel="icon" href="img/icon.png" >
 
     <title>GHORSA</title>
     <style>
@@ -35,11 +41,9 @@
     border-radius: 10px;
     border: 2px solid #d1d1d146;
     position: absolute;
+    text-align: center;
     top: 50%;
     left: 50%;
-    text-align: center;
-    width: 80%;
-
     transform: translate(-50% , -60%);
 }
 .login-container .form-check-label {
@@ -49,12 +53,16 @@
     width: 100%;
     color: #28a44c;
     border-radius: 20px;
+    transition: 0.5s;
+}
+.login-container .btn:hover{
+   transform: scale(1.1);
+   letter-spacing:2 ;
 }
 .login-container .link {
     color: #28a44c;
     text-decoration: none;
     transition: 0.5s ease;
-
 }
 .login-container .link:hover {
     transform: scale(1.05);
@@ -65,7 +73,6 @@
     font-size: 12px;
     color: gray;
     font-weight: 700;
-    text-decoration: none;
 
 }
 #return:hover{
@@ -78,18 +85,12 @@
 </head>
 
 <body>
-    
     <div class="login-container">
-        <h3 class="text-center mb-4">Register</h3>
-        <form action="POST">
+        <h3 class="text-center mb-4">Login</h3>
+        <form method="POST" action="<?php  htmlspecialchars($_SERVER['PHP_SELF'])?>">
             <div class="mb-3">
-                <label for="text" class="form-label">Username</label>
-                <input type="text" name="username" class="form-control" id="text" placeholder="Your Username" required
-                    style="box-shadow: none;">
-            </div>
-            <div class="mb-3">
-                <label for="email"  class="form-label">Email Address</label>
-                <input type="email" name="password" class="form-control" id="email" placeholder="Your Email" required
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" name="email" class="form-control" id="email" placeholder="Your Email" required
                     style="box-shadow: none;">
             </div>
             <div class="mb-3">
@@ -106,14 +107,55 @@
                 <input type="checkbox" class="form-check-input" id="rememberMe">
                 <label class="form-check-label" for="rememberMe">Remember me</label>
             </div>
-            
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <a href="forgotPassword.html" class="link">Forgot your password?</a>
+                </div>
             </div>
-            <button type="submit" class="btn" style="background-color:  #28a44c;color: white;">Register</button>
+            <button type="submit" class="btn" style="background-color: #28a44c; color: white;">Log in</button>
         </form>
+        <?php
+
+$password=filter_input(INPUT_POST,"password",FILTER_SANITIZE_SPECIAL_CHARS);
+$email=filter_input(INPUT_POST,"email",FILTER_SANITIZE_SPECIAL_CHARS);
+if(empty($password)||empty($email)){
+echo"Please Enter your password/email";
+}
+else {
+    $hash=password_hash($password,PASSWORD_DEFAULT);
+    $sql="Select*From user where email='$email'";
+    $resutl= mysqli_query($conn, $sql);
+    if(mysqli_num_rows($resutl)>0){
+        $user=mysqli_fetch_assoc($resutl);
+        if(password_verify($password,$user['password'])){
+            $_SESSION['username']=$user['username'];
+            $_SESSION['role_id']=$user['role_id'];
+            $_SESSION['phone']=$user['phone'];
+            $_SESSION['email']=$user['email'];
+
+        }
+        else {
+            echo '<p style=color="red">Wrong Password</p>';
+        }
+    }
+
+
+}
+session_start();
+if($_SESSION['role_id']==1){
+    header('location:../admin/main.html');
+
+
+}
+else {
+    header('location:../user/user.html');
+
+}
+
+
+?>
         <div class="text-center mt-3" style="display: grid; ">
-            <p>Already have account?
-            </p>
-            <a href="login.html" class="link">Click to Login</a>
+            <p>Don't have an account? </p>
+            <a href="register.html" class="link">Click to Register</a>
         </div>
         <a href="../index.html" id="return">return to home page</a>
 

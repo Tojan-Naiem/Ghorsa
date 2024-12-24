@@ -1,28 +1,51 @@
 
-
-body {
-    font-family: "Tajawal";
-}
-
-.sidebar {
-    height: 100vh;
-    background-color: #f8f9fa;
-    padding-top: 20px;
-}
-
 main{
-  display: grid;
-  grid-template-columns: 20% 1fr;
-  gap: 5px;
- }
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  
+}
 
 
+.content{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 50px;
+  background-color: #F7F7F7;
+
+
+}
+.title{
+  display: flex;
+  width: 40%;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.title h3{
+  width: 50%;
+}
+.title .form-select{
+  height: 50%;
+
+}
+
+
+.sidebar{
+  width: 30%;
+  padding-top: 20px;
+  padding: 10px;
+}
 .sidebar a {
     text-decoration: none;
     padding: 10px;
     display: block;
     color: #000;
     margin: 5px 0;
+    width: 100%;
 }
 
 .sidebar a:hover {
@@ -30,90 +53,22 @@ main{
     border-radius: 5px;
 }
 
-.dashboard-content {
-    padding: 20px;
-}
 
-.card {
-    text-align: center;
-    margin: 0 0 0 0;
-}
 
-.recent-orders {
-    margin-top: 20px;
-    
-}
+.products-card{
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 30px;
+  margin-bottom: 50px;
+  width: 100%;
 
-.status-dot {
-    height: 10px;
-    width: 10px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.status-red {
-    background-color: red;
-}
-
-.status-orange {
-    background-color: orange;
-}
-
-.status-green {
-    background-color: green;
 }
 
 
-
-.plant-card {
-    width: 100%;
-    display: flex;
-    border: 2px solid #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-}
-.plant{
-    width: 15rem;
-    height: 100%;
-    background-color: #F7F7F7;
-align-items: center;
-justify-content: center;
-background-image: url(2.png);
-background-size: cover;
-}
-.plant-image {
-    height: 100%;
-    background-color: #F7F7F7;
-    
-}
-.plant-image img {
-width: 7rem;
-height: 100%;
-    object-fit: cover;
-   
-    margin-left: 55px;
-}
-.plant-details .title{
-display: flex;
-gap: 15px;
-}
-.plant-details .title h6{
-margin-top: 4px;
-color: #28a44c;
-}
-
-.plant-details {
-    flex-grow: 1;
-    margin-left: 15px;
-}
-
-.toggle-icon {
-  cursor: pointer;
-  color: green;
-}
 
 .product-card {
   background-color: #fff;
@@ -121,11 +76,19 @@ color: #28a44c;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin: 20px auto;
-  max-width: 800px;
   position: relative;
-}
+  width: 100%;
 
+}
+#edit-icon{
+  position: relative;
+  top: 0;
+  left: 98%;
+}
+#edit-icon i{
+  color: gray;
+  
+}
 .product-details {
   display: flex;
   align-items: center;

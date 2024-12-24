@@ -153,8 +153,8 @@ if (!isset($_SESSION['name'])) {
           </h2>
           <div id="collapseCategory1" class="accordion-collapse collapse" aria-labelledby="headingCategory1">
             <div class="accordion-body">
-              <a href="showAllPlants.html" onclick="changeContant(showAllPlants)" id="showAllPlants">Show All Plants</a>
-              <a href="addNewPlants.html" onclick="changeContant('addNewPlant')" id="addNewPlant">Add new plant</a>
+              <a href="showAllPlants.php" onclick="changeContant(showAllPlants)" id="showAllPlants">Show All Plants</a>
+              <a href="addNewPlants.php" onclick="changeContant('addNewPlant')" id="addNewPlant">Add new plant</a>
 
             </div>
           </div>
@@ -173,7 +173,7 @@ if (!isset($_SESSION['name'])) {
           <div id="collapseCategory2" class="accordion-collapse collapse" aria-labelledby="headingCategory2">
             <div class="accordion-body">
               <a href="#" class="d-block">Show All Categories</a>
-              <a href="#" class="d-block">Add A New Category</a>
+              <a href="addCategory.php" class="d-block">Add A New Category</a>
             </div>
           </div>
         </div>
@@ -184,6 +184,8 @@ if (!isset($_SESSION['name'])) {
       <a href="#">Setting</a>
     </div>
     <div class="content">
+    <form method="POST"  class="plant-form" action="<?php  htmlspecialchars($_SERVER['PHP_SELF'])?>">
+
       <div class="img">
 
         <img src="../img/Frame.png" alt="" /> <br />
@@ -195,58 +197,90 @@ if (!isset($_SESSION['name'])) {
       background: none;
     " /> 
 
-
-
-
       </div>
-      <form class="plant-form">
-        <div class="mb-3">
-          <input type="text" class="form-control" id="name" placeholder="Enter Name Of Plant*" required
+      <div class="plant-form">
+      <input type="text" class="form-control" name="name" placeholder="Enter Name Of Plant*" required
             style="margin-top: 5px; box-shadow: none" />
-        </div>
          
           <label class="form-label">Select Category</label>
           <div class="second-line">
-          <div class="d-flex align-items-center">
-            <select class="form-select me-0" id="category">
-              <option selected>Category</option>
-              <option selected>Indoor</option>
-              <option selected>Outdoor</option>
+            <div>
+            <select class="form-select" name="category">
+            <?php
+$sql = "SELECT name FROM category";
+$result = mysqli_query($conn, $sql);
+
+if ($result && mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<option>{$row['name']}</option>";
+    }
+} else {
+    echo "<option>No Categories Found</option>";
+}
+
+
+
+
+?>
+
             </select>
-          </div>
-        <div class="quantity">
-                    <span id="plus" onclick="plus()" class="plus">+</span>
-                    <span id="number">1</span>
-                    <span id="minus" onclick="minus()"  class="minus">-</span>
-                </div>
+            </div>
+            <div class="quantity">
+            <input type="number" id="number" name="quantity" value="1" min="1" style="margin-top:20px; width:30% ; padding-left:5px" />
+
+            </div>
          </div>
           
 
-        <div class="mb-3">
-          <input type="text" class="form-control" id="color" placeholder="Enter Color Of Pot " required
-            style="box-shadow: none" />
-        </div>
+          <input type="text" class="form-control" name="color" placeholder="Enter Color Of Pot " required
+            style="box-shadow: none;margin-bottom:10px" />
 
-        <div class="mb-3">
-          <input type="text" class="form-control" id="price" placeholder="Enter Price Of Plant" required
-            style="box-shadow: none" />
-        </div>
+          <input type="text" class="form-control" name="price" placeholder="Enter Price Of Plant" required
+            style="box-shadow: none;margin-bottom:10px" />
 
-        <div class="mb-3">
-          <textarea class="form-control" rows="4" id="description" placeholder="Enter Description Of Plant"
-            required style="box-shadow: none"></textarea>
-        </div>
+          <textarea class="form-control"  name="description" placeholder="Enter Description Of Plant"
+            required style="box-shadow: none;margin-bottom:10px"></textarea>
 
-        <div class="mb-3">
-          <textarea class="form-control" rows="4" id="plantCare" placeholder="Enter How to Care Of Plant"
-            style="box-shadow: none"></textarea>
-        </div>
+          <textarea class="form-control"  name="plantCare" placeholder="Enter How to Care Of Plant"
+            style="box-shadow: none;margin-bottom:10px"></textarea>
 
-        <button id="submit" type="submit" >
+        <button name="submit" type="submit" >
           Add a new Plant
         </button>
+
+
+      </div>
+         
       </form>
       </div>
+      <?php
+      if(isset($_POST['submit'])){
+        $plant_image=filter_input(INPUT_POST,"plant_image",FILTER_SANITIZE_SPECIAL_CHARS);
+        $name=filter_input(INPUT_POST,"name",FILTER_SANITIZE_SPECIAL_CHARS);
+        $category=filter_input(INPUT_POST,"category",FILTER_SANITIZE_SPECIAL_CHARS);
+        $color=filter_input(INPUT_POST,"color",FILTER_SANITIZE_SPECIAL_CHARS);
+        $price=filter_input(INPUT_POST,"price",FILTER_SANITIZE_SPECIAL_CHARS);
+        $description=filter_input(INPUT_POST,"description",FILTER_SANITIZE_SPECIAL_CHARS);
+        $plantCare=filter_input(INPUT_POST,"plantCare",FILTER_SANITIZE_SPECIAL_CHARS);
+        $quantity=filter_input(INPUT_POST,"quantity",FILTER_SANITIZE_SPECIAL_CHARS);
+        $sql = "SELECT category_id FROM category WHERE name = '$category'";
+        $result=mysqli_query($conn,$sql);
+        $row=mysqli_fetch_assoc($result);
+        $id=$row['category_id'];
+      $sql="insert into product(name,price,description,plant_care,image,pot_color,stock,category_id) values('$name','$price','$description','$plantCare','$plant_image','$color','$quantity','$id')";
+      mysqli_query($conn, $sql);
+
+
+
+
+      }
+
+
+
+
+
+
+?>
   
            
 

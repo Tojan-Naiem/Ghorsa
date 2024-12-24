@@ -1,10 +1,26 @@
+<?php
+include("../../backend/connect.php");
+
+session_start();
+
+if (!isset($_SESSION['name'])) {
+
+  echo $_SESSION['name'];
+  header('location:../auth/login.php');
+  exit();
+}
+
+
+?> 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style3.css">
+    <link rel="stylesheet" href="css/style3.css">
     <link rel="stylesheet" href="../header.css">
 
 
@@ -139,84 +155,106 @@
     <main>
 
         <!-- القائمة -->
-        <div class="col sidebar">
-            <h4>Admin Name</h4>
-            <a href="main.html" onclick="changeContant('dashboard')" id="dashboard">Dashboard</a>
-        
+        <div class="sidebar">
+            <h4> 
+              <?php
+      
+              echo "Welcome back , " . $_SESSION['name'];
+      
+              ?>
+            </h4>
+            <a href="main.php">Dashboard</a>
+      
             <div class="accordion" id="categoryAccordion">
-                <div class="accordion-item" style="border: none; background: none;">
-                    <h2 class="accordion-header" id="headingCategory1">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseCategory1" aria-expanded="false"
-                            aria-controls="collapseCategory1" style="border: none; box-shadow: none; background: none; ">
-                            Plant
-                        </button>
-                    </h2>
-                    <div id="collapseCategory1" class="accordion-collapse collapse"
-                        aria-labelledby="headingCategory1">
-                        <div class="accordion-body">
-                            <a  href="showAllPlants.html"  onclick="changeContant(showAllPlants)" id="showAllPlants">Show All Plants</a>
-                            <a href="addNewPlants.html" onclick="changeContant('addNewPlant')" id="addNewPlant">Add new plant</a>
-
-                        </div>
-                    </div>
+              <div class="accordion-item" style="border: none; background: none;">
+                <h2 class="accordion-header" id="headingCategory1">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseCategory1" aria-expanded="false" aria-controls="collapseCategory1"
+                    style="border: none; box-shadow: none; background: none; ">
+                    Plant
+                  </button>
+                </h2>
+                <div id="collapseCategory1" class="accordion-collapse collapse" aria-labelledby="headingCategory1">
+                  <div class="accordion-body">
+                    <a href="showAllPlants.php" onclick="changeContant(showAllPlants)" id="showAllPlants">Show All Plants</a>
+                    <a href="addNewPlants.php" onclick="changeContant('addNewPlant')" id="addNewPlant">Add new plant</a>
+      
+                  </div>
                 </div>
+              </div>
             </div>
-        
+      
             <div class="accordion" id="categoryAccordion2">
-                <div class="accordion-item" style="border: none; background: none;">
-                    <h2 class="accordion-header" id="headingCategory2">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseCategory2" aria-expanded="false"
-                            aria-controls="collapseCategory2" style="border: none; box-shadow: none; background: none; ">
-                            Category
-                        </button>
-                    </h2>
-                    <div id="collapseCategory2" class="accordion-collapse collapse"
-                        aria-labelledby="headingCategory2">
-                        <div class="accordion-body">
-                            <a href="#" class="d-block">Show All Categories</a>
-                            <a href="#" class="d-block">Add A New Category</a>
-                        </div>
-                    </div>
+              <div class="accordion-item" style="border: none; background: none;">
+                <h2 class="accordion-header" id="headingCategory2">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseCategory2" aria-expanded="false" aria-controls="collapseCategory2"
+                    style="border: none; box-shadow: none; background: none; ">
+                    Category
+                  </button>
+                </h2>
+                <div id="collapseCategory2" class="accordion-collapse collapse" aria-labelledby="headingCategory2">
+                  <div class="accordion-body">
+                    <a href="#" class="d-block">Show All Categories</a>
+                    <a href="#" class="d-block">Add A New Category</a>
+                  </div>
                 </div>
+              </div>
             </div>
             <a href="#">Order</a>
             <a href="Users.html">Users</a>
             <a href="myProfile.html">My Profile</a>
             <a href="#">Setting</a>
-        </div>
-        <div class="col-11 ">
-            <div class="row" id="products-admin">
-                <div class="mb-3 ">
-                    <div class="all" style="display: flex; gap: 20px; width: 100%;">
-                        <label class="form-label"
-                            style="font-size: 30px;  width: 20%; text-align: center; margin-top: 10px; border: none;">All
-                            Plant</label>
-                        <div class="d-flex align-items-center" style="width: 20%;">
-                            <select class="form-select me-0" style="width: 100%; box-shadow: none;">
-                                <option selected>Category</option>
-                                <option selected>All</option>
+          </div>
+        <div class="content">
+            <div class="title">
+
+                <h3>All Plant</h3>
+    
+                <select class="form-select" >
+                    <option selected>Category</option>
+                    <option selected>All</option>
 
 
-                            </select>
-                        </div>
-                    </div>
-                </div>
+                </select>
 
-                <!-- <div class="product-card">
+            </div>
+            <div class="products-card">
+
+            <?php
+            $sql="select*from product";
+            $result=mysqli_query($conn,$sql);
+            while($row=mysqli_fetch_array($result)){
+                $image=$row["image"];
+                $name=$row["name"];
+                $price=$row["price"];
+                $category_id=$row["category_id"];
+                $quantity=$row['stock'];
+                $color=$row['pot_color'];
+                $description=$row['description'];
+                $plantCare=$row['plant_care'];
+         $sqll="select name from category where category_id =$category_id";
+         $result2=mysqli_query($conn,$sqll);
+         $categoryRow = mysqli_fetch_assoc($result2);
+         $categoryName=$categoryRow["name"];
+
+             echo '
+             
+             <div class="product-card">
+                    <a id="edit-icon" href="editProfieInfo.php"><i class="fa-regular fa-pen-to-square"></i></a>
+
                     <div class="product-details">
 
-                        <img src="2.png" alt="Plant" class="product-img">
+                        <img src="../img/plant-image/'.htmlspecialchars($image).'" alt="Plant" class="product-img">
 
 
                         <div class="product-info">
-                            <h4 class="fw-bold">Wild Session Plant <span class="text-success fs-6">35₪</span></h4>
-                            <p>Quantity Available: <strong>4</strong></p>
-                            <p>Category: <strong>CategoryName</strong></p>
-                            <p>Color Of Pot Available: <strong>Blue</strong></p>
+                            <h4 >'.htmlspecialchars($name).' <span>'.htmlspecialchars($price).' </span></h4>
+                            <p>Quantity Available: <strong>'.htmlspecialchars($quantity).' </strong></p>
+                            <p>Category: <strong>'.htmlspecialchars($categoryName).'</strong></p>
+                            <p>Color Of Pot Available: <strong>'.htmlspecialchars($color).' </strong></p>
                             <p id="mainDescription">
-                                Description: Pothos plant in an orange ceramic pot inside an elegant holder...
+                               '.htmlspecialchars($description).'
                             </p>
                         </div>
                     </div>
@@ -229,28 +267,41 @@
 
                     <div class="extra-info" id="extraInfo">
                         <p id="extraDescription ">
-                            <strong> Description:</strong> Pothos plant in an orange ceramic pot inside an elegant
-                            holder with an autumn theme design An ideal gift for the fall season
+                             '.htmlspecialchars($description).'
                         <p>stronfices.</p>
                         <p> The height of the holder is 34 cm.
                             <br>The width of the holder is 12 cm.
                         </p>
                         </p>
 
-                        <ul>
-                            <strong> How to care:</strong> Pothos plant in an orange ceramic pot inside an elegant
-                            holder with an autumn theme design An ideal gift for the fall season
-                            <li>stronfices.</li>
-                            <li>Holder height: 34 cm.</li>
-                            <li>Holder width: 12 cm.</li>
-                        </ul>
+                          '.htmlspecialchars($plantCare).'
                     </div>
-                </div> -->
+                </div> 
+
+             
+             
+             
+             
+             ';
+
+
+            }
+
+
+
+
+
+?>
+                
+               
+            </div>
+                        
+
+        
 
 
                 
             </div>
-        </div>
 
         
 

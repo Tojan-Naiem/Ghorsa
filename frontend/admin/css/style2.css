@@ -1,0 +1,33 @@
+
+main{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  
+}
+p{
+  font-size: 200px;
+}
+
+.content{
+  width: 50px;
+  height: 100vh;
+}
+.sidebar{
+}
+.sidebar a {
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    color: #000;
+    margin: 5px 0;
+    margin-right: 100px;
+}
+
+.sidebar a:hover {
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+
+

@@ -23,8 +23,8 @@ if(!isset($_SESSION['name'])){
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/style2.css">
+    <!-- <link rel="stylesheet" href="style/style.css"> -->
+    <link rel="stylesheet" href="css/style4.css">
     <link rel="stylesheet" href="../header.css">
 
 
@@ -152,9 +152,13 @@ if(!isset($_SESSION['name'])){
     <main>
 
 
-                <div class="col sidebar">
-                    <h4>Admin Name</h4>
-                    <a href="main.html" onclick="changeContant('dashboard')" id="dashboard">Dashboard</a>
+                <div class="sidebar">
+                    <h4>  <?php
+
+echo "Welcome back , " . $_SESSION['name'];
+
+?></h4>
+                    <a href="main.php"  id="dashboard">Dashboard</a>
                 
                     <div class="accordion" id="categoryAccordion">
                         <div class="accordion-item" style="border: none; background: none;">
@@ -168,8 +172,8 @@ if(!isset($_SESSION['name'])){
                             <div id="collapseCategory1" class="accordion-collapse collapse"
                                 aria-labelledby="headingCategory1">
                                 <div class="accordion-body">
-                                    <a  href="showAllPlants.html"  onclick="changeContant(showAllPlants)" id="showAllPlants">Show All Plants</a>
-                                    <a href="addNewPlants.html" onclick="changeContant('addNewPlant')" id="addNewPlant">Add new plant</a>
+                                    <a  href="showAllPlants.html"  id="showAllPlants">Show All Plants</a>
+                                    <a href="addNewPlants.php"  id="addNewPlant">Add new plant</a>
 
                                 </div>
                             </div>
@@ -189,7 +193,7 @@ if(!isset($_SESSION['name'])){
                                 aria-labelledby="headingCategory2">
                                 <div class="accordion-body">
                                     <a href="#" class="d-block">Show All Categories</a>
-                                    <a href="#" class="d-block">Add A New Category</a>
+                                    <a href="addCategory.php" class="d-block">Add A New Category</a>
                                 </div>
                             </div>
                         </div>

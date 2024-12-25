@@ -317,3 +317,9 @@ footer {
 #whatsapp-icon:hover {
   transform: scale(1.1); 
 }
+#logOut{
+  background-color: red;
+  border-radius: 8px;
+  padding: 5px;
+
+}

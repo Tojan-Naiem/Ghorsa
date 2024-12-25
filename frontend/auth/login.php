@@ -1,5 +1,19 @@
 <?php
 include("../../backend/connect.php");
+session_start();
+
+if (isset($_SESSION['user_id'])) {
+    if($_SESSION['role_id']==1){
+        header('location:../admin/main.php');
+    
+    
+    }
+    else {
+        header('location:../user/main.php');
+    
+    }    exit;
+} 
+
 
 
 ?>
@@ -114,7 +128,6 @@ include("../../backend/connect.php");
             <button type="submit" class="btn" style="background-color: #28a44c; color: white;">Log in</button>
         </form>
         <?php
-                    session_start();
 
 
 $password=filter_input(INPUT_POST,"password",FILTER_SANITIZE_SPECIAL_CHARS);

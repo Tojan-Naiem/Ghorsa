@@ -44,112 +44,151 @@ if (!isset($_SESSION['name'])) {
 </head>
 
 <body>
-    <header>
-        <!-- <h1> ايقونات المواقع التواصل مع اللينكات الطرفية</h1> -->
-        <div class="iconlink">
-            <div class="icons">
-                <a href="#"><i class="fas fa-phone"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"> <i class="fa-brands fa-instagram"></i></a>
-            </div>
-
-            <div>
-                <nav class="link">
-                    <a href="#">Setting</a>
-                    <a href="#">Send a Gift</a>
-                    <a href="#">Blog</a>
-
-                </nav>
-            </div>
-        </div>
-        <hr>
-        <!-- <h1>عباره عن اسم الموقع وسيرش البحث وايقونات القلب والتسجيل والسله</h1> -->
-        <div class="container-fluid" id="navbarTitle">
-            <div class="row">
-                <div class="col-4 ">
-                    <div class="col1">
-                        <a href="#" style="color: #28a44c;">
-                            <h4 style="margin-bottom: 0;margin-top: 0;  font-family: Marcellus SC; font-size: 45px;">
-                                GHORSA</h4>
-                        </a>
-
-                    </div>
-                </div>
-                <div class="col-4 ">
-                    <div class="search-container">
-                        <input type="search" class="form-control" placeholder="Search here for plant">
-                        <i class="fas fa-search"
-                            style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="icons-account">
-                        <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                        <a href="#"><i class="fas fa-heart"></i></a>
-                        <a href="#"><i class="fas fa-user"></i></a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <!-- <h1>شريط الواجهات الاخرى</h1> -->
-        <div class="container-fluid " id="menuBar" style="padding-left: 18px; padding-top: 0; ">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-white" style="padding-top: 0;">
-                <div class="container-fluid">
-                    <button class="navbar-toggler" style="background-color: #28a44c; font-size: 12px; z-index: 1000;"
-                        type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav" style=" align-items: center;">
-                        <ul class="navbar-nav me-auto" style="align-items: center;margin: 0;">
-                            <li class="nav-item ">
-                                <a class="nav-link" id="home" href="#">Home</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="indoorDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Indoor Plants
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="indoorDropdown">
-                                    <li><a class="dropdown-item" href="#">Small Indoor Plants</a></li>
-                                    <li><a class="dropdown-item" href="#">Medium Indoor Plants</a></li>
-                                    <li><a class="dropdown-item" href="#">Large Indoor Plants</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="outdoorDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Outdoor Plants
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="outdoorDropdown">
-                                    <li><a class="dropdown-item" href="#">Flowering Plants</a></li>
-                                    <li><a class="dropdown-item" href="#">Shrubs</a></li>
-                                    <li><a class="dropdown-item" href="#">Trees</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="suppliesDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Agricultural Supplies
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="suppliesDropdown">
-                                    <li><a class="dropdown-item" href="#">Fertilizers</a></li>
-                                    <li><a class="dropdown-item" href="#">Pesticides</a></li>
-                                    <li><a class="dropdown-item" href="#">Tools</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="about" href="#">About</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+<header>
+      <!-- <h1> ايقونات المواقع التواصل مع اللينكات الطرفية</h1> -->
+      <div class="iconlink">
+        <div class="icons">
+          <a href="#"><i class="fas fa-phone"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"> <i class="fa-brands fa-instagram"></i></a>
         </div>
 
-        <hr style="margin: 0;">
+        <div>
+          <nav class="link">
+            <a href="#">Setting</a>
+            <a href="#">Send a Gift</a>
+            <a href="#">Blog</a>
+          </nav>
+        </div>
+      </div>
+      <hr />
+      <!-- <h1>عباره عن اسم الموقع وسيرش البحث وايقونات القلب والتسجيل والسله</h1> -->
+      <div class="mid-header">
+        <div class="col1">
+          <a href="index.html" style="color: #28a44c">
+            <h4
+              style="
+                margin-bottom: 0;
+                margin-top: 0;
+                font-family: Marcellus SC;
+                font-size: 45px;
+              "
+            >
+              GHORSA
+            </h4>
+          </a>
+        </div>
+        <div class="search-container">
+            <div class="search-box">
+              <input
+                id="input"
+                onfocus="focus()"
+                type="search"
+                class="form-control"
+                placeholder="Search here for plant"
+              />
+              <i
+                class="fas fa-search"
+                style="
+                  position: absolute;
+                  right: 10px;
+                  top: 70%;
+                  transform: translateY(-50%);
+                "
+              ></i>
+            </div>
+      <div class="list">
+
+      </div>
+       
+        </div>
+        <div class="icons-account">
+          <a href=""><i class="fas fa-shopping-cart"></i></a>
+          <a href="favorates.html"><i class="fas fa-heart"></i></a>
+          <a href="auth/login.php"><i class="fas fa-user"></i></a>
+          <?php  
+          ob_start(); 
+          if(isset($_SESSION['name'])){
+            echo '<form method="POST" action="">
+            <button type="submit" name="logout" style="background-color: red; border-radius: 8px; padding: 5px; color: white;">Log Out</button>
+        </form>';;
+          }
+          if(isset($_POST['logout'])){
+            session_unset(); 
+            session_destroy(); 
+            header("Location: auth/login.php");
+            exit;
+          }
+          
+          
+          ?> 
+        
+        </div>
+      </div>
+      <hr />
+      <!-- <h1>شريط الواجهات الاخرى</h1> -->
+      <div
+        class="container-fluid"
+        id="menuBar"
+        style="padding-left: 18px; padding-top: 0"
+      >
+        <nav
+          class="navbar navbar-expand-lg navbar-dark bg-white"
+          style="padding-top: 0"
+        >
+          <div class="container-fluid">
+            <button
+              class="navbar-toggler"
+              style="background-color: #28a44c; font-size: 12px"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse"
+              id="navbarNav"
+              style="align-items: center"
+            >
+              <ul
+                class="navbar-nav me-auto"
+                style="align-items: center; margin: 0"
+              >
+                <li class="nav-item">
+                  <a class="nav-link" id="home" href="../index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="IndoorPlants" href="products.html"
+                    >Indoor Plants</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="OutdoorPlants" href="products.html">
+                    Outdoor Plants</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="AgriculturalSupplies"
+                    href="products.html"
+                    >Agricultural Supplies</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="about" href="about.html">About</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <hr style="margin: 0" />
     </header>
 
     <main>

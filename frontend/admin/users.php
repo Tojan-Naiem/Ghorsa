@@ -1,4 +1,4 @@
- <?php
+<?php
 include("../../backend/connect.php");
 
 session_start();
@@ -16,33 +16,42 @@ if (!isset($_SESSION['name'])) {
 
 
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style4.css">
-    <link rel="stylesheet" href="../header.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style4.css">
+  <link rel="stylesheet" href="../header.css">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+  <!-- CSS Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-   <!-- CSS Bootstrap -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- JavaScript Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
-<!-- JavaScript Bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="icon" href="../img/icon.png" >
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="icon" href="../img/icon.png" >
-
-    <title>GHORSA</title>
-   
+  <title>GHORSA</title>
+ 
+    <style>
+      .content{
+        display: flex;
+        flex-direction: column;
+      }
     
+
+  </style>
 </head>
 
 <body>
@@ -194,7 +203,8 @@ if (!isset($_SESSION['name'])) {
     </header>
   <main>
 
-    <div class="sidebar">
+
+  <div class="sidebar">
       <h4> 
         <?php
 
@@ -246,129 +256,67 @@ if (!isset($_SESSION['name'])) {
       <a href="#">Setting</a>
     </div>
     <div class="content">
-    <form method="POST"  class="plant-form" action="<?php  htmlspecialchars($_SERVER['PHP_SELF'])?>">
+      <h4 >Users</h4>
+   
 
-      <div class="img">
 
-        <img src="../img/Frame.png" alt="" /> <br />
-        <label for="plant_image" class="form-label">Upload Image</label>
-        <input type="file" name="plant_image" class="form-control" id="image" style="
-      margin-left: 90px;
-      box-shadow: none;
-      border: none;
-      background: none;
-    " /> 
-
-      </div>
-      <div class="plant-form">
-      <input type="text" class="form-control" name="name" placeholder="Enter Name Of Plant*" required
-            style="margin-top: 5px; box-shadow: none" />
-         
-          <label class="form-label">Select Category</label>
-          <div class="second-line">
-            <div>
-            <select class="form-select" name="category">
-            <?php
-$sql = "SELECT name FROM category";
-$result = mysqli_query($conn, $sql);
-
-if ($result && mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "<option>{$row['name']}</option>";
-    }
-} else {
-    echo "<option>No Categories Found</option>";
-}
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Role</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
 
 
 
-
-?>
-
-            </select>
-            </div>
-            <div class="quantity">
-            <input type="number" id="number" name="quantity" value="1" min="1" style="margin-top:20px; width:30% ; padding-left:5px" />
-
-            </div>
-         </div>
-          
-
-          <input type="text" class="form-control" name="color" placeholder="Enter Color Of Pot " required
-            style="box-shadow: none;margin-bottom:10px" />
-
-          <input type="text" class="form-control" name="price" placeholder="Enter Price Of Plant" required
-            style="box-shadow: none;margin-bottom:10px" />
-
-          <textarea class="form-control"  name="description" placeholder="Enter Description Of Plant"
-            required style="box-shadow: none;margin-bottom:10px"></textarea>
-
-          <textarea class="form-control"  name="plantCare" placeholder="Enter How to Care Of Plant"
-            style="box-shadow: none;margin-bottom:10px"></textarea>
-
-        <button name="submit" type="submit" >
-          Add a new Plant
-        </button>
-
-
-      </div>
-         
-      </form>
-      </div>
-      <?php
-      if(isset($_POST['submit'])){
-        $plant_image=filter_input(INPUT_POST,"plant_image",FILTER_SANITIZE_SPECIAL_CHARS);
-        $name=filter_input(INPUT_POST,"name",FILTER_SANITIZE_SPECIAL_CHARS);
-        $category=filter_input(INPUT_POST,"category",FILTER_SANITIZE_SPECIAL_CHARS);
-        $color=filter_input(INPUT_POST,"color",FILTER_SANITIZE_SPECIAL_CHARS);
-        $price=filter_input(INPUT_POST,"price",FILTER_SANITIZE_SPECIAL_CHARS);
-        $description=filter_input(INPUT_POST,"description",FILTER_SANITIZE_SPECIAL_CHARS);
-        $plantCare=filter_input(INPUT_POST,"plantCare",FILTER_SANITIZE_SPECIAL_CHARS);
-        $quantity=filter_input(INPUT_POST,"quantity",FILTER_SANITIZE_SPECIAL_CHARS);
-        $sql = "SELECT category_id FROM category WHERE name = '$category'";
-        $result=mysqli_query($conn,$sql);
-        $row=mysqli_fetch_assoc($result);
-        $id=$row['category_id'];
-      $sql="insert into product(name,price,description,plant_care,image,pot_color,stock,category_id) values('$name','$price','$description','$plantCare','$plant_image','$color','$quantity','$id')";
-      mysqli_query($conn, $sql);
-
-
-
-
-      }
-
-
-
-
-
-
-?>
-  
-           
-
+            <?php  
             
-      
+
+            $sql='select*from user';
+            $result=mysqli_query($conn,$sql);
+             while($row=mysqli_fetch_array($result))
+            {
+              $name=$row['name'];
+              $email=$row['email'];
+              $phone=$row['phone'];
+              $role_id=$row['role_id'];
+
+              $sql2="select role_name from roles where id=$role_id";
+              $result2=mysqli_query($conn,$sql2);
+              $role=mysqli_fetch_array($result2);
+              $role_name=$role["role_name"];
+
+
+              echo "
+                <tr>
+                <td>$name</td>
+                <td>$email</td>
+                <td>$phone</td>
+                <td>$role_name</td>
+                <td><button class=\"btn btn-primary btn-sm\">View</button></td>
+              </tr>
+              
+              
+              ";
+            }
+            
+            
+            
+            ?>
+              
+            </tbody>
+          </table>
+
+      </div>
+
 
 
   </main>
-  <script> 
-  var i=1;
-  function plus(){
-    i++;
-    document.getElementById('number').innerHTML=i;
-  }
-  function minus(){
-    if(i==1){
-
-    }
-    else {
-      i--;
-      document.getElementById('number').innerHTML=i;
-    }
-  }
-
-
-  </script>
 
 
 

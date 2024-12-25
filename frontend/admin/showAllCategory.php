@@ -1,3 +1,4 @@
+
 <?php
 include("../../backend/connect.php");
 
@@ -16,6 +17,8 @@ if (!isset($_SESSION['name'])) {
 
 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,9 +27,8 @@ if (!isset($_SESSION['name'])) {
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
-    <link rel="stylesheet" href="css/styleAddCategory.css">
     <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="css/style4.css">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
@@ -40,7 +42,91 @@ if (!isset($_SESSION['name'])) {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <title>Document</title>
+    <style>
 
+        .content{
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+
+        }
+       
+
+        main {
+            display: grid;
+            grid-template-columns: 20% 1fr;
+            gap: 5px;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+            gap: 20px;
+        }
+        .card {
+            width: 50%;
+            display: flex;
+            flex-direction: row;
+         
+        }
+        .card .second-part{
+            width: 100%;
+        }
+        .card .first-part{
+            width: 30%;
+        }
+        .card img {
+            width: 70%;
+            height: auto;
+            margin-right: 20px;
+            background-color:#f0f0f0;
+            float: left;
+        }
+        .second-part h4{
+            margin-top: 30px;
+            margin-left: 15px;
+
+        }
+       
+        .edit {
+            font-size: 20px;
+            color: #555;
+            margin-left: auto;
+            margin-right: auto;
+            cursor: pointer;
+            float: right;
+        }
+        @media (max-width:600px) {
+            .container {
+                max-width: 200%;
+                padding: 5px;
+            }
+            .card {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+            .card img {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            .card .text {
+                margin-top: 0;
+                font-size: 16px;
+            }
+            .edit {
+                align-self: flex-end;
+                margin-right: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -106,11 +192,10 @@ if (!isset($_SESSION['name'])) {
           <a href=""><i class="fas fa-shopping-cart"></i></a>
           <a href="favorates.html"><i class="fas fa-heart"></i></a>
           <a href="auth/login.php"><i class="fas fa-user"></i></a>
-          
           <?php  
           ob_start(); 
           if(isset($_SESSION['name'])){
-            echo '<form style="width:30%; height:70px" method="POST" action="">
+            echo '<form method="POST" action="">
             <button type="submit" name="logout" style="background-color: red; border-radius: 8px; padding: 5px; color: white;">Log Out</button>
         </form>';;
           }
@@ -123,6 +208,7 @@ if (!isset($_SESSION['name'])) {
           
           
           ?> 
+        
         </div>
       </div>
       <hr />
@@ -194,120 +280,93 @@ if (!isset($_SESSION['name'])) {
 
 
     <div class="sidebar">
-                    <h4>  <?php
+      <h4> 
+        <?php
 
-echo "Welcome back , " . $_SESSION['name'];
+        echo "Welcome back , " . $_SESSION['name'];
 
-?></h4>
-                    <a href="main.php"  id="dashboard">Dashboard</a>
-                
-                    <div class="accordion" id="categoryAccordion">
-                        <div class="accordion-item" style="border: none; background: none;">
-                            <h2 class="accordion-header" id="headingCategory1">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseCategory1" aria-expanded="false"
-                                    aria-controls="collapseCategory1" style="border: none; box-shadow: none; background: none; ">
-                                    Plant
-                                </button>
-                            </h2>
-                            <div id="collapseCategory1" class="accordion-collapse collapse"
-                                aria-labelledby="headingCategory1">
-                                <div class="accordion-body">
-                                    <a  href="showAllPlants.php"  id="showAllPlants">Show All Plants</a>
-                                    <a href="addNewPlants.php"  id="addNewPlant">Add new plant</a>
+        ?>
+      </h4>
+      <a href="main.php">Dashboard</a>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="accordion" id="categoryAccordion2">
-                        <div class="accordion-item" style="border: none; background: none;">
-                            <h2 class="accordion-header" id="headingCategory2">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseCategory2" aria-expanded="false"
-                                    aria-controls="collapseCategory2" style="border: none; box-shadow: none; background: none; ">
-                                    Category
-                                </button>
-                            </h2>
-                            <div id="collapseCategory2" class="accordion-collapse collapse"
-                                aria-labelledby="headingCategory2">
-                                <div class="accordion-body">
-                                    <a href="showAllCategory.php" class="d-block">Show All Categories</a>
-                                    <a href="addCategory.php" class="d-block">Add A New Category</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#">Order</a>
-                    <a href="Users.html">Users</a>
-                    <a href="myProfile.html">My Profile</a>
-                    <a href="#">Setting</a>
-                </div>
-          
+      <div class="accordion" id="categoryAccordion">
+        <div class="accordion-item" style="border: none; background: none;">
+          <h2 class="accordion-header" id="headingCategory1">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseCategory1" aria-expanded="false" aria-controls="collapseCategory1"
+              style="border: none; box-shadow: none; background: none; ">
+              Plant
+            </button>
+          </h2>
+          <div id="collapseCategory1" class="accordion-collapse collapse" aria-labelledby="headingCategory1">
+            <div class="accordion-body">
+              <a href="showAllPlants.php" onclick="changeContant(showAllPlants)" id="showAllPlants">Show All Plants</a>
+              <a href="addNewPlants.php" onclick="changeContant('addNewPlant')" id="addNewPlant">Add new plant</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="categoryAccordion2">
+        <div class="accordion-item" style="border: none; background: none;">
+          <h2 class="accordion-header" id="headingCategory2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseCategory2" aria-expanded="false" aria-controls="collapseCategory2"
+              style="border: none; box-shadow: none; background: none; ">
+              Category
+            </button>
+          </h2>
+          <div id="collapseCategory2" class="accordion-collapse collapse" aria-labelledby="headingCategory2">
+            <div class="accordion-body">
+              <a href="#" class="d-block">Show All Categories</a>
+              <a href="addCategory.php" class="d-block">Add A New Category</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#">Order</a>
+      <a href="Users.html">Users</a>
+      <a href="myProfile.html">My Profile</a>
+      <a href="#">Setting</a>
+    </div>
         <div class="content">
-            <h4> Add a new Catagory </h4>
-            <form method="POST" action="<?php  htmlspecialchars($_SERVER['PHP_SELF'])?>">
-            <div class="first-part">
-                    <div class="img">
-                        <img src="../img/Frame.png ">
-                        <label for="plant_image" class="form-label">Upload Image</label>
-                        <input type="file" name="plant_image" class="form-control" id="image" style="
-                      margin-left: 90px;
-                      box-shadow: none;
-                      border: none;
-                      background: none;
-                    " /> 
-                    </div>
-                    <div class="title">
-                        <input type="text" class="form-control" name="title" placeholder="Enter Name Of Category*" required
-                        style="margin-top: 5px; box-shadow: none;width: 100%;"  />        
-                    </div>
-                </div>
-                <div class="btn-add">
 
-                    <button name="submit" class="save-button"> Add a New Catagory</button>
-
-                </div>
+            <h4 > All Catagory </h4>
+                            <div class="container">
 
 
+                            <?php
+
+                            $sql='Select*From category';
+                            $result=mysqli_query($conn,$sql);
+                            while($row=mysqli_fetch_array($result)){
+                                 $image=$row['image'];
+                                 $name=$row['name'];
+                                 echo "
+                                 <div class=\"card\">
+                                    <div class=\"first-part\">
+                                        <img src=\"../img/$image\" alt=\"Plant\">
+                                    </div>
+                                    <div class=\"second-part\">
+                                        <i class=\"fas fa-edit edit\"></i>
+                                        <h4>$name</h4>
+                                    </div>
+                                      
+                                </div>
+                                 ";
 
 
-                </form>
-
-              
-                <?php
-
-                if(isset($_POST['submit'])){
-                    $title=filter_input(INPUT_POST,"title",FILTER_SANITIZE_SPECIAL_CHARS);
-                    $plant_image=filter_input(INPUT_POST,"plant_image",FILTER_SANITIZE_SPECIAL_CHARS);
-                    $sql="insert into category(name,image) values ('$title','$plant_image'); ";
-                    mysqli_query($conn,$sql);
-                    
-
-                }
+                            }
 
 
 
 ?>
-                         
-            
-            
-            
-            
-            
-
-        
-        
-        
-        </div>
-                       
-                    
-             
-        
+                                
+                            </div>
+                        </div>
+                
     </main>
-
-
 
 </body>
 

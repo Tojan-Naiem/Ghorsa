@@ -225,6 +225,7 @@ if (!isset($_SESSION['name'])) {
             $sql="select*from product";
             $result=mysqli_query($conn,$sql);
             while($row=mysqli_fetch_array($result)){
+                $product_id=$row["product_id"];
                 $image=$row["image"];
                 $name=$row["name"];
                 $price=$row["price"];
@@ -237,44 +238,44 @@ if (!isset($_SESSION['name'])) {
          $result2=mysqli_query($conn,$sqll);
          $categoryRow = mysqli_fetch_assoc($result2);
          $categoryName=$categoryRow["name"];
-
-             echo '
+             echo "
              
-             <div class="product-card">
-                    <a id="edit-icon" href="editProfieInfo.php"><i class="fa-regular fa-pen-to-square"></i></a>
+             
+             <div class=\"product-card\">
+                    <a id=\"edit-icon\" href=\"editPlant.php?i=$product_id;\"><i class=\"fa-regular fa-pen-to-square\"></i></a>
 
-                    <div class="product-details">
+                    <div class=\"product-details\">
 
-                        <img src="../img/plant-image/'.htmlspecialchars($image).'" alt="Plant" class="product-img">
+                        <img src=\"../img/plant-image/$image\" alt=\"Plant\" class=\"product-img\">
 
 
-                        <div class="product-info">
-                            <h4 >'.htmlspecialchars($name).' <span>'.htmlspecialchars($price).' </span></h4>
-                            <p>Quantity Available: <strong>'.htmlspecialchars($quantity).' </strong></p>
-                            <p>Category: <strong>'.htmlspecialchars($categoryName).'</strong></p>
-                            <p>Color Of Pot Available: <strong>'.htmlspecialchars($color).' </strong></p>
-                            <p id="mainDescription">
-                               '.htmlspecialchars($description).'
+                        <div class=\"product-info\">
+                            <h4 >$name <span>$price </span></h4>
+                            <p>Quantity Available: <strong>$quantity </strong></p>
+                            <p>Category: <strong>$categoryName</strong></p>
+                            <p>Color Of Pot Available: <strong>$color </strong></p>
+                            <p id=\"mainDescription\">
+                              $description
                             </p>
                         </div>
                     </div>
 
 
-                    <div class="expand-icon" id="expandIcon">
-                        <i class="fa fa-chevron-down"></i>
+                    <div class=\"expand-icon\" id=\"expandIcon\">
+                        <i class=\"fa fa-chevron-down\"></i>
                     </div>
 
 
-                    <div class="extra-info" id="extraInfo">
-                        <p id="extraDescription ">
-                             '.htmlspecialchars($description).'
+                    <div class=\"extra-info\" id=\"extraInfo\">
+                        <p id=\"extraDescription \">
+                             $description
                         <p>stronfices.</p>
                         <p> The height of the holder is 34 cm.
                             <br>The width of the holder is 12 cm.
                         </p>
                         </p>
 
-                          '.htmlspecialchars($plantCare).'
+                          $plantCare
                     </div>
                 </div> 
 
@@ -282,7 +283,7 @@ if (!isset($_SESSION['name'])) {
              
              
              
-             ';
+             ";
 
 
             }

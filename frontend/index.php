@@ -3,15 +3,6 @@ include("../backend/connect.php");
 
 session_start();
 
-// if (!isset($_SESSION['name'])) {
-
-//   echo $_SESSION['name'];
-//   header('location: /ghorsa/auth/login.php');
-//   exit();
-// }
-// echo "Welcome, " . htmlspecialchars($_SESSION['name']);
-
-
 
 ?>
 
@@ -204,33 +195,37 @@ session_start();
     <div class="container" id="category-section">
       <h3 id="category-title">Category</h3>
       <div class="category-cards">
-        <div class="category-card">
-          <a href="#">
-            <img src="img/indoorplants.png" alt="Indoor Plants" class="img2left" />
-            <p>Indoor Plants</p>
-          </a>
-        </div>
+        <?php 
 
-        <div class="category-card">
-          <a href="#">
-            <img src="img/indoorplants.png" alt="Indoor Plants" class="img2left" />
-            <p>Indoor Plants</p>
-          </a>
-        </div>
+        $sql="Select*from category";
+        $result=mysqli_query($conn,$sql);
+        while($row=mysqli_fetch_array($result)){
 
-        <div class="category-card">
-          <a href="#">
-            <img src="img/indoorplants.png" alt="Indoor Plants" class="img2left" />
-            <p>Indoor Plants</p>
+         $name=$row['name'];
+         $image=$row['image'];
+         $id=$row['category_id'];
+         echo "
+         <div class=\"category-card\">
+          <a href=\"products.php?id=$id;\">
+            <img src=\"img/$image\" alt=\"Indoor Plants\" class=\"img2left\" />
+            <p>$name</p>
           </a>
         </div>
+         ";
 
-        <div class="category-card">
-          <a href="#">
-            <img src="img/outdoorPlants.png" alt="Indoor Plants" class="img2left" />
-            <p>Outdoor Plants</p>
-          </a>
-        </div>
+
+
+
+
+
+        }
+        
+        
+        
+        ?>
+        
+
+       
       </div>
     </div>
 
@@ -241,217 +236,57 @@ session_start();
         <h1>Our Most Popular Plants</h1>
       </div>
 
-      <div class="box-container" id="card-product"></div>
+      <div class="box-container" id="card-product">
 
-      <!-- 
-                <div class="box" onclick="goToPage()">
-                    <div class="img2">
-                        <img src="2.png" alt="">
-                        <a href="" class="fa-regular fa-heart"></a>
-                    </div>
-                    <hr>
-                    <div class="desc">
-                        <div class="des">
-                            <h5>Wild Session Plant</h5>
-                            <h6>35<strong>₪</strong></h6>
-                        </div>
-                        <div class="icon2">
-                            <a href="#" >Add to Cart</a>
-                            <a href="" style="padding-top: 3px;"  class="fa-solid fa-cart-shopping "></a>
-                        </div>
-    
-                     </div>
-                        
+      <?php  
 
-                </div>
-                <div class="box" onclick="goToPage()">
-                    <div class="img2">
-                        <img src="2.png" alt="">
-                        <a href="" class="fa-regular fa-heart"></a>
-                    </div>
-                    <hr>
-                    <div class="desc">
-                        <div class="des">
-                            <h5>Wild Session Plant</h5>
-                            <h6>35<strong>₪</strong></h6>
-                        </div>
-                        <div class="icon2">
-                            <a href="#" >Add to Cart</a>
-                            <a href="" style="padding-top: 3px;"  class="fa-solid fa-cart-shopping "></a>
-                        </div>
-    
-                     </div>
-                        
+$sql="Select *from product";
+$result=mysqli_query($conn,$sql);
+while($row=mysqli_fetch_array($result)){
+  $name=$row['name'];
+  $image=$row['image'];
+  $price=$row['price'];
+  $product_id=$row['product_id'];
 
 
-                </div>
-                <div class="box" onclick="goToPage()">
-                    <div class="img2">
-                        <img src="2.png" alt="">
-                        <a href="" class="fa-regular fa-heart"></a>
-                    </div>
-                    <hr>
-                    <div class="desc">
-                        <div class="des">
-                            <h5>Wild Session Plant</h5>
-                            <h6>35<strong>₪</strong></h6>
-                        </div>
-                        <div class="icon2">
-                            <a href="#" >Add to Cart</a>
-                            <a href="" style="padding-top: 3px;"  class="fa-solid fa-cart-shopping "></a>
-                        </div>
-    
-                     </div>
-                        
+  echo "
+  <div class=\"box\" onclick=\"goToPage($product_id)\">
+              <div class=\"img2\">
+                  <img src=\"img/plant-image/$image\" alt=\"\">
+                  <a href=\"\" class=\"fa-regular fa-heart\"></a>
+              </div>
+              <hr>
+              <div class=\"desc\">
+                  <div class=\"des\">
+                      <h5>$name</h5>
+                      <h6>$price<strong>₪</strong></h6>
+                  </div>
+                  <div class=\"icon2\">
+                      <a href=\"#\" >Add to Cart</a>
+                      <a href=\"\" style=\"padding-top: 3px;\"  class=\"fa-solid fa-cart-shopping \"></a>
+                  </div>
 
-                </div>
-                <div class="box" onclick="goToPage()">
-                    <div class="img2">
-                        <img src="2.png" alt="">
-                        <a href="" class="fa-regular fa-heart"></a>
-                    </div>
-                    <hr>
-                    <div class="desc">
-                        <div class="des">
-                            <h5>Wild Session Plant</h5>
-                            <h6>35<strong>₪</strong></h6>
-                        </div>
-                        <div class="icon2">
-                            <a href="#" >Add to Cart</a>
-                            <a href="" style="padding-top: 3px;"  class="fa-solid fa-cart-shopping "></a>
-                        </div>
-    
-                     </div>
-                        
+               </div>
+                  
 
-                </div>
-                <div class="box" onclick="goToPage()">
-                    <div class="img2">
-                        <img src="2.png" alt="">
-                        <a href="" class="fa-regular fa-heart"></a>
-                    </div>
-                    <hr>
-                    <div class="desc">
-                        <div class="des">
-                            <h5>Wild Session Plant</h5>
-                            <h6>35<strong>₪</strong></h6>
-                        </div>
-                        <div class="icon2">
-                            <a href="#" >Add to Cart</a>
-                            <a href="" style="padding-top: 3px;"  class="fa-solid fa-cart-shopping "></a>
-                        </div>
-    
-                     </div>
-                        
-
-                </div>
-                <div class="box" onclick="goToPage()">
-                    <div class="img2">
-                        <img src="2.png" alt="">
-                        <a href="" class="fa-regular fa-heart"></a>
-                    </div>
-                    <hr>
-                    <div class="desc">
-                        <div class="des">
-                            <h5>Wild Session Plant</h5>
-                            <h6>35<strong>₪</strong></h6>
-                        </div>
-                        <div class="icon2">
-                            <a href="#" >Add to Cart</a>
-                            <a href="" style="padding-top: 3px;"  class="fa-solid fa-cart-shopping "></a>
-                        </div>
-    
-                     </div>
-                        
-
-                </div>
-                <div class="box" onclick="goToPage()">
-                    <div class="img2">
-                        <img src="2.png" alt="">
-                        <a href="" class="fa-regular fa-heart"></a>
-                    </div>
-                    <hr>
-                    <div class="desc">
-                        <div class="des">
-                            <h5>Wild Session Plant</h5>
-                            <h6>35<strong>₪</strong></h6>
-                        </div>
-                        <div class="icon2">
-                            <a href="#" >Add to Cart</a>
-                            <a href="" style="padding-top: 3px;"  class="fa-solid fa-cart-shopping "></a>
-                        </div>
-    
-                     </div>
-                        
-
-                </div>
-                <div class="box" onclick="goToPage()">
-                    <div class="img2">
-                        <img src="2.png" alt="">
-                        <a href="" class="fa-regular fa-heart"></a>
-                    </div>
-                    <hr>
-                    <div class="desc">
-                        <div class="des">
-                            <h5>Wild Session Plant</h5>
-                            <h6>35<strong>₪</strong></h6>
-                        </div>
-                        <div class="icon2">
-                            <a href="#" >Add to Cart</a>
-                            <a href="" style="padding-top: 3px;"  class="fa-solid fa-cart-shopping "></a>
-                        </div>
-    
-                     </div>
-                        
+          </div>
+  
+  ";
 
 
-                </div>
-                <div class="box" onclick="goToPage()">
-                    <div class="img2">
-                        <img src="2.png" alt="">
-                        <a href="" class="fa-regular fa-heart"></a>
-                    </div>
-                    <hr>
-                    <div class="desc">
-                        <div class="des">
-                            <h5>Wild Session Plant</h5>
-                            <h6>35<strong>₪</strong></h6>
-                        </div>
-                        <div class="icon2">
-                            <a href="#" >Add to Cart</a>
-                            <a href="" style="padding-top: 3px;"  class="fa-solid fa-cart-shopping "></a>
-                        </div>
-    
-                     </div>
-                        
-
-                </div>
-
-                <div class="box" onclick="goToPage()">
-                    
-                    <div class="img2">
-                        <img src="2.png" alt="">
-                        <a href="" class="fa-regular fa-heart"></a>
-                    </div>
-                    <hr>
-                    <div class="desc">
-                        <div class="des">
-                            <h5>Wild Session Plant</h5>
-                            <h6>35<strong>₪</strong></h6>
-                        </div>
-                        <div class="icon2">
-                            <a href="#" >Add to Cart</a>
-                            <a href="" style="padding-top: 3px;"  class="fa-solid fa-cart-shopping "></a>
-                        </div>
-    
-                     </div>
-                        
+}
 
 
-                </div>
-               
 
-            </div> -->
+?>
+
+
+
+
+
+
+      </div>
+
     </section>
     <section class="products-cards">
       <div class="heading">
@@ -459,196 +294,50 @@ session_start();
       </div>
 
       <div class="box-container">
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
+      <?php  
 
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
+      $sql="Select *from product";
+      $result=mysqli_query($conn,$sql);
+      while($row=mysqli_fetch_array($result)){
+        $name=$row['name'];
+        $image=$row['image'];
+        $price=$row['price'];
+  $product_id=$row['product_id'];
 
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
 
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
+        echo "
+        <div class=\"box\" onclick=\"goToPage($product_id)\">
+                    <div class=\"img2\">
+                        <img src=\"img/plant-image/$image\" alt=\"\">
+                        <a href=\"\" class=\"fa-regular fa-heart\"></a>
+                    </div>
+                    <hr>
+                    <div class=\"desc\">
+                        <div class=\"des\">
+                            <h5>$name</h5>
+                            <h6>$price<strong>₪</strong></h6>
+                        </div>
+                        <div class=\"icon2\">
+                            <a href=\"#\" >Add to Cart</a>
+                            <a href=\"\" style=\"padding-top: 3px;\"  class=\"fa-solid fa-cart-shopping \"></a>
+                        </div>
+    
+                     </div>
+                        
+
+                </div>
+        
+        ";
+
+
+      }
+
+
+
+?>
+
+
+
       </div>
     </section>
     <div class="descreption-section">
@@ -673,196 +362,53 @@ session_start();
       </div>
 
       <div class="box-container">
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
+      <?php  
 
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
+      $sql="Select*from category where name='Indoor Plants'";
+      $result=mysqli_query($conn,$sql);
+      $row=mysqli_fetch_array($result);
+      $category_id=$row["category_id"];
+$sql="Select *from product where category_id=$category_id";
+$result=mysqli_query($conn,$sql);
+while($row=mysqli_fetch_array($result)){
+  $name=$row['name'];
+  $image=$row['image'];
+  $price=$row['price'];
+  $product_id=$row['product_id'];
 
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
+  echo "
+  <div class=\"box\" onclick=\"goToPage($product_id)\">
+              <div class=\"img2\">
+                  <img src=\"img/plant-image/$image\" alt=\"\">
+                  <a href=\"\" class=\"fa-regular fa-heart\"></a>
+              </div>
+              <hr>
+              <div class=\"desc\">
+                  <div class=\"des\">
+                      <h5>$name</h5>
+                      <h6>$price<strong>₪</strong></h6>
+                  </div>
+                  <div class=\"icon2\">
+                      <a href=\"#\" >Add to Cart</a>
+                      <a href=\"\" style=\"padding-top: 3px;\"  class=\"fa-solid fa-cart-shopping \"></a>
+                  </div>
 
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
+               </div>
+                  
+
           </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
+  
+  ";
+
+
+}
+
+
+
+?>
+
+
+
       </div>
     </section>
 
@@ -872,196 +418,50 @@ session_start();
       </div>
 
       <div class="box-container">
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
+      <?php  
 
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
+$sql="Select *from product where price<=50";
+$result=mysqli_query($conn,$sql);
+while($row=mysqli_fetch_array($result)){
+  $name=$row['name'];
+  $image=$row['image'];
+  $price=$row['price'];
+  $product_id=$row['product_id'];
 
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
-          </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
 
-        <div class="box" onclick="goToPage()">
-          <div class="img2">
-            <img src="2.png" alt="" />
-            <a href="" class="fa-regular fa-heart"></a>
+  echo "
+  <div class=\"box\" onclick=\"goToPage($product_id)\">
+              <div class=\"img2\">
+                  <img src=\"img/plant-image/$image\" alt=\"\">
+                  <a href=\"\" class=\"fa-regular fa-heart\"></a>
+              </div>
+              <hr>
+              <div class=\"desc\">
+                  <div class=\"des\">
+                      <h5>$name</h5>
+                      <h6>$price<strong>₪</strong></h6>
+                  </div>
+                  <div class=\"icon2\">
+                      <a href=\"#\" >Add to Cart</a>
+                      <a href=\"\" style=\"padding-top: 3px;\"  class=\"fa-solid fa-cart-shopping \"></a>
+                  </div>
+
+               </div>
+                  
+
           </div>
-          <hr />
-          <div class="desc">
-            <div class="des">
-              <h5>Wild Session Plant</h5>
-              <h6>35<strong>₪</strong></h6>
-            </div>
-            <div class="icon2">
-              <a href="#">Add to Cart</a>
-              <a href="" style="padding-top: 3px" class="fa-solid fa-cart-shopping"></a>
-            </div>
-          </div>
-        </div>
+  
+  ";
+
+
+}
+
+
+
+?>
+
+
+
       </div>
     </section>
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -1075,8 +475,14 @@ session_start();
       </div>
     </footer>
 
-    <script src="script.js">
+    <script >
+       function goToPage(index) {
+   
+    window.location.href = "index2.php?i="+index;
+    
+    } 
     </script>
+   
     <!-- <script>
         input=document.getElementById('input');
     

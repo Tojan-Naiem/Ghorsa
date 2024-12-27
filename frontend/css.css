@@ -135,6 +135,7 @@
 }
 .products-cards .box-container .box .img2 {
   display: flex;
+  height: 50%;
   justify-content: center;
   background-color: #d1d1d149;
   border-top-left-radius: 15px;

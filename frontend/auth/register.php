@@ -130,18 +130,12 @@ include("../../backend/connect.php");
            else {
             $hash=password_hash($password,PASSWORD_DEFAULT);
 
-            $sql = " INSERT INTO user (name, email, role_id,password) VALUES ('$username', '$email', '1','$hash')";
+            $sql = " INSERT INTO user (name, email, role_id,password) VALUES ('$username', '$email', '2','$hash')";
             try{
                 mysqli_query($conn, $sql);
-                if($_SESSION['role_id']==1){
-                    header('location:../admin/main.html');
-                
-                
-                }
-                else {
                     header('location:../user/main.php');
                 
-                }
+                
             }
            catch(mysqli_sql_exception $e){
             echo "This email is using before";

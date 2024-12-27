@@ -67,11 +67,11 @@ function selectInput(list){
 //     `;
 // }
 
-// function goToPage(index) {
-//     let data = JSON.parse(localStorage.getItem('product'));
-//     console.log(data);
-//     localStorage.setItem('selectedPlant',JSON.stringify(data[index]))
+function goToPage(index) {
+    let data = JSON.parse(localStorage.getItem('product'));
+    console.log(data);
+    localStorage.setItem('selectedPlant',JSON.stringify(data[index]))
 
-//     window.location.href = "index2.html";
+    window.location.href = "index2.html";
     
-//     } 
+    } 

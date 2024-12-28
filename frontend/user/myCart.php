@@ -1,3 +1,39 @@
+<?php
+include("../../backend/connect.php");
+
+session_start();
+
+if(!isset($_SESSION['name'])){
+
+  echo $_SESSION['name'];
+   header('location:../auth/login.php');
+   exit();
+}
+$user_id=$_SESSION['user_id'];
+
+$sql="Select cart_id from cart where user_id=$user_id";
+$result=mysqli_query($conn,$sql);
+$row=mysqli_fetch_assoc($result);
+$cart_id=$row['cart_id'];
+
+if (isset($_GET['remove'])) {
+    $cart_item_id = $_GET['remove'];
+
+    $sql = "DELETE FROM cart_item WHERE cart_item_id = $cart_item_id";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    } else {
+    }
+}
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -138,7 +174,6 @@
 
     <main>
 
-        <!-- القائمة الجانبية -->
 
         <div class="left-side">
 
@@ -151,7 +186,6 @@
             </div>
 
           </div>
-        <!-- القائمة الرئيسيه لتسجيل المعلومات -->
             <div class="order-container">
                 <h3>My Cart</h3>
                 <h4 >Order Details</h4>
@@ -171,61 +205,79 @@
                     </thead>
                     <tbody>
 
-                        <tr class="border-bottom">
+                    <?php
+                   
+
+$sql="Select*from cart_item where cart_id=$cart_id";
+$result=mysqli_query($conn,$sql);
+while($row=mysqli_fetch_assoc($result)){
+    $cart_item_id=$row["cart_item_id"];
+    $product_id=$row['product_id'];
+    $quantity=$row['quantity'];
+    $total_price=$row['price'];
+    $sql="Select*from product where product_id=$product_id";  
+    $result2=mysqli_query($conn,$sql);
+    $row2=mysqli_fetch_assoc($result2);
+    $image=$row2['image'];
+    $name=$row2['name'];
+    $price=$row2['price'];
+   
+    echo ' 
+            <tr class="border-bottom">
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="2.png" alt="Plant" class="product-image me-2">
-                                    <span>Wild Session Plant</span>
+                                    <img src="../img/plant-image/'.$image.'" alt="Plant" class="product-image me-2">
+                                    <span>'.$name.'</span>
                                 </div>
                             </td>
-                            <td>35</td>
+                            <td>'.$price.'</td>
 
                             <td>
-                            <div class="cont-icon">
 
-                                    <span class="icon-btn"><i class="fa fa-plus-circle"></i></span>
-                                    <input type="number" class="form-control text-center mx-2" value="1"
+                                    <input type="number" value="'.$quantity.'" class="form-control text-center mx-2" value="1"
                                         style="width: 60px; border: none;  background-color: #f0f0f0; box-shadow: none; background: none;">
-                                    <span class="icon-btn"><i class="fa fa-minus-circle"></i></span>
-                        </div>
                             
                                 </td>
                             <td>
-                                <span class="delete-icon"><i class="fa fa-trash-alt"></i></span>
+                                <a href="?remove='.$cart_item_id.'" class="delete-icon"><i class="fa fa-trash-alt"></i></a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="2.png" alt="Plant" class="product-image me-2">
-                                    <span>Wild Session Plant</span>
-                                </div>
-                            </td>
-                            <td>35</td>
-                            <td>
-                            <div class="cont-icon">
+    
+    
+    
+    
+    ';
 
-                                <span class="icon-btn"><i class="fa fa-plus-circle"></i></span>
-                                <input type="number" class="form-control text-center mx-2" value="1"
-                                        style="width: 60px; border: none;  background-color: #f0f0f0; box-shadow: none; background: none;">
-                                <span class="icon-btn"><i class="fa fa-minus-circle"></i></span>
-                            </div>
+}
+?>
 
-                            </td>
-                            <td>
-                                <span class="delete-icon"><i class="fa fa-trash-alt"></i></span>
-                            </td>
-                        </tr>
+                    
+
+              
                     </tbody>
                 </table>
 
                 <div class="d-flex justify-content-between align-items-center mt-4">
                     <span class="total-price">Total Price :</span>
-                    <span class="fs-5">70</span>
+                    <span class="fs-5">
+                    <?php 
+              $sql="Select*from cart_item where cart_id=$cart_id";  
+              $result2=mysqli_query($conn,$sql);
+              $amount=0;
+              while($row=mysqli_fetch_assoc($result2)){
+             $amount+=$row['price'];
+
+              }
+              
+             echo $amount;
+                      ?>
+
+
+                    </span>
                 </div>
                 <hr style="width: 100%; align-items: center;">
                 <div class="text-center mt-4">
-                    <button class="btn btn-confirmation " style="color: white; width: 30%; background-color: #28a44c;">Order Confirmation</button>
+                    <a href="../pay.php" class="btn btn-confirmation " style="color: white; width: 30%; background-color: #28a44c;">Order Confirmation</a>
                 </div>
 
 

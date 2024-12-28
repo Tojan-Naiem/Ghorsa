@@ -11,7 +11,6 @@ if(!isset($_SESSION['name'])){
 }
 $user_id=$_SESSION['user_id'];
 
-$total_amount=0;
 $sql="Select cart_id from cart where user_id=$user_id";
 $result=mysqli_query($conn,$sql);
 $row=mysqli_fetch_assoc($result);
@@ -419,7 +418,6 @@ if (isset($_GET['remove'])) {
                             $product_id=$row['product_id'];
                             $quantity=$row['quantity'];
                             $total_price=$row['price'];
-                            $total_amount+=$total_price;
                             $sql="Select*from product where product_id=$product_id";  
                             $result2=mysqli_query($conn,$sql);
                             $row2=mysqli_fetch_assoc($result2);
@@ -505,8 +503,28 @@ if (isset($_GET['remove'])) {
         </div>
 
         <!-- عنوان الدفع -->
+         
         <div class="section-payment">
             <h4>Payment Address</h4>
+            <form method="POST" action="confirm_order.php">
+    <label for="address_id">Select Address:</label>
+    <select id="address_id" name="address_id" required>
+        <option value="" disabled selected>Choose an address</option>
+        <?php
+        $sql = "SELECT * FROM address WHERE user_id = $user_id";
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $address_id = $row['address_id'];
+            $city = $row['city'];
+            $street = $row['street'];
+            $pin_code = $row['pin_code'];
+            echo "<option value='$address_id'>$city, $street, $pin_code</option>";
+        }
+        ?>
+    </select>
+    <button class="confirm-btn">Order Confirmation</button> 
+    </form>
+<!-- 
             <select>
                 <option>Please select...</option>
                 <option>Jerusalem</option>
@@ -524,7 +542,7 @@ if (isset($_GET['remove'])) {
             <label>
                 <input type="checkbox"> My shipping address and payment address match
             </label>
-            <button class="confirm-btn">Order Confirmation</button>
+            <button class="confirm-btn">Order Confirmation</button> -->
         </div>
     </div>
 </body>

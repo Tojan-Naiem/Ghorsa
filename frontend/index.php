@@ -4,6 +4,13 @@ include("../backend/connect.php");
 session_start();
 
 
+if(!isset($_SESSION['name'])){
+
+  header('location:../auth/login.php');
+  exit();
+}
+$user_id=$_SESSION['user_id'];
+
 ?>
 
 

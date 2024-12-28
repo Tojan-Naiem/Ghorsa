@@ -1,4 +1,4 @@
- <?php
+<?php
 include("../../backend/connect.php");
 
 session_start();
@@ -10,7 +10,21 @@ if(!isset($_SESSION['name'])){
    exit();
 }
 $user_id=$_SESSION['user_id'];
+if (isset($_GET['i'])) {
+    $address_id = $_GET['i'];
+    $sql = "SELECT * FROM address WHERE address_id = $address_id";
 
+    $result = mysqli_query($conn, $sql);
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        $city_name=$row["city"];
+        $street=$row["street"];
+        $pin_code=$row["pin_code"];
+
+    } else {
+        echo 'Address not found.';
+    }
+}
 
 ?> 
 
@@ -216,45 +230,50 @@ $user_id=$_SESSION['user_id'];
           <h5 class="form-title mb-3">Address</h5>
 
               <div class="address-part">
-                <h5>Address 1</h5><br>
+                <h5>Address <?php echo $address_id;?></h5><br>
               <div class="row">
                   <div class="col-md-6 mb-3">
                       <label for="city" class="form-label">City Name</label>
-                      <input type="text" name="city_name" class="form-control" id="city" placeholder="CityName"
+                      <input type="text" value="<?php echo $city_name ?>" name="city_name" class="form-control" id="city" placeholder="CityName"
                           style="box-shadow: none;">
                   </div>
                   <div class="col-md-6 mb-3">
                       <label for="street" class="form-label">Street Name</label>
-                      <input type="text" name="street_name" class="form-control" id="street" placeholder="Street Name"
+                      <input type="text" value="<?php echo $street ?>" name="street_name" class="form-control" id="street" placeholder="Street Name"
                           style="box-shadow: none;">
                   </div>
                   <div class="col-md-6 mb-3">
                       <label for="number" class="form-label">Pin code</label>
-                      <input type="number" name="pin_code" class="form-control" id="number" placeholder="Pin Code"
+                      <input type="number" name="pin_code" value="<?php echo $pin_code ?>" class="form-control" id="number" placeholder="Pin Code"
                           style="box-shadow: none;">
                   </div>
               </div>
 
 
               </div>
-              <input type="submit" value="Add" name="submit" class="btn" style="width: 30%;color: white; background-color: #28a44c;">
+              <input type="submit" value="Update" name="submit" class="btn" style="width: 30%;color: white; background-color: #28a44c;">
 
           </form>
-          <?php 
-          if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
+          <?php
+if(isset($_POST['submit'])){
+    $city_name=$row["city"];
+    $street=$row["street"];
+    $pin_code=$row["pin_code"];
+    $address_id=$row["address_id"];
+    
+        $sql="Update address set city='$city_name',pin_code='$pin_code',street='$street' where address_id=$address_id";
+    $result=mysqli_query($conn,$sql);
 
-            $city = $_POST['city_name'];
-            $street_name = $_POST['street_name'];
-            $pin_code = $_POST['pin_code'];
 
 
-          $sql="insert into address(country,city,pin_code,user_id,street) values('Palestine','$city',$pin_code,$user_id,'$street_name')";
-          $result=mysqli_query($conn,$sql);
-          header("Location: " . $_SERVER['PHP_SELF'] . "?i=" . $product_id);
-          exit(); 
-          }
 
-          ?>
+  }
+
+
+
+
+
+?>
         
       </div>
     </main>

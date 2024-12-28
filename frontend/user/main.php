@@ -1,4 +1,5 @@
 <?php
+include("../../backend/connect.php");
 
 session_start();
 
@@ -7,6 +8,20 @@ if(!isset($_SESSION['name'])){
   echo $_SESSION['name'];
    header('location:../auth/login.php');
    exit();
+}
+$user_id=$_SESSION['user_id'];
+
+if (isset($_GET['remove'])) {
+  $address_id = $_GET['remove'];
+
+  $sql = "DELETE FROM address WHERE address_id = $address_id";
+  $result = mysqli_query($conn, $sql);
+
+  if ($result) {
+      header("Location: " . $_SERVER['PHP_SELF']);
+      exit();
+  } else {
+  }
 }
 
 ?>
@@ -259,29 +274,55 @@ if(!isset($_SESSION['name'])){
                         <form>
                         <h5 class="form-title mb-3">Address</h5>
                         <a href="addNewAddress.php"><i class="fas fa-plus-circle"></i></a>
+                        <?php 
+                        $sql="Select*from address where user_id=$user_id";
+                        $result=mysqli_query($conn,$sql);
+                        while($row=mysqli_fetch_array($result)){
+                          $city_name=$row["city"];
+                          $street=$row["street"];
+                          $pin_code=$row["pin_code"];
+                          $address_id=$row["address_id"];
+                          echo ' 
+                           <div class="address-part">
+                              <h5>Address '.$address_id.'</h5><br>
+                        <a href="editAddress.php?i='.$address_id.';"><i class="fa-regular fa-pen-to-square"></i></a>
+                                                        <a style="margin-right:10px" href="?remove='.$address_id.'" class="remove"><i class="fas fa-trash"></i></a>
 
-                            <div class="address-part">
-                              <h5>Address 1</h5><br>
+
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="city" class="form-label">City Name</label>
-                                    <input type="text" class="form-control" id="city" placeholder="CityName"
+                                    <input type="text" class="form-control" id="city" placeholder="'.$city_name.'"
                                         style="box-shadow: none;"disabled>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="street" class="form-label">Street Name</label>
-                                    <input type="text" class="form-control" id="street" placeholder="Street Name"
+                                    <input type="text" class="form-control" id="street" placeholder="'.$street.'"
                                         style="box-shadow: none;"disabled>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="street" class="form-label">Pin code</label>
-                                    <input type="text" class="form-control" id="street" placeholder="Street Name"
+                                    <input type="text" class="form-control" id="street" placeholder="'.$pin_code.'"
                                         style="box-shadow: none;"disabled>
                                 </div>
                             </div>
 
 
                             </div>
+                          
+                          
+                          
+                          ';
+
+
+                        }
+
+                        
+                        
+                        
+                        
+                        ?>
+                           
                         </form>
                       
                 </div>

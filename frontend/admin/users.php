@@ -9,6 +9,19 @@ if (!isset($_SESSION['name'])) {
   header('location:../auth/login.php');
   exit();
 }
+$flex=0;
+if (isset($_GET['remove'])) {
+  $user_id = $_GET['remove'];
+
+  $sql = "DELETE FROM user WHERE user_id = $user_id";
+  $result = mysqli_query($conn, $sql);
+
+  if ($result) {
+      header("Location: " . $_SERVER['PHP_SELF']);
+      exit();
+  } else {
+  }
+}
 
 
 
@@ -48,8 +61,12 @@ if (!isset($_SESSION['name'])) {
       .content{
         display: flex;
         flex-direction: column;
+        height: 150vh;
       }
-    
+    .btn{
+      display: flex;
+      justify-content: space-between;
+    }
 
   </style>
 </head>
@@ -205,56 +222,56 @@ if (!isset($_SESSION['name'])) {
 
 
   <div class="sidebar">
-      <h4> 
-        <?php
-
-        echo "Welcome back , " . $_SESSION['name'];
-
-        ?>
-      </h4>
-      <a href="main.php">Dashboard</a>
-
-      <div class="accordion" id="categoryAccordion">
-        <div class="accordion-item" style="border: none; background: none;">
-          <h2 class="accordion-header" id="headingCategory1">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#collapseCategory1" aria-expanded="false" aria-controls="collapseCategory1"
-              style="border: none; box-shadow: none; background: none; ">
-              Plant
-            </button>
-          </h2>
-          <div id="collapseCategory1" class="accordion-collapse collapse" aria-labelledby="headingCategory1">
-            <div class="accordion-body">
-              <a href="showAllPlants.php" onclick="changeContant(showAllPlants)" id="showAllPlants">Show All Plants</a>
-              <a href="addNewPlants.php" onclick="changeContant('addNewPlant')" id="addNewPlant">Add new plant</a>
-
+        <h4>
+          <?php
+  
+          echo "Welcome back , " . $_SESSION['name'];
+  
+          ?>
+        </h4>
+        <a href="main.php" id="dashboard">Dashboard</a>
+  
+        <div class="accordion" id="categoryAccordion">
+          <div class="accordion-item" style="border: none; background: none;">
+            <h2 class="accordion-header" id="headingCategory1">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseCategory1" aria-expanded="false" aria-controls="collapseCategory1"
+                style="border: none; box-shadow: none; background: none; ">
+                Plant
+              </button>
+            </h2>
+            <div id="collapseCategory1" class="accordion-collapse collapse" aria-labelledby="headingCategory1">
+              <div class="accordion-body">
+                <a href="showAllPlants.php" id="showAllPlants">Show All Plants</a>
+                <a href="addNewPlants.php" id="addNewPlant">Add new plant</a>
+  
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="accordion" id="categoryAccordion2">
-        <div class="accordion-item" style="border: none; background: none;">
-          <h2 class="accordion-header" id="headingCategory2">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#collapseCategory2" aria-expanded="false" aria-controls="collapseCategory2"
-              style="border: none; box-shadow: none; background: none; ">
-              Category
-            </button>
-          </h2>
-          <div id="collapseCategory2" class="accordion-collapse collapse" aria-labelledby="headingCategory2">
-            <div class="accordion-body">
-              <a href="#" class="d-block">Show All Categories</a>
-              <a href="addCategory.php" class="d-block">Add A New Category</a>
+  
+        <div class="accordion" id="categoryAccordion2">
+          <div class="accordion-item" style="border: none; background: none;">
+            <h2 class="accordion-header" id="headingCategory2">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseCategory2" aria-expanded="false" aria-controls="collapseCategory2"
+                style="border: none; box-shadow: none; background: none; ">
+                Category
+              </button>
+            </h2>
+            <div id="collapseCategory2" class="accordion-collapse collapse" aria-labelledby="headingCategory2">
+              <div class="accordion-body">
+                <a href="showAllCategory.php" class="d-block">Show All Categories</a>
+                <a href="addCategory.php" class="d-block">Add A New Category</a>
+              </div>
             </div>
           </div>
         </div>
+        <a href="allOrders.php">Order</a>
+        <a href="users.php">Users</a>
+        <a href="myProfile.php">My Profile</a>
+        <a href="setting.php">Setting</a>
       </div>
-      <a href="#">Order</a>
-      <a href="Users.html">Users</a>
-      <a href="myProfile.html">My Profile</a>
-      <a href="#">Setting</a>
-    </div>
     <div class="content">
       <h4 >Users</h4>
    
@@ -281,6 +298,7 @@ if (!isset($_SESSION['name'])) {
             $result=mysqli_query($conn,$sql);
              while($row=mysqli_fetch_array($result))
             {
+              $user_id=$row['user_id'];
               $name=$row['name'];
               $email=$row['email'];
               $phone=$row['phone'];
@@ -292,23 +310,77 @@ if (!isset($_SESSION['name'])) {
               $role_name=$role["role_name"];
 
 
-              echo "
+              echo '
                 <tr>
-                <td>$name</td>
-                <td>$email</td>
-                <td>$phone</td>
-                <td>$role_name</td>
-                <td><button class=\"btn btn-primary btn-sm\">View</button></td>
+                <td>'.$name.'</td>
+                <td>'.$email.'</td>
+                <td>'.$phone.'</td>
+                <td>'.$role_name.'</td>
+                <td>
+                
+                
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  view
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">About the user</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h1>'.$name.'</h1>
+        <h5> Email : '.$email.'</h5>
+        <h5> Phone : '.$phone.'</h5>
+        <h5> Role : '.$role_name.'</h5>
+
+        <div class="btn">
+       <a href="?make_admin=<?php echo $user_id; ?>">Make him Admin</a>
+       <a style="color:red" href="?remove='.$user_id.'" class="remove"><i class="fas fa-trash"></i></a>
+        </div>
+
+    
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Done</button>
+      </div>
+    </div>
+  </div>
+</div>                
+                
+                </td>
               </tr>
               
               
-              ";
+              ';
+              if ($flex==0&&isset($_GET['make_admin'])) {
+                $sql = "UPDATE user SET role_id = '1' WHERE user_id = $user_id";
+                if (mysqli_query($conn, $sql)) {
+                  echo'
+                  <div class="alert alert-success d-flex align-items-center" role="alert">
+  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+  <div>
+    Done , Now '.$name.' is an admin 
+  </div>
+</div>
+                  ';
+                } else {
+                    echo "<script>alert('Error: Could not update role.');</script>";
+                }
+                $flex=1;
+            }
             }
             
             
             
             ?>
-              
+            
             </tbody>
           </table>
 

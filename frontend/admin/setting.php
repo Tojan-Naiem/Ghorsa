@@ -1,4 +1,3 @@
-
 <?php
 include("../../backend/connect.php");
 
@@ -10,126 +9,87 @@ if (!isset($_SESSION['name'])) {
   header('location:../auth/login.php');
   exit();
 }
+$flex=0;
+if (isset($_GET['remove'])) {
+  $user_id = $_GET['remove'];
+
+  $sql = "DELETE FROM user WHERE user_id = $user_id";
+  $result = mysqli_query($conn, $sql);
+
+  if ($result) {
+      header("Location: " . $_SERVER['PHP_SELF']);
+      exit();
+  } else {
+  }
+}
 
 
 
 ?> 
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../header.css">
-    <link rel="stylesheet" href="css/style4.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="style/style.css"> -->
+  <link rel="stylesheet" href="css/style4.css">
+  <link rel="stylesheet" href="../header.css">
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-    <!-- CSS Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- CSS Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- JavaScript Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <!-- JavaScript Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <title>Document</title>
-    <style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="icon" href="../img/icon.png">
 
-        .content{
-            display: flex;
-            flex-direction: column;
-            justify-content: start;
-            align-items: start;
+  <title>GHORSA</title>
 
-        }
-       
+<style>
+  .content{
+    display: flex;
+    flex-direction: column;
+    height: 150vh;
+  }
+.cards-info{
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.cards-info .card{
+  background-color: #28a44c;
+  width: 300px;
+  height: 150px;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width:786px){
 
-        main {
-            display: grid;
-            grid-template-columns: 20% 1fr;
-            gap: 5px;
-        }
+  .cards-info{
+    flex-direction: column;
 
-        .container {
-            width: 100%;
-            margin: 0 auto;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: start;
-            align-items: start;
-            gap: 20px;
-        }
-        .card {
-            width: 50%;
-            display: flex;
-            flex-direction: row;
-         
-        }
-        .card .second-part{
-            width: 100%;
-        }
-        .card .first-part{
-            width: 30%;
-        }
-        .card img {
-            width: 70%;
-            height: auto;
-            margin-right: 20px;
-            background-color:#f0f0f0;
-            float: left;
-        }
-        .second-part h4{
-            margin-top: 30px;
-            margin-left: 15px;
 
-        }
-       
-        .edit {
-            font-size: 20px;
-            color: #555;
-            margin-left: auto;
-            margin-right: auto;
-            cursor: pointer;
-            float: right;
-        }
-        @media (max-width:600px) {
-            .container {
-                max-width: 200%;
-                padding: 5px;
-            }
-            .card {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 10px;
-            }
-            .card img {
-                width: 100%;
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-            .card .text {
-                margin-top: 0;
-                font-size: 16px;
-            }
-            .edit {
-                align-self: flex-end;
-                margin-right: 0;
-            }
-        }
-    </style>
+  }
+  
+}
+
+</style>
 </head>
 
-<body>
+
 <header>
       <!-- <h1> ايقونات المواقع التواصل مع اللينكات الطرفية</h1> -->
       <div class="iconlink">
@@ -192,10 +152,11 @@ if (!isset($_SESSION['name'])) {
           <a href=""><i class="fas fa-shopping-cart"></i></a>
           <a href="favorates.html"><i class="fas fa-heart"></i></a>
           <a href="auth/login.php"><i class="fas fa-user"></i></a>
+          
           <?php  
           ob_start(); 
           if(isset($_SESSION['name'])){
-            echo '<form method="POST" action="">
+            echo '<form style="width:30%; height:70px" method="POST" action="">
             <button type="submit" name="logout" style="background-color: red; border-radius: 8px; padding: 5px; color: white;">Log Out</button>
         </form>';;
           }
@@ -208,7 +169,6 @@ if (!isset($_SESSION['name'])) {
           
           
           ?> 
-        
         </div>
       </div>
       <hr />
@@ -276,7 +236,7 @@ if (!isset($_SESSION['name'])) {
 
       <hr style="margin: 0" />
     </header>
-    <main>
+  <main>
 
 
     <div class="sidebar">
@@ -330,43 +290,49 @@ if (!isset($_SESSION['name'])) {
         <a href="myProfile.php">My Profile</a>
         <a href="setting.php">Setting</a>
       </div>
-        <div class="content">
+      <div class="content">
+        <h1>Setting</h1>
+      <div class="accordion" id="accordionPanelsStayOpenExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        About the Store
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+      <div class="accordion-body">
+        <img src="../img/icon.png">
+        <br>
+        <strong>Ghorsa Store</strong> 
+        <p>
+        Pothos plant in an orange ceramic pot inside an elegant holder with an autumn theme design An ideal gift for the fall season
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+      Contact Settings
+          </button>
+    </h2>
+    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+      <div class="accordion-body">
+        <p>Email : contact@ghorsa.com</p>
+        <p>phone : 056660400</p>
+      </div>
+    </div>
+  </div>
+  
+</div>
+      </div>
 
-            <h4 > All Catagory </h4>
-                            <div class="container">
+  
 
 
-                            <?php
-
-                            $sql='Select*From category';
-                            $result=mysqli_query($conn,$sql);
-                            while($row=mysqli_fetch_array($result)){
-                                 $image=$row['image'];
-                                 $name=$row['name'];
-                                 echo "
-                                 <div class=\"card\">
-                                    <div class=\"first-part\">
-                                        <img src=\"../img/$image\" alt=\"Plant\">
-                                    </div>
-                                    <div class=\"second-part\">
-                                        <i class=\"fas fa-edit edit\"></i>
-                                        <h4>$name</h4>
-                                    </div>
-                                      
-                                </div>
-                                 ";
+  </main>
 
 
-                            }
-
-
-
-?>
-                                
-                            </div>
-                        </div>
-                
-    </main>
 
 </body>
 

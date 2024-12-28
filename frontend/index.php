@@ -6,10 +6,8 @@ session_start();
 
 if(!isset($_SESSION['name'])){
 
-  header('location:../auth/login.php');
-  exit();
 }
-$user_id=$_SESSION['user_id'];
+else $user_id=$_SESSION['user_id'];
 
 ?>
 
@@ -67,9 +65,8 @@ $user_id=$_SESSION['user_id'];
 
       <div>
         <nav class="link">
-          <a href="#">Setting</a>
-          <a href="#">Send a Gift</a>
-          <a href="#">Blog</a>
+          <a href="setting.php">Setting</a>
+         
         </nav>
       </div>
     </div>
@@ -77,7 +74,7 @@ $user_id=$_SESSION['user_id'];
     <!-- <h1>عباره عن اسم الموقع وسيرش البحث وايقونات القلب والتسجيل والسله</h1> -->
     <div class="mid-header">
       <div class="col1">
-        <a href="index.html" style="color: #28a44c">
+        <a href="index.php" style="color: #28a44c">
           <h4 style="
                 margin-bottom: 0;
                 margin-top: 0;
@@ -105,22 +102,43 @@ $user_id=$_SESSION['user_id'];
       </div>
       <div class="icons-account">
       <div class="shop-cart">
-                            <a href="pay.html"><i class="fas fa-shopping-cart"></i></a>
-                           <span><?php 
+        <button type="button" class="btn btn-white position-relative">
+            <i style="color:#28a44c" class="fas fa-shopping-cart"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <?php 
+                if(isset($_SESSION['name'])){
+                  if (!isset($user_id)) {
+                    echo '0';
+                } else {
+                    $sql = "SELECT cart_id FROM cart WHERE user_id = $user_id";
+                    $result = mysqli_query($conn, $sql);
+                    
+                    if ($result && mysqli_num_rows($result) > 0) {
+                        $row = mysqli_fetch_assoc($result);
+                        $cart_id = $row['cart_id'];
 
-$sql="Select cart_id from cart where user_id =$user_id";
-$result=mysqli_query($conn,$sql);
-                           $row=mysqli_fetch_assoc($result);
-                           $cart_id=$row['cart_id'];
-                           $sql="Select count(*) as total_count from cart_item where cart_id=$cart_id";
-                           $result=mysqli_query($conn,$sql);
+                        $sql = "SELECT COUNT(*) AS total_count FROM cart_item WHERE cart_id = $cart_id";
+                        $result = mysqli_query($conn, $sql);
 
-                           $row=mysqli_fetch_assoc($result);
-                        $total_count=$row['total_count'];
-                           echo $total_count;
-                           
-                           ?> </span>
-                        </div>         <a href="favorates.html"><i class="fas fa-heart"></i></a>
+                        if ($result && mysqli_num_rows($result) > 0) {
+                            $row = mysqli_fetch_assoc($result);
+                            $total_count = $row['total_count'];
+                            echo $total_count; 
+                        } else {
+                            echo '0';  
+                        }
+                    } else {
+                        echo '0'; 
+                    }
+                }
+                }
+               
+                ?>
+            </span>
+        </button>
+    </div>
+       
+ <a href="favorites.php"><i class="fas fa-heart"></i></a>
         <a href="auth/login.php"><i class="fas fa-user"></i></a>
         <?php
         ob_start();
@@ -133,7 +151,7 @@ $result=mysqli_query($conn,$sql);
         if (isset($_POST['logout'])) {
           session_unset();
           session_destroy();
-          header("Location: auth/login.php");
+          header("Location: index.php");
           exit;
         }
 

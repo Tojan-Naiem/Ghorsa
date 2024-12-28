@@ -207,67 +207,70 @@ if (!isset($_SESSION['name'])) {
   <main>
 
 
-    <div class="sidebar">
-      <h4>
-        <?php
-
-        echo "Welcome back , " . $_SESSION['name'];
-
-        ?>
-      </h4>
-      <a href="main.php">Dashboard</a>
-
-      <div class="accordion" id="categoryAccordion">
-        <div class="accordion-item" style="border: none; background: none;">
-          <h2 class="accordion-header" id="headingCategory1">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#collapseCategory1" aria-expanded="false" aria-controls="collapseCategory1"
-              style="border: none; box-shadow: none; background: none; ">
-              Plant
-            </button>
-          </h2>
-          <div id="collapseCategory1" class="accordion-collapse collapse" aria-labelledby="headingCategory1">
-            <div class="accordion-body">
-              <a href="showAllPlants.php" onclick="changeContant(showAllPlants)" id="showAllPlants">Show All Plants</a>
-              <a href="addNewPlants.php" onclick="changeContant('addNewPlant')" id="addNewPlant">Add new plant</a>
-
+  <div class="sidebar">
+        <h4>
+          <?php
+  
+          echo "Welcome back , " . $_SESSION['name'];
+  
+          ?>
+        </h4>
+        <a href="main.php" id="dashboard">Dashboard</a>
+  
+        <div class="accordion" id="categoryAccordion">
+          <div class="accordion-item" style="border: none; background: none;">
+            <h2 class="accordion-header" id="headingCategory1">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseCategory1" aria-expanded="false" aria-controls="collapseCategory1"
+                style="border: none; box-shadow: none; background: none; ">
+                Plant
+              </button>
+            </h2>
+            <div id="collapseCategory1" class="accordion-collapse collapse" aria-labelledby="headingCategory1">
+              <div class="accordion-body">
+                <a href="showAllPlants.php" id="showAllPlants">Show All Plants</a>
+                <a href="addNewPlants.php" id="addNewPlant">Add new plant</a>
+  
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="accordion" id="categoryAccordion2">
-        <div class="accordion-item" style="border: none; background: none;">
-          <h2 class="accordion-header" id="headingCategory2">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#collapseCategory2" aria-expanded="false" aria-controls="collapseCategory2"
-              style="border: none; box-shadow: none; background: none; ">
-              Category
-            </button>
-          </h2>
-          <div id="collapseCategory2" class="accordion-collapse collapse" aria-labelledby="headingCategory2">
-            <div class="accordion-body">
-              <a href="#" class="d-block">Show All Categories</a>
-              <a href="addCategory.php" class="d-block">Add A New Category</a>
+  
+        <div class="accordion" id="categoryAccordion2">
+          <div class="accordion-item" style="border: none; background: none;">
+            <h2 class="accordion-header" id="headingCategory2">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseCategory2" aria-expanded="false" aria-controls="collapseCategory2"
+                style="border: none; box-shadow: none; background: none; ">
+                Category
+              </button>
+            </h2>
+            <div id="collapseCategory2" class="accordion-collapse collapse" aria-labelledby="headingCategory2">
+              <div class="accordion-body">
+                <a href="showAllCategory.php" class="d-block">Show All Categories</a>
+                <a href="addCategory.php" class="d-block">Add A New Category</a>
+              </div>
             </div>
           </div>
         </div>
+        <a href="allOrders.php">Order</a>
+        <a href="users.php">Users</a>
+        <a href="myProfile.php">My Profile</a>
+        <a href="setting.php">Setting</a>
       </div>
-      <a href="#">Order</a>
-      <a href="Users.html">Users</a>
-      <a href="myProfile.html">My Profile</a>
-      <a href="#">Setting</a>
-    </div>
     <div class="content">
       <h4> My Profile </h4>
-      <a id="edit-icon" href="editPlant.php?i=$product_id;"><i class="fa-regular fa-pen-to-square"></i></a>
+      <!-- <a id="edit-icon" href="e"><i class="fa-regular fa-pen-to-square"></i></a> -->
       <form>
         <input type="text" value=" <?php echo $_SESSION['name'];?>" name="admin-name" disabled >
         <input type="email" value=" <?php echo $_SESSION['email'];?>" name="email" disabled >
         <input type="password" value="*************"  name="password"  >
+        <input type="submit" name="submit" value="Update Status" class="update-btn">
+
       </form>
       <p> 
         <?php
+        
 
         if($_SESSION['email']==='tojanNaiem@gmail.com'){
           echo 'Role : Manger';

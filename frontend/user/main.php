@@ -286,7 +286,7 @@ if (isset($_GET['remove'])) {
                            <div class="address-part">
                               <h5>Address '.$address_id.'</h5><br>
                         <a href="editAddress.php?i='.$address_id.';"><i class="fa-regular fa-pen-to-square"></i></a>
-                                                        <a style="margin-right:10px" href="?remove='.$address_id.'" class="remove"><i class="fas fa-trash"></i></a>
+                         <a style="margin-right:10px" href="?remove='.$address_id.'" class="remove"><i class="fas fa-trash"></i></a>
 
 
                             <div class="row">

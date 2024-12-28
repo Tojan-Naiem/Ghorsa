@@ -282,20 +282,30 @@ if (isset($_GET['remove'])) {
                       transform: translateY(-50%);
                     "></i>
             </div>
-            <div class="list">
-    
-            </div>
+           
     
           </div>
           <div class="icons-account">
           <button type="button" class="btn btn-white position-relative">
           <i style="color:#28a44c" class="fas fa-shopping-cart"></i>
   <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-    99+
-    <span class="visually-hidden">unread messages</span>
+  <?php 
+    
+    $sql="Select cart_id from cart where user_id =$user_id";
+    $result=mysqli_query($conn,$sql);
+                               $row=mysqli_fetch_assoc($result);
+                               $cart_id=$row['cart_id'];
+                               $sql="Select count(*) as total_count from cart_item where cart_id=$cart_id";
+                               $result=mysqli_query($conn,$sql);
+    
+                               $row=mysqli_fetch_assoc($result);
+                            $total_count=$row['total_count'];
+                               echo $total_count;
+                               
+                               ?>     <span class="visually-hidden">unread messages</span>
   </span>
-</button>
-          <div class="shop-cart">
+</button
+          <!-- <div class="shop-cart">
                                 <a href="pay.html"><i class="fas fa-shopping-cart"></i></a>
                                <span><?php 
     
@@ -310,8 +320,12 @@ if (isset($_GET['remove'])) {
                             $total_count=$row['total_count'];
                                echo $total_count;
                                
-                               ?> </span> 
-                            </div>         <a href="favorates.html"><i class="fas fa-heart"></i></a>
+                               ?> 
+                               </span> 
+                            </div>
+                            
+                            
+                            <a href="favorates.html"><i class="fas fa-heart"></i></a>
             <a href="auth/login.php"><i class="fas fa-user"></i></a>
              <?php
             ob_start();
@@ -506,8 +520,8 @@ if (isset($_GET['remove'])) {
          
         <div class="section-payment">
             <h4>Payment Address</h4>
-            <form method="POST" action="confirm_order.php">
-    <label for="address_id">Select Address:</label>
+            <form method="POST" action="<?php  htmlspecialchars($_SERVER['PHP_SELF'])?>">
+            <label for="address_id">Select Address:</label>
     <select id="address_id" name="address_id" required>
         <option value="" disabled selected>Choose an address</option>
         <?php
@@ -522,8 +536,33 @@ if (isset($_GET['remove'])) {
         }
         ?>
     </select>
-    <button class="confirm-btn">Order Confirmation</button> 
+    <input type="submit" name="submit" class="confirm-btn" value="Order Confirmation"> 
     </form>
+    <?php 
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+
+    $selected_address_id = $_POST['address_id'];
+    $sql="Select*from cart_item where cart_id=$cart_id";  
+    $result2=mysqli_query($conn,$sql);
+    $amount=0;
+    while($row=mysqli_fetch_assoc($result2)){
+   $amount+=$row['price'];
+
+    }
+    $sql_insert_order = "INSERT INTO order_table (order_amount,user_id, address_id)
+    VALUES ($amount, $user_id, $selected_address_id)";
+  $result=mysqli_query($conn, $sql_insert_order);
+  header("Location: " . $_SERVER['PHP_SELF'] . "?i=" . $product_id);
+  exit(); 
+
+}
+
+
+?>
+
+
+
+
 <!-- 
             <select>
                 <option>Please select...</option>

@@ -46,6 +46,7 @@ if (!isset($_SESSION['name'])) {
   .content{
     display: flex;
     flex-direction: column;
+    height: 200vh;
   }
 .cards-info{
   display: flex;
@@ -226,57 +227,57 @@ if (!isset($_SESSION['name'])) {
   <main>
 
 
-    <div class="sidebar">
-      <h4>
-        <?php
-
-        echo "Welcome back , " . $_SESSION['name'];
-
-        ?>
-      </h4>
-      <a href="main.php" id="dashboard">Dashboard</a>
-
-      <div class="accordion" id="categoryAccordion">
-        <div class="accordion-item" style="border: none; background: none;">
-          <h2 class="accordion-header" id="headingCategory1">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#collapseCategory1" aria-expanded="false" aria-controls="collapseCategory1"
-              style="border: none; box-shadow: none; background: none; ">
-              Plant
-            </button>
-          </h2>
-          <div id="collapseCategory1" class="accordion-collapse collapse" aria-labelledby="headingCategory1">
-            <div class="accordion-body">
-              <a href="showAllPlants.php" id="showAllPlants">Show All Plants</a>
-              <a href="addNewPlants.php" id="addNewPlant">Add new plant</a>
-
+  <div class="sidebar">
+        <h4>
+          <?php
+  
+          echo "Welcome back , " . $_SESSION['name'];
+  
+          ?>
+        </h4>
+        <a href="main.php" id="dashboard">Dashboard</a>
+  
+        <div class="accordion" id="categoryAccordion">
+          <div class="accordion-item" style="border: none; background: none;">
+            <h2 class="accordion-header" id="headingCategory1">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseCategory1" aria-expanded="false" aria-controls="collapseCategory1"
+                style="border: none; box-shadow: none; background: none; ">
+                Plant
+              </button>
+            </h2>
+            <div id="collapseCategory1" class="accordion-collapse collapse" aria-labelledby="headingCategory1">
+              <div class="accordion-body">
+                <a href="showAllPlants.php" id="showAllPlants">Show All Plants</a>
+                <a href="addNewPlants.php" id="addNewPlant">Add new plant</a>
+  
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="accordion" id="categoryAccordion2">
-        <div class="accordion-item" style="border: none; background: none;">
-          <h2 class="accordion-header" id="headingCategory2">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#collapseCategory2" aria-expanded="false" aria-controls="collapseCategory2"
-              style="border: none; box-shadow: none; background: none; ">
-              Category
-            </button>
-          </h2>
-          <div id="collapseCategory2" class="accordion-collapse collapse" aria-labelledby="headingCategory2">
-            <div class="accordion-body">
-              <a href="showAllCategory.php" class="d-block">Show All Categories</a>
-              <a href="addCategory.php" class="d-block">Add A New Category</a>
+  
+        <div class="accordion" id="categoryAccordion2">
+          <div class="accordion-item" style="border: none; background: none;">
+            <h2 class="accordion-header" id="headingCategory2">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseCategory2" aria-expanded="false" aria-controls="collapseCategory2"
+                style="border: none; box-shadow: none; background: none; ">
+                Category
+              </button>
+            </h2>
+            <div id="collapseCategory2" class="accordion-collapse collapse" aria-labelledby="headingCategory2">
+              <div class="accordion-body">
+                <a href="showAllCategory.php" class="d-block">Show All Categories</a>
+                <a href="addCategory.php" class="d-block">Add A New Category</a>
+              </div>
             </div>
           </div>
         </div>
+        <a href="allOrders.php">Order</a>
+        <a href="users.php">Users</a>
+        <a href="myProfile.php">My Profile</a>
+        <a href="setting.php">Setting</a>
       </div>
-      <a href="#">Order</a>
-      <a href="Users.html">Users</a>
-      <a href="myProfile.html">My Profile</a>
-      <a href="#">Setting</a>
-    </div>
     <div class="content">
       <h4 >Dashboard</h4>
       <div class="cards-info">
@@ -344,187 +345,51 @@ echo $row['order_count'];
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>9/12/2024</td>
-              <td>Tojan Naiem</td>
-              <td>500</td>
-              <td><span class="status-dot status-red"></span></td>
-              <td>
-                <button class="btn btn-primary btn-sm">View</button>
-                <button class="btn btn-warning btn-sm">Update</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>9/12/2024</td>
-              <td>Tojan Naiem</td>
-              <td>500</td>
-              <td><span class="status-dot status-orange"></span></td>
-              <td>
-                <button class="btn btn-primary btn-sm">View</button>
-                <button class="btn btn-warning btn-sm">Update</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>9/12/2024</td>
-              <td>Tojan Naiem</td>
-              <td>500</td>
-              <td><span class="status-dot status-orange"></span></td>
-              <td>
-                <button class="btn btn-primary btn-sm">View</button>
-                <button class="btn btn-warning btn-sm">Update</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>9/12/2024</td>
-              <td>Tojan Naiem</td>
-              <td>500</td>
-              <td><span class="status-dot status-orange"></span></td>
-              <td>
-                <button class="btn btn-primary btn-sm">View</button>
-                <button class="btn btn-warning btn-sm">Update</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>9/12/2024</td>
-              <td>Tojan Naiem</td>
-              <td>500</td>
-              <td><span class="status-dot status-orange"></span></td>
-              <td>
-                <button class="btn btn-primary btn-sm">View</button>
-                <button class="btn btn-warning btn-sm">Update</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>9/12/2024</td>
-              <td>Tojan Naiem</td>
-              <td>500</td>
-              <td><span class="status-dot status-orange"></span></td>
-              <td>
-                <button class="btn btn-primary btn-sm">View</button>
-                <button class="btn btn-warning btn-sm">Update</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>9/12/2024</td>
-              <td>Tojan Naiem</td>
-              <td>500</td>
-              <td><span class="status-dot status-orange"></span></td>
-              <td>
-                <button class="btn btn-primary btn-sm">View</button>
-                <button class="btn btn-warning btn-sm">Update</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>9/12/2024</td>
-              <td>Tojan Naiem</td>
-              <td>500</td>
-              <td><span class="status-dot status-orange"></span></td>
-              <td>
-                <button class="btn btn-primary btn-sm">View</button>
-                <button class="btn btn-warning btn-sm">Update</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>9/12/2024</td>
-              <td>Tojan Naiem</td>
-              <td>500</td>
-              <td><span class="status-dot status-orange"></span></td>
-              <td>
-                <button class="btn btn-primary btn-sm">View</button>
-                <button class="btn btn-warning btn-sm">Update</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>9/12/2024</td>
-              <td>Tojan Naiem</td>
-              <td>500</td>
-              <td><span class="status-dot status-orange"></span></td>
-              <td>
-                <button class="btn btn-primary btn-sm">View</button>
-                <button class="btn btn-warning btn-sm">Update</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>9/12/2024</td>
-              <td>Tojan Naiem</td>
-              <td>500</td>
-              <td><span class="status-dot status-orange"></span></td>
-              <td>
-                <button class="btn btn-primary btn-sm">View</button>
-                <button class="btn btn-warning btn-sm">Update</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>9/12/2024</td>
-              <td>Tojan Naiem</td>
-              <td>500</td>
-              <td><span class="status-dot status-orange"></span></td>
-              <td>
-                <button class="btn btn-primary btn-sm">View</button>
-                <button class="btn btn-warning btn-sm">Update</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>9/12/2024</td>
-              <td>Tojan Naiem</td>
-              <td>500</td>
-              <td><span class="status-dot status-orange"></span></td>
-              <td>
-                <button class="btn btn-primary btn-sm">View</button>
-                <button class="btn btn-warning btn-sm">Update</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>9/12/2024</td>
-              <td>Tojan Naiem</td>
-              <td>500</td>
-              <td><span class="status-dot status-orange"></span></td>
-              <td>
-                <button class="btn btn-primary btn-sm">View</button>
-                <button class="btn btn-warning btn-sm">Update</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </td>
-            </tr>
+            <?php 
+            $sql="Select*From order_table";
+            $result=mysqli_query($conn,$sql);
+            while($row=mysqli_fetch_assoc($result)){
+                $order_id=$row['order_id'];
+                $order_amount=$row['order_amount'];
+                $order_date=$row['order_date'];
+                $status=$row['status'];
+                $user_id=$row['user_id'];
+                $sql_user_name="Select name from user where user_id=$user_id";
+                $result_user_name=mysqli_query($conn,$sql_user_name);
+                $row_user_name=mysqli_fetch_assoc($result_user_name);
+                $user_name=$row_user_name['name'];
 
-            <tr>
-              <td>1</td>
-              <td>9/12/2024</td>
-              <td>Tojan Naiem</td>
-              <td>500</td>
-              <td><span class="status-dot status-green"></span></td>
+
+                echo ' 
+                
+                <tr>
+              <td>'.$order_id.'</td>
+              <td>'.$order_date.'</td>
+              <td>'.$user_name.'</td>
+              <td>'.$order_amount.'</td>
+              <td>'.$status.'</td>
               <td>
-                <button class="btn btn-primary btn-sm">View</button>
+                <a href="viewOrder.php?i='.$order_id.'" class="btn btn-primary btn-sm">View</a>
                 <button class="btn btn-warning btn-sm">Update</button>
                 <button class="btn btn-danger btn-sm">Delete</button>
               </td>
             </tr>
+                
+                
+                
+                ';
+
+
+
+
+
+            }
+
+
+
+?>
+            
+      
           </tbody>
         </table>
       </div>

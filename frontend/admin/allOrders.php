@@ -1,4 +1,3 @@
-
 <?php
 include("../../backend/connect.php");
 
@@ -13,123 +12,72 @@ if (!isset($_SESSION['name'])) {
 
 
 
-?> 
-
-
-
+?>
 
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../header.css">
-    <link rel="stylesheet" href="css/style4.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="style/style.css"> -->
+  <link rel="stylesheet" href="css/style4.css">
+  <link rel="stylesheet" href="../header.css">
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-    <!-- CSS Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- CSS Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- JavaScript Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <!-- JavaScript Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <title>Document</title>
-    <style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="icon" href="../img/icon.png">
 
-        .content{
-            display: flex;
-            flex-direction: column;
-            justify-content: start;
-            align-items: start;
+  <title>GHORSA</title>
 
-        }
-       
+<style>
+  .content{
+    display: flex;
+    flex-direction: column;
+    height: 200vh;
+  }
+.cards-info{
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.cards-info .card{
+  background-color: #28a44c;
+  width: 300px;
+  height: 150px;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width:786px){
 
-        main {
-            display: grid;
-            grid-template-columns: 20% 1fr;
-            gap: 5px;
-        }
+  .cards-info{
+    flex-direction: column;
 
-        .container {
-            width: 100%;
-            margin: 0 auto;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: start;
-            align-items: start;
-            gap: 20px;
-        }
-        .card {
-            width: 50%;
-            display: flex;
-            flex-direction: row;
-         
-        }
-        .card .second-part{
-            width: 100%;
-        }
-        .card .first-part{
-            width: 30%;
-        }
-        .card img {
-            width: 70%;
-            height: auto;
-            margin-right: 20px;
-            background-color:#f0f0f0;
-            float: left;
-        }
-        .second-part h4{
-            margin-top: 30px;
-            margin-left: 15px;
 
-        }
-       
-        .edit {
-            font-size: 20px;
-            color: #555;
-            margin-left: auto;
-            margin-right: auto;
-            cursor: pointer;
-            float: right;
-        }
-        @media (max-width:600px) {
-            .container {
-                max-width: 200%;
-                padding: 5px;
-            }
-            .card {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 10px;
-            }
-            .card img {
-                width: 100%;
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-            .card .text {
-                margin-top: 0;
-                font-size: 16px;
-            }
-            .edit {
-                align-self: flex-end;
-                margin-right: 0;
-            }
-        }
-    </style>
+  }
+  
+}
+
+</style>
 </head>
 
-<body>
+
 <header>
       <!-- <h1> ايقونات المواقع التواصل مع اللينكات الطرفية</h1> -->
       <div class="iconlink">
@@ -192,13 +140,14 @@ if (!isset($_SESSION['name'])) {
           <a href=""><i class="fas fa-shopping-cart"></i></a>
           <a href="favorates.html"><i class="fas fa-heart"></i></a>
           <a href="auth/login.php"><i class="fas fa-user"></i></a>
+          
           <?php  
           ob_start(); 
           if(isset($_SESSION['name'])){
-            echo '<form method="POST" action="">
+            echo '<form style="width:30%; height:70px" method="POST" action="">
             <button type="submit" name="logout" style="background-color: red; border-radius: 8px; padding: 5px; color: white;">Log Out</button>
         </form>';;
-          }
+        }
           if(isset($_POST['logout'])){
             session_unset(); 
             session_destroy(); 
@@ -207,8 +156,7 @@ if (!isset($_SESSION['name'])) {
           }
           
           
-          ?> 
-        
+          ?>  
         </div>
       </div>
       <hr />
@@ -276,10 +224,10 @@ if (!isset($_SESSION['name'])) {
 
       <hr style="margin: 0" />
     </header>
-    <main>
+  <main>
 
 
-    <div class="sidebar">
+  <div class="sidebar">
         <h4>
           <?php
   
@@ -330,43 +278,80 @@ if (!isset($_SESSION['name'])) {
         <a href="myProfile.php">My Profile</a>
         <a href="setting.php">Setting</a>
       </div>
-        <div class="content">
+    <div class="content">
+      <h4 >Orders</h4>
+   
 
-            <h4 > All Catagory </h4>
-                            <div class="container">
+      <div class="recent-orders" style="margin-right: 50px; margin-left:10px">
+        
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Order Date</th>
+              <th>User Name</th>
+              <th>Total Amount</th>
+              <th>Order Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php 
+            $sql="Select*From order_table";
+            $result=mysqli_query($conn,$sql);
+            while($row=mysqli_fetch_assoc($result)){
+                $order_id=$row['order_id'];
+                $order_amount=$row['order_amount'];
+                $order_date=$row['order_date'];
+                $status=$row['status'];
+                $user_id=$row['user_id'];
+                $sql_user_name="Select name from user where user_id=$user_id";
+                $result_user_name=mysqli_query($conn,$sql_user_name);
+                $row_user_name=mysqli_fetch_assoc($result_user_name);
+                $user_name=$row_user_name['name'];
 
 
-                            <?php
+                echo ' 
+                
+                <tr>
+              <td>'.$order_id.'</td>
+              <td>'.$order_date.'</td>
+              <td>'.$user_name.'</td>
+              <td>'.$order_amount.'</td>
+              <td>'.$status.'</td>
+              <td>
+                <a href="viewOrder.php?i='.$order_id.'" class="btn btn-primary btn-sm">View</a>
+                <button class="btn btn-warning btn-sm">Update</button>
+                <button class="btn btn-danger btn-sm">Delete</button>
+              </td>
+            </tr>
+                
+                
+                
+                ';
 
-                            $sql='Select*From category';
-                            $result=mysqli_query($conn,$sql);
-                            while($row=mysqli_fetch_array($result)){
-                                 $image=$row['image'];
-                                 $name=$row['name'];
-                                 echo "
-                                 <div class=\"card\">
-                                    <div class=\"first-part\">
-                                        <img src=\"../img/$image\" alt=\"Plant\">
-                                    </div>
-                                    <div class=\"second-part\">
-                                        <i class=\"fas fa-edit edit\"></i>
-                                        <h4>$name</h4>
-                                    </div>
-                                      
-                                </div>
-                                 ";
 
 
-                            }
+
+
+            }
 
 
 
 ?>
-                                
-                            </div>
-                        </div>
-                
-    </main>
+            
+      
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+
+
+  </main>
+
+
 
 </body>
 

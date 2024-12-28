@@ -36,6 +36,15 @@ if(!isset($_SESSION['name'])){
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
     <title>Document</title>
+
+    <style>
+            .address-part{
+        padding: 10px;
+    border: 1px solid #28a44c;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+    </style>
 </head>
 
 <body>
@@ -202,18 +211,36 @@ if(!isset($_SESSION['name'])){
                                     style="box-shadow: none;">
                             </div>
                             <h5 class="form-title mb-3">Address</h5>
+                            <?php
+
+                            
+                            
+                            
+                            
+                            
+                            ?>
+                            <div class="address-part">
+                              <h5>Address 1</h5><br>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="city" class="form-label">City Name</label>
                                     <input type="text" class="form-control" id="city" placeholder="CityName"
                                         style="box-shadow: none;">
                                 </div>
-                                <div class="col-md-6 mb-4">
+                                <div class="col-md-6 mb-3">
                                     <label for="street" class="form-label">Street Name</label>
                                     <input type="text" class="form-control" id="street" placeholder="Street Name"
                                         style="box-shadow: none;">
                                 </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="street" class="form-label">Pin code</label>
+                                    <input type="text" class="form-control" id="street" placeholder="Street Name"
+                                        style="box-shadow: none;">
                                 </div>
+                            </div>
+
+
+                            </div>
 
                             <input type="submit" value="Update" name="submit" class="btn" style="width: 30%;color: white; background-color: #28a44c;">
 

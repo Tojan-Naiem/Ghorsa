@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 session_start();
 
@@ -9,7 +9,7 @@ if(!isset($_SESSION['name'])){
    exit();
 }
 
-?>
+?> -->
 
 
 
@@ -110,7 +110,7 @@ if(!isset($_SESSION['name'])){
           <a href=""><i class="fas fa-shopping-cart"></i></a>
           <a href="favorates.html"><i class="fas fa-heart"></i></a>
           <a href="auth/login.php"><i class="fas fa-user"></i></a>
-          <?php  
+          <!-- <?php  
           ob_start(); 
           if(isset($_SESSION['name'])){
             echo '<form method="POST" action="">
@@ -125,7 +125,7 @@ if(!isset($_SESSION['name'])){
           }
           
           
-          ?> 
+          ?>  -->
         
         </div>
       </div>
@@ -194,103 +194,63 @@ if(!isset($_SESSION['name'])){
 
       <hr style="margin: 0" />
     </header>
-
-
     <main>
 
- 
-                  <div class="left-side">
+      <div class="left-side">
 
-                    <div class="sidebar">
-                        <h4>UserName</h4>
-                        <a href="main.php" style="background-color: #28a44c; color: white;"><i class="fa fa-user me-2"></i> My Profile</a>
-                        <a href="favourite.html"><i class="fa fa-heart me-2"></i> Wish List</a>
-                        <a href="myCart.html"><i class="fa fa-shopping-cart me-2"></i> My Cart</a>
-                        <a href="myOrders.html"><i class="fa fa-box me-2"></i> My Order</a>
-                    </div>
+        <div class="sidebar">
+            <h4>UserName</h4>
+            <a href="main.php" style="background-color: #28a44c; color: white;"><i class="fa fa-user me-2"></i> My Profile</a>
+            <a href="favourite.html"><i class="fa fa-heart me-2"></i> Wish List</a>
+            <a href="myCart.html"><i class="fa fa-shopping-cart me-2"></i> My Cart</a>
+            <a href="myOrders.html"><i class="fa fa-box me-2"></i> My Order</a>
+        </div>
 
+      </div>
+      <div class="profile-container">
+
+        <form method="POST" action="<?php  htmlspecialchars($_SERVER['PHP_SELF'])?>">
+          <h5 class="form-title mb-3">Address</h5>
+
+              <div class="address-part">
+                <h5>Address 1</h5><br>
+              <div class="row">
+                  <div class="col-md-6 mb-3">
+                      <label for="city" class="form-label">City Name</label>
+                      <input type="text" name="city_name" class="form-control" id="city" placeholder="CityName"
+                          style="box-shadow: none;">
                   </div>
-                   
-                
-                    <div class="profile-container">
-                        <h3 class="form-title mb-4">My Profile</h3>
-                        <a href="editProfieInfo.php"><i class="fa-regular fa-pen-to-square"></i></a>
-
-                        <form>
-                            <div class="mb-3">
-                                <label for="username" class="form-label" >UserName</label>
-                                <input type="text" class="form-control" id="username"  value="<?php echo htmlspecialchars($_SESSION['name']); ?>" placeholder="UserName"
-                                    style="box-shadow: none;" disabled>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email"  value="<?php echo htmlspecialchars($_SESSION['email']); ?>" placeholder="email@gmail.com"  style="box-shadow: none;"disabled>
-                            </div>
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">Phone</label>
-                                <input type="text" class="form-control" id="phone"  value="<?php echo htmlspecialchars($_SESSION['phone']); ?>" placeholder="phone number"
-                                    style="box-shadow: none;"disabled>
-                            </div>
-                            
-                            <!-- <div class="address-part">
-                              <h5>Address 1</h5><br>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="city" class="form-label">City Name</label>
-                                    <input type="text" class="form-control" id="city" placeholder="CityName"
-                                        style="box-shadow: none;"disabled>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="street" class="form-label">Street Name</label>
-                                    <input type="text" class="form-control" id="street" placeholder="Street Name"
-                                        style="box-shadow: none;"disabled>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="street" class="form-label">Pin code</label>
-                                    <input type="text" class="form-control" id="street" placeholder="Street Name"
-                                        style="box-shadow: none;"disabled>
-                                </div>
-                            </div>
+                  <div class="col-md-6 mb-3">
+                      <label for="street" class="form-label">Street Name</label>
+                      <input type="text" name="street_name" class="form-control" id="street" placeholder="Street Name"
+                          style="box-shadow: none;">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                      <label for="street" class="form-label">Pin code</label>
+                      <input type="text" name="pin_code" class="form-control" id="street" placeholder="Street Name"
+                          style="box-shadow: none;">
+                  </div>
+              </div>
 
 
-                            </div> -->
-                           
-                        </form>
-                        <form>
-                        <h5 class="form-title mb-3">Address</h5>
-                        <a href="addNewAddress.php"><i class="fas fa-plus-circle"></i></a>
+              </div>
+              <input type="submit" value="Add" name="submit" class="btn" style="width: 30%;color: white; background-color: #28a44c;">
 
-                            <div class="address-part">
-                              <h5>Address 1</h5><br>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="city" class="form-label">City Name</label>
-                                    <input type="text" class="form-control" id="city" placeholder="CityName"
-                                        style="box-shadow: none;"disabled>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="street" class="form-label">Street Name</label>
-                                    <input type="text" class="form-control" id="street" placeholder="Street Name"
-                                        style="box-shadow: none;"disabled>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="street" class="form-label">Pin code</label>
-                                    <input type="text" class="form-control" id="street" placeholder="Street Name"
-                                        style="box-shadow: none;"disabled>
-                                </div>
-                            </div>
+          </form>
+          <?php 
 
-
-                            </div>
-                        </form>
-                      
-                </div>
-      
-
-        <!-- Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+          ?>
+        
+      </div>
     </main>
-</body>
 
-</html>
+
+
+
+
+
+
+    </body>
+
+
+    </html>

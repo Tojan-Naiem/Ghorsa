@@ -97,8 +97,23 @@ session_start();
 
       </div>
       <div class="icons-account">
-        <a href=""><i class="fas fa-shopping-cart"></i></a>
-        <a href="favorates.html"><i class="fas fa-heart"></i></a>
+      <div class="shop-cart">
+                            <a href="pay.html"><i class="fas fa-shopping-cart"></i></a>
+                           <span><?php 
+
+$sql="Select cart_id from cart where user_id =$user_id";
+$result=mysqli_query($conn,$sql);
+                           $row=mysqli_fetch_assoc($result);
+                           $cart_id=$row['cart_id'];
+                           $sql="Select count(*) as total_count from cart_item where cart_id=$cart_id";
+                           $result=mysqli_query($conn,$sql);
+
+                           $row=mysqli_fetch_assoc($result);
+                        $total_count=$row['total_count'];
+                           echo $total_count;
+                           
+                           ?> </span>
+                        </div>         <a href="favorates.html"><i class="fas fa-heart"></i></a>
         <a href="auth/login.php"><i class="fas fa-user"></i></a>
         <?php
         ob_start();

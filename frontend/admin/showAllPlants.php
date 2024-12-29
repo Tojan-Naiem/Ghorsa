@@ -39,157 +39,176 @@ if (!isset($_SESSION['name'])) {
         <link rel="icon" href="../img/icon.png" >
 
         <title>GHORSA</title>
+        <style>
+          .product-card {
+            height: 30%;
+          }
+        </style>
        
         
 </head>
 
 <body>
 <header>
-      <!-- <h1> ايقونات المواقع التواصل مع اللينكات الطرفية</h1> -->
-      <div class="iconlink">
-        <div class="icons">
-          <a href="#"><i class="fas fa-phone"></i></a>
-          <a href="#"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#"> <i class="fa-brands fa-instagram"></i></a>
-        </div>
-
-        <div>
-          <nav class="link">
-            <a href="#">Setting</a>
-            <a href="#">Send a Gift</a>
-            <a href="#">Blog</a>
-          </nav>
-        </div>
+    <!-- <h1> ايقونات المواقع التواصل مع اللينكات الطرفية</h1> -->
+    <div class="iconlink">
+      <div class="icons">
+        <a href="#"><i class="fas fa-phone"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"> <i class="fa-brands fa-instagram"></i></a>
       </div>
-      <hr />
-      <!-- <h1>عباره عن اسم الموقع وسيرش البحث وايقونات القلب والتسجيل والسله</h1> -->
-      <div class="mid-header">
-        <div class="col1">
-          <a href="index.html" style="color: #28a44c">
-            <h4
-              style="
+
+      <div>
+        <nav class="link">
+          <a href="../setting.php">Setting</a>
+         
+        </nav>
+      </div>
+    </div>
+    <hr />
+    <!-- <h1>عباره عن اسم الموقع وسيرش البحث وايقونات القلب والتسجيل والسله</h1> -->
+    <div class="mid-header">
+      <div class="col1">
+        <a href="../index.php" style="color: #28a44c">
+          <h4 style="
                 margin-bottom: 0;
                 margin-top: 0;
                 font-family: Marcellus SC;
                 font-size: 45px;
-              "
-            >
-              GHORSA
-            </h4>
-          </a>
-        </div>
-        <div class="search-container">
-            <div class="search-box">
-              <input
-                id="input"
-                onfocus="focus()"
-                type="search"
-                class="form-control"
-                placeholder="Search here for plant"
-              />
-              <i
-                class="fas fa-search"
-                style="
-                  position: absolute;
-                  right: 10px;
-                  top: 70%;
-                  transform: translateY(-50%);
-                "
-              ></i>
-            </div>
-      <div class="list">
-
+              ">
+            GHORSA
+          </h4>
+        </a>
       </div>
+      <div class="search-container" >
+        <div class="search-box">
+        <form class="form-inline" method="POST" action="index.php">
+    <div class="input-group col-md-5">
+        <input id="searchBox" type="text" class="form-control" placeholder="Search here..." name="keyword" required="required" value="<?php echo isset($_POST['keyword']) ? $_POST['keyword'] : '' ?>"/>
+        <span class="input-group-btn" >
+            <button class="btn" style="background-color: #28a44c; color:white" name="search"> <i class="fas fa-search"></i></button>
+        </span>
+    </div>
+</form>
+        </div>
+        <div class="list" id="suggestionsList">
+    <?php
+        if (isset($_POST['search'])) {
+            $keyword = $_POST['keyword'];
+            $query = mysqli_query($conn, "SELECT * FROM product WHERE name LIKE '%$keyword%'") ;
+            while ($fetch = mysqli_fetch_array($query)) {
+    ?>
+        <div style="word-wrap:break-word;">
+        <a href="../index2.php?i=<?php echo $fetch['product_id']; ?>">
+        <h4 style="padding=10px"><?php echo $fetch['name']?></h4>
+            </a>
+        </div>
+    <?php
+            }
+        }
+    ?>
+</div>
+
+        </div>
+
+     
+
+
+      <div class="icons-account">
+      <div class="shop-cart">
+        <button type="button" onclick="goToCart()" class="btn btn-white position-relative">
+            <i style="color:#28a44c"  class="fas fa-shopping-cart"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <?php 
+                if(isset($_SESSION['name'])){
+                  if (!isset($user_id)) {
+                    echo '0';
+                } else {
+                    $sql = "SELECT cart_id FROM cart WHERE user_id = $user_id";
+                    $result = mysqli_query($conn, $sql);
+                    
+                    if ($result && mysqli_num_rows($result) > 0) {
+                        $row = mysqli_fetch_assoc($result);
+                        $cart_id = $row['cart_id'];
+
+                        $sql = "SELECT COUNT(*) AS total_count FROM cart_item WHERE cart_id = $cart_id";
+                        $result = mysqli_query($conn, $sql);
+
+                        if ($result && mysqli_num_rows($result) > 0) {
+                            $row = mysqli_fetch_assoc($result);
+                            $total_count = $row['total_count'];
+                            echo $total_count; 
+                        } else {
+                            echo '0';  
+                        }
+                    } else {
+                        echo '0'; 
+                    }
+                }
+                }
+               
+                ?>
+            </span>
+        </button>
+    </div>
        
-        </div>
-        <div class="icons-account">
-          <a href=""><i class="fas fa-shopping-cart"></i></a>
-          <a href="favorates.html"><i class="fas fa-heart"></i></a>
-          <a href="auth/login.php"><i class="fas fa-user"></i></a>
-          <?php  
-          ob_start(); 
-          if(isset($_SESSION['name'])){
-            echo '<form method="POST" action="">
+ <a href="../favorites.php"><i class="fas fa-heart"></i></a>
+        <a href="../auth/login.php"><i class="fas fa-user"></i></a>
+        <?php
+        ob_start();
+        if (isset($_SESSION['name'])) {
+          echo '<form method="POST" action="">
             <button type="submit" name="logout" style="background-color: red; border-radius: 8px; padding: 5px; color: white;">Log Out</button>
-        </form>';;
-          }
-          if(isset($_POST['logout'])){
-            session_unset(); 
-            session_destroy(); 
-            header("Location: auth/login.php");
-            exit;
-          }
-          
-          
-          ?> 
-        
-        </div>
-      </div>
-      <hr />
-      <!-- <h1>شريط الواجهات الاخرى</h1> -->
-      <div
-        class="container-fluid"
-        id="menuBar"
-        style="padding-left: 18px; padding-top: 0"
-      >
-        <nav
-          class="navbar navbar-expand-lg navbar-dark bg-white"
-          style="padding-top: 0"
-        >
-          <div class="container-fluid">
-            <button
-              class="navbar-toggler"
-              style="background-color: #28a44c; font-size: 12px"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div
-              class="collapse navbar-collapse"
-              id="navbarNav"
-              style="align-items: center"
-            >
-              <ul
-                class="navbar-nav me-auto"
-                style="align-items: center; margin: 0"
-              >
-                <li class="nav-item">
-                  <a class="nav-link" id="home" href="../index.php">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="IndoorPlants" href="products.html"
-                    >Indoor Plants</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="OutdoorPlants" href="products.html">
-                    Outdoor Plants</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    id="AgriculturalSupplies"
-                    href="products.html"
-                    >Agricultural Supplies</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="about" href="about.html">About</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </div>
+        </form>';
+          ;
+        }
+        if (isset($_POST['logout'])) {
+          session_unset();
+          session_destroy();
+          header("Location: ../index.php");
+          exit;
+        }
 
-      <hr style="margin: 0" />
-    </header>
+
+        ?>
+
+      </div>
+    </div>
+    <hr />
+    <div class="container-fluid" id="menuBar" style="padding-left: 18px; padding-top: 0">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-white" style="padding-top: 0">
+        <div class="container-fluid">
+          <button class="navbar-toggler" style="background-color: #28a44c; font-size: 12px" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav" style="align-items: center">
+            <ul class="navbar-nav me-auto" style="align-items: center; margin: 0">
+              <li class="nav-item">
+                <a class="nav-link" id="home" href="../index.php">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="IndoorPlants" href="products.php?id=1">Indoor Plants</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="OutdoorPlants" href="products.php?id=2">
+                  Outdoor Plants</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="AgriculturalSupplies" href="products.php?id=3">Agricultural Supplies</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="about" href="../about.php">About</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <hr style="margin: 0" />
+  </header>
 
     <main>
 
@@ -250,12 +269,7 @@ if (!isset($_SESSION['name'])) {
 
                 <h3>All Plant</h3>
     
-                <select class="form-select" >
-                    <option selected>Category</option>
-                    <option selected>All</option>
-
-
-                </select>
+                
 
             </div>
             <div class="products-card">
@@ -280,7 +294,7 @@ if (!isset($_SESSION['name'])) {
              echo "
              
              
-             <div class=\"product-card\">
+             <div  class=\"product-card\">
                     <a id=\"edit-icon\" href=\"editPlant.php?i=$product_id;\"><i class=\"fa-regular fa-pen-to-square\"></i></a>
 
                     <div class=\"product-details\">
@@ -293,31 +307,17 @@ if (!isset($_SESSION['name'])) {
                             <p>Quantity Available: <strong>$quantity </strong></p>
                             <p>Category: <strong>$categoryName</strong></p>
                             <p>Color Of Pot Available: <strong>$color </strong></p>
-                            <p id=\"mainDescription\">
-                              $description
+                            <p >
+                              Descreption: $description
+                            </p>
+                             <p >
+                            Plant Care:  $plantCare
                             </p>
                         </div>
                     </div>
+</div>
 
-
-                    <div class=\"expand-icon\" id=\"expandIcon\">
-                        <i class=\"fa fa-chevron-down\"></i>
-                    </div>
-
-
-                    <div class=\"extra-info\" id=\"extraInfo\">
-                        <p id=\"extraDescription \">
-                             $description
-                        <p>stronfices.</p>
-                        <p> The height of the holder is 34 cm.
-                            <br>The width of the holder is 12 cm.
-                        </p>
-                        </p>
-
-                          $plantCare
-                    </div>
-                </div> 
-
+                    
              
              
              
@@ -351,73 +351,19 @@ if (!isset($_SESSION['name'])) {
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        let data=JSON.parse(localStorage.getItem('product'));
-        product=document.getElementById('products-admin');
-
-for(var i=0;i<data.length;i++){
-product.innerHTML+=`
-<div class="product-card">
-                    <div class="product-details">
-
-                        <img src="${data[i].image}" alt="Plant" class="product-img">
-
-
-                        <div class="product-info">
-                            <h4 class="fw-bold">${data[i].plantName} <span class="text-success fs-6">${data[i].price}</span></h4>
-                            <p>Quantity Available: <strong>0</strong></p>
-                            <p>Category: <strong>${data[i].category}</strong></p>
-                            <p>Color Of Pot Available: <strong>${data[i].color}</strong></p>
-                            <p id="mainDescription" style="white-space:nowrap;overflow:hidden;text-overflow: ellipsis; width:150px>
-                                ${data[i].descreption}
-                            </p>
-                        </div>
-                    </div>
-
-
-                    <div class="expand-icon" id="expandIcon">
-                        <i class="fa fa-chevron-down"></i>
-                    </div>
-
-
-                    <div class="extra-info" id="extraInfo">
-                        <p id="extraDescription ">
-                            <strong> Description:</strong> 
-                            ${data[i].descreption}
-                        </p>
-<p>
-                                <strong> How to care:</strong> 
-
-    ${data[i].plantCare}
-
-    </p>
-                        
-                    </div>
-                </div>
-
-
-
-`
-}
-document.querySelectorAll(".expand-icon").forEach((expandIcon, index) => {
-    const extraInfo = document.querySelectorAll(".extra-info")[index];
-    const mainDescription = document.querySelectorAll(".main-description")[index];
-
-    expandIcon.addEventListener("click", function () {
-        if (extraInfo.style.display === "none" || extraInfo.style.display === "") {
-            extraInfo.style.display = "block";
-            mainDescription.style.display = "none";
-        } else {
-            extraInfo.style.display = "none";
-            mainDescription.style.display = "block";
+  
+  <script>
+        function goToCart(){
+          window.location.href="../pay.php";
         }
 
-        expandIcon.classList.toggle("rotate");
-    });
-});
-   
-    </script>
+    const searchBox = document.getElementById("searchBox");
+const suggestionsList = document.getElementById("suggestionsList");
 
+    searchBox.addEventListener("blur", function() {
+    suggestionsList.style.display = "none";
+});
+    </script>
 
 </body>
 

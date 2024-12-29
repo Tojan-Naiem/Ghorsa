@@ -3,9 +3,15 @@ include("../backend/connect.php");
 
 session_start();
 ob_start();
-$user_id=$_SESSION['user_id'];
 
-if (isset($_SESSION['cart_message'])) {
+if(!isset($_SESSION['name'])){
+
+}
+else {
+
+  $user_id=$_SESSION['user_id'];
+
+  if (isset($_SESSION['cart_message'])) {
     echo '
     <div id="alertMessage" class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Success!</strong> ' . $_SESSION['cart_message'] . '
@@ -20,6 +26,7 @@ if (isset($_SESSION['cart_message'])) {
 
 
 if (isset($_GET['i'])) {
+  $_SESSION['product_id'] = $_GET['i'];
     $product_id = $_GET['i'];
     $sql = "SELECT * FROM product WHERE product_id = $product_id";
 
@@ -39,6 +46,9 @@ if (isset($_GET['i'])) {
         echo 'Product not found.';
     }
 }
+$product_id = $_SESSION['product_id'] ?? null;
+}
+
 
 ?> 
 
@@ -52,6 +62,8 @@ if (isset($_GET['i'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css2.css">
+    <link rel="stylesheet" href="header.css">
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
@@ -67,6 +79,23 @@ if (isset($_GET['i'])) {
         crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
+
+<style>
+  .title-icon{
+    display: flex;
+  }
+  .title-icon a{
+    color: black;
+  }
+  .title-icon button{
+    background-color: white;
+    color:#28a44c;
+    font-size: 10px;
+  }
+  .title-icon button:hover{
+    color:red;
+  }
+</style>
 
 <body >
    
@@ -86,9 +115,8 @@ if (isset($_GET['i'])) {
 
       <div>
         <nav class="link">
-          <a href="#">Setting</a>
-          <a href="#">Send a Gift</a>
-          <a href="#">Blog</a>
+          <a href="setting.php">Setting</a>
+         
         </nav>
       </div>
     </div>
@@ -96,7 +124,7 @@ if (isset($_GET['i'])) {
     <!-- <h1>عباره عن اسم الموقع وسيرش البحث وايقونات القلب والتسجيل والسله</h1> -->
     <div class="mid-header">
       <div class="col1">
-        <a href="index.html" style="color: #28a44c">
+        <a href="index.php" style="color: #28a44c">
           <h4 style="
                 margin-bottom: 0;
                 margin-top: 0;
@@ -107,39 +135,79 @@ if (isset($_GET['i'])) {
           </h4>
         </a>
       </div>
-      <div class="search-container">
+      <div class="search-container" >
         <div class="search-box">
-          <input id="input" onfocus="focus()" type="search" class="form-control" placeholder="Search here for plant" />
-          <i class="fas fa-search" style="
-                  position: absolute;
-                  right: 10px;
-                  top: 70%;
-                  transform: translateY(-50%);
-                "></i>
+        <form class="form-inline" method="POST" action="index.php">
+    <div class="input-group col-md-5">
+        <input id="searchBox" type="text" class="form-control" placeholder="Search here..." name="keyword" required="required" value="<?php echo isset($_POST['keyword']) ? $_POST['keyword'] : '' ?>"/>
+        <span class="input-group-btn" >
+            <button class="btn" style="background-color: #28a44c; color:white" name="search"> <i class="fas fa-search"></i></button>
+        </span>
+    </div>
+</form>
         </div>
-        <div class="list">
+        <div class="list" id="suggestionsList">
+    <?php
+        if (isset($_POST['search'])) {
+            $keyword = $_POST['keyword'];
+            $query = mysqli_query($conn, "SELECT * FROM product WHERE name LIKE '%$keyword%'") ;
+            while ($fetch = mysqli_fetch_array($query)) {
+    ?>
+        <div style="word-wrap:break-word;">
+        <a href="index2.php?i=<?php echo $fetch['product_id']; ?>">
+        <h4 style="padding=10px"><?php echo $fetch['name']?></h4>
+            </a>
+        </div>
+    <?php
+            }
+        }
+    ?>
+</div>
 
         </div>
 
-      </div>
+     
+
+
       <div class="icons-account">
       <div class="shop-cart">
-                            <a href="pay.html"><i class="fas fa-shopping-cart"></i></a>
-                           <span><?php 
+        <button type="button" onclick="goToCart()" class="btn btn-white position-relative">
+            <i style="color:#28a44c"  class="fas fa-shopping-cart"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <?php 
+                if(isset($_SESSION['name'])){
+                  if (!isset($user_id)) {
+                    echo '0';
+                } else {
+                    $sql = "SELECT cart_id FROM cart WHERE user_id = $user_id";
+                    $result = mysqli_query($conn, $sql);
+                    
+                    if ($result && mysqli_num_rows($result) > 0) {
+                        $row = mysqli_fetch_assoc($result);
+                        $cart_id = $row['cart_id'];
 
-$sql="Select cart_id from cart where user_id =$user_id";
-$result=mysqli_query($conn,$sql);
-                           $row=mysqli_fetch_assoc($result);
-                           $cart_id=$row['cart_id'];
-                           $sql="Select count(*) as total_count from cart_item where cart_id=$cart_id";
-                           $result=mysqli_query($conn,$sql);
+                        $sql = "SELECT COUNT(*) AS total_count FROM cart_item WHERE cart_id = $cart_id";
+                        $result = mysqli_query($conn, $sql);
 
-                           $row=mysqli_fetch_assoc($result);
-                        $total_count=$row['total_count'];
-                           echo $total_count;
-                           
-                           ?> </span>
-                        </div>         <a href="favorates.html"><i class="fas fa-heart"></i></a>
+                        if ($result && mysqli_num_rows($result) > 0) {
+                            $row = mysqli_fetch_assoc($result);
+                            $total_count = $row['total_count'];
+                            echo $total_count; 
+                        } else {
+                            echo '0';  
+                        }
+                    } else {
+                        echo '0'; 
+                    }
+                }
+                }
+               
+                ?>
+            </span>
+        </button>
+    </div>
+       
+ <a href="favorites.php"><i class="fas fa-heart"></i></a>
         <a href="auth/login.php"><i class="fas fa-user"></i></a>
         <?php
         ob_start();
@@ -152,7 +220,7 @@ $result=mysqli_query($conn,$sql);
         if (isset($_POST['logout'])) {
           session_unset();
           session_destroy();
-          header("Location: auth/login.php");
+          header("Location: index.php");
           exit;
         }
 
@@ -173,20 +241,20 @@ $result=mysqli_query($conn,$sql);
           <div class="collapse navbar-collapse" id="navbarNav" style="align-items: center">
             <ul class="navbar-nav me-auto" style="align-items: center; margin: 0">
               <li class="nav-item">
-                <a class="nav-link" id="home" href="index.html">Home</a>
+                <a class="nav-link" id="home" href="index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="IndoorPlants" href="products.html">Indoor Plants</a>
+                <a class="nav-link" id="IndoorPlants" href="products.php?id=1">Indoor Plants</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="OutdoorPlants" href="products.html">
+                <a class="nav-link" id="OutdoorPlants" href="products.php?id=2">
                   Outdoor Plants</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="AgriculturalSupplies" href="products.html">Agricultural Supplies</a>
+                <a class="nav-link" id="AgriculturalSupplies" href="products.php?id=3">Agricultural Supplies</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="about" href="about.html">About</a>
+                <a class="nav-link" id="about" href="about.php">About</a>
               </li>
             </ul>
           </div>
@@ -197,6 +265,8 @@ $result=mysqli_query($conn,$sql);
     <hr style="margin: 0" />
   </header>
 
+
+
     <main>
         <div class="container py-4 " id="detalis-product">
          <div class="row align-items-center justify-content-center ">
@@ -204,10 +274,26 @@ $result=mysqli_query($conn,$sql);
                     <img src="img/plant-image/<?php echo $image?>" alt="Product Image" class="img-fluid">
                 </div>
                 <div class=" col-md-6 " style="margin-top: 10px; display: grid; gap: 10px; ">
-                    <h2 class="product-title" style="font-family: Judson;
+                  <div class="title-icon">
+                  <h2 class="product-title" style="font-family: Judson;
                         width: 300px; font-size: 30px;"><?php echo $name?></h2>
+<!-- <form method="POST" action="">
+
+            <button id="favoriteButton" name="addToFav" type="submit" onclick="toggleFavorite()">
+              Add to Favorites
+</button> 
+                        </from> -->
+                        <button onclick="addToFavorites(123)">Add to Favorites</button>
+
+
+
+                       
+                  </div>
+                  
+
                     <p class="product-price text-success"
                         style="width: 200px; font-size:48px ;color: #28a44c; font-family:Judson ;"><?php echo $price?>₪</p>
+
                         <form method="POST"  class="plant-form" action="">
            
                     <div class="d-flex align-items-center mb-3"
@@ -253,7 +339,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addToCart'])){
                         $cart_id=$row["cart_id"];
                         $sql="Select quantity from cart_item where cart_id=$cart_id and product_id=$product_id";
                         $result=mysqli_query($conn,$sql);
-                        echo " 1";
                         if(mysqli_num_rows($result)>0){
                             $row=mysqli_fetch_assoc($result);
                             $prev_quantity=$row['quantity'];
@@ -261,7 +346,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addToCart'])){
                             $total_price=$new_quantity*$price;                         
                             $sql="Update cart_item set quantity=$new_quantity, price=$total_price where cart_id=$cart_id and product_id=$product_id";
                             $result=mysqli_query($conn,$sql);
-                            echo " 3";
 
                         }
                         else {
@@ -270,7 +354,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addToCart'])){
 
                         }
 
-                        echo " 2";
 
 
                         if ($result) {
@@ -289,115 +372,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addToCart'])){
 
 
 ?>
-                          <!-- <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
+                         
 
-                          
-    <!-- <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                            <div class="offcanvas-header">
-                              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                            </div>
-                            < <div class="offcanvas-body">
-                                <h1>Shopping Cart</h1>
-                              <div class="list-cart" id="carts-list">
-                                <ul>
-                                <div class="item">
-                <!<div class="image">
-                    <img src="img/plant-image/<?php echo $image ?>">
-                </div>
-                <div class="name">
-                </div>
-                <div class="total-price">
-                </div>
-                <div class="quantity">
-                    <span class="minus">-</span>
-                    <span>1</span>
-                    <span class="plus">+</span>
-                </div>
-                <button>Add</button>
-           -->
-        
-        
-    
-                                <?php
-                             //   $user_id=$_SESSION['user_id'];
-
-                        // $sql="Select Count(*) as count_card from cart where user_id=$user_id";
-                        // $result = mysqli_query($conn, $sql);
-                        // $row = mysqli_fetch_assoc($result);
-                        // if($row['count_card']==1){
-                        // }
-                        // else{
-                        //     $sql="Insert into cart(user_id) values ($user_id)";
-                        //     $result=mysqli_query($conn,$sql);
-                        //     $sql="Select cart_id from cart where user_id =$user_id";
-                        //     $result=mysqli_query($conn,$sql);
-                        //     $row=mysqli_fetch_assoc($result);
-                        //     $cart_id=$row["cart_id"];
-                        //       $user_quantity=$_POST["user-quantity"];
-                        //     $sql="Insert into cart_item(cart_id,product_id,quantity,price) values ($cart_id,$product_id,)";
-
-
-
-
-
-                       // } 
-
-
-
-        //                         $sql="Select*from cart_item ";
-        //                         if (!empty($previous_products)) {
-        //                             foreach ($previous_products as $product) {
-        //                             echo  `<div class="item">
-        //         <div class="image">
-        //             <img src=" ">
-        //         </div>
-        //         <div class="name">
-        //         ${data[i].plantName}
-        //         </div>
-        //         <div class="total-price">
-        //         ${data[i].price}
-        //         </div>
-        //         <div class="quantity">
-        //             <span class="minus"><</span>
-        //             <span>1</span>
-        //             <span class="plus">></span>
-        //         </div>
-          
-        
-        
-        // `;
-        //                             }
-        //                         } else {
-        //                             echo "<p>Your shopping cart is empty.</p>";
-        //                         }
-  //                         </ul>
-                              
-                              
-    //                           </div>  
-    //                        <div class="btn">
-    //         <button class="close">CLOSE</button>
-    //         <button class="check-out">CHECK OUT</button>
-
-    // </div>
-    //                                </div>  -->
-
-?>
-                            
-                    <!-- التبويبات -->
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" style="color: black;" id="description-tab"
-                                data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab"
-                                aria-controls="description" aria-selected="true">Description</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="plantcare-tab" style="color: black;" data-bs-toggle="tab"
-                                data-bs-target="#plantcare" type="button" role="tab" aria-controls="plantcare"
-                                aria-selected="false">Plant Care</button>
-                        </li>
-                    </ul>
-
-                    <!-- محتوى التبويبات -->
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="description" role="tabpanel"
                             aria-labelledby="description-tab">
@@ -425,7 +401,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addToCart'])){
         <hr>
 
 
-        <!-- قائمة المنتجات -->
 
         <section class="products-cards">
       <div class="heading">
@@ -448,7 +423,6 @@ while($row=mysqli_fetch_array($result)){
   <div class=\"box\" onclick=\"goToPage($product_id)\">
               <div class=\"img2\">
                   <img src=\"img/plant-image/$image\" alt=\"\">
-                  <a href=\"\" class=\"fa-regular fa-heart\"></a>
               </div>
               <hr>
               <div class=\"desc\">
@@ -516,9 +490,53 @@ while($row=mysqli_fetch_array($result)){
         setTimeout(function() {
     const alert = document.getElementById('alertMessage');
     if (alert) {
-      alert.style.display = 'none'; // إخفاء العنصر
+      alert.style.display = 'none'; 
     }
   }, 3000);
+  var t=0;
+
+  function toggleFavorite() {
+  var icon = document.getElementById('heartIcon');
+  if (t==0) {
+    icon.className='fas fa-heart';
+    t=1;    
+  } else {
+    icon.className='far fa-heart';
+    t=0; 
+  }
+
+  
+}
+function addToFavorites(productId) {
+    var xhr = new XMLHttpRequest(); 
+    xhr.open("POST", "addToFav.php", true); 
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var response = xhr.responseText;
+
+            if (response === "success") {
+                document.getElementById('heartIcon').className = "fas fa-heart";
+                alert("تمت الإضافة إلى المفضلة بنجاح!");
+            } else {
+                console.log("حدث خطأ أثناء الإضافة إلى المفضلة."+response);
+            }
+        }
+    };
+
+    xhr.send("product_id=" + productId);
+}
+function goToCart(){
+      window.location.href="pay.php";
+    }
+
+    const searchBox = document.getElementById("searchBox");
+const suggestionsList = document.getElementById("suggestionsList");
+
+    searchBox.addEventListener("blur", function() {
+    suggestionsList.style.display = "none";
+});
     
      </script>
 </body>

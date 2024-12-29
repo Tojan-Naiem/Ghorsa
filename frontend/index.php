@@ -11,9 +11,6 @@ else $user_id=$_SESSION['user_id'];
 
 ?>
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,7 +48,45 @@ else $user_id=$_SESSION['user_id'];
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-</head>
+
+<style>
+.form-inline {
+    margin: 20px 0;
+    margin-bottom: 20px;
+}
+
+.list {
+   
+}
+
+.list h2 {
+    margin-bottom: 15px;
+}
+
+.list a {
+    text-decoration: none;
+    color: #333;
+}
+
+.list h4 {
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+.search-box{
+  width: 50%;
+}
+.list{
+  width: 50%;
+  background-color: #28a44c;
+  color: white;
+  
+}
+</style>
+
+  </head>
 
 <body>
   <header>
@@ -85,25 +120,44 @@ else $user_id=$_SESSION['user_id'];
           </h4>
         </a>
       </div>
-      <div class="search-container">
+      <div class="search-container" >
         <div class="search-box">
-          <input id="input" onfocus="focus()" type="search" class="form-control" placeholder="Search here for plant" />
-          <i class="fas fa-search" style="
-                  position: absolute;
-                  right: 10px;
-                  top: 70%;
-                  transform: translateY(-50%);
-                "></i>
+        <form class="form-inline" method="POST" action="index.php">
+    <div class="input-group col-md-5">
+        <input id="searchBox" type="text" class="form-control" placeholder="Search here..." name="keyword" required="required" value="<?php echo isset($_POST['keyword']) ? $_POST['keyword'] : '' ?>"/>
+        <span class="input-group-btn" >
+            <button class="btn" style="background-color: #28a44c; color:white" name="search"> <i class="fas fa-search"></i></button>
+        </span>
+    </div>
+</form>
         </div>
-        <div class="list">
+        <div class="list" id="suggestionsList">
+    <?php
+        if (isset($_POST['search'])) {
+            $keyword = $_POST['keyword'];
+            $query = mysqli_query($conn, "SELECT * FROM product WHERE name LIKE '%$keyword%'") ;
+            while ($fetch = mysqli_fetch_array($query)) {
+    ?>
+        <div style="word-wrap:break-word;">
+        <a href="index2.php?i=<?php echo $fetch['product_id']; ?>">
+        <h4 style="padding=10px"><?php echo $fetch['name']?></h4>
+            </a>
+        </div>
+    <?php
+            }
+        }
+    ?>
+</div>
 
         </div>
 
-      </div>
+     
+
+
       <div class="icons-account">
       <div class="shop-cart">
-        <button type="button" class="btn btn-white position-relative">
-            <i style="color:#28a44c" class="fas fa-shopping-cart"></i>
+        <button type="button" onclick="goToCart()" class="btn btn-white position-relative">
+            <i style="color:#28a44c"  class="fas fa-shopping-cart"></i>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 <?php 
                 if(isset($_SESSION['name'])){
@@ -172,20 +226,20 @@ else $user_id=$_SESSION['user_id'];
           <div class="collapse navbar-collapse" id="navbarNav" style="align-items: center">
             <ul class="navbar-nav me-auto" style="align-items: center; margin: 0">
               <li class="nav-item">
-                <a class="nav-link" id="home" href="index.html">Home</a>
+                <a class="nav-link" id="home" href="index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="IndoorPlants" href="products.html">Indoor Plants</a>
+                <a class="nav-link" id="IndoorPlants" href="products.php?id=1">Indoor Plants</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="OutdoorPlants" href="products.html">
+                <a class="nav-link" id="OutdoorPlants" href="products.php?id=2">
                   Outdoor Plants</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="AgriculturalSupplies" href="products.html">Agricultural Supplies</a>
+                <a class="nav-link" id="AgriculturalSupplies" href="products.php?id=3">Agricultural Supplies</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="about" href="about.html">About</a>
+                <a class="nav-link" id="about" href="about.php">About</a>
               </li>
             </ul>
           </div>
@@ -293,7 +347,6 @@ while($row=mysqli_fetch_array($result)){
   <div class=\"box\" onclick=\"goToPage($product_id)\">
               <div class=\"img2\">
                   <img src=\"img/plant-image/$image\" alt=\"\">
-                  <a href=\"\" class=\"fa-regular fa-heart\"></a>
               </div>
               <hr>
               <div class=\"desc\">
@@ -521,15 +574,19 @@ while($row=mysqli_fetch_array($result)){
     window.location.href = "index2.php?i="+index;
     
     } 
+    function goToCart(){
+      window.location.href="pay.php";
+    }
+
+    const searchBox = document.getElementById("searchBox");
+const suggestionsList = document.getElementById("suggestionsList");
+
+    searchBox.addEventListener("blur", function() {
+    suggestionsList.style.display = "none";
+});
     </script>
    
-    <!-- <script>
-        input=document.getElementById('input');
-    
- 
-
-
-     </script> -->
+   
   </main>
 </body>
 

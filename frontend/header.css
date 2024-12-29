@@ -322,6 +322,40 @@
       display: block;
     }
   }
+  .form-inline {
+    margin: 20px 0;
+    margin-bottom: 20px;
+}
+
+.list {
+   
+}
+
+.list h2 {
+    margin-bottom: 15px;
+}
+
+.list a {
+    text-decoration: none;
+    color: #333;
+}
+
+.list h4 {
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+.search-box{
+  width: 50%;
+}
+.list{
+  width: 50%;
+  background-color: #28a44c;
+  color: white;
+  
+}
   
   
 

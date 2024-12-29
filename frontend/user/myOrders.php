@@ -38,16 +38,15 @@ if($row){
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/cartStyle.css">
-    <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="css/myOrder.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../header.css">
 
 
 
@@ -67,7 +66,7 @@ if($row){
 </head>
 
 <body>
-<header>
+  <header>
     <!-- <h1> ايقونات المواقع التواصل مع اللينكات الطرفية</h1> -->
     <div class="iconlink">
       <div class="icons">
@@ -227,132 +226,99 @@ if($row){
 
     <hr style="margin: 0" />
   </header>
-
+    
 
 
     <main>
 
+        <!-- القائمة الجانبية -->
 
-    <div class="left-side">
+        <div class="left-side">
 
-<div class="sidebar">
-    <h4>user name</h4>
-    <a href="main.php"><i class="fa fa-user me-2"></i> My Profile</a>
-    <a href="favourite.php"><i class="fa fa-heart me-2"></i> Wish List</a>
-    <a href="myCart.php" style="background-color: #28a44c; color: white;"><i class="fa fa-shopping-cart me-2"></i> My Cart</a>
-    <a href="myOrders.php"><i class="fa fa-box me-2"></i> My Order</a>
-</div>
+          <div class="sidebar">
+              <h4>user name</h4>
+              <a href="main.php" ><i class="fa fa-user me-2"></i> My Profile</a>
+              <a href="favourite.php"><i class="fa fa-heart me-2"></i> Wish List</a>
+              <a href="myCart.php"><i class="fa fa-shopping-cart me-2"></i> My Cart</a>
+              <a href="myOrders.php" style="background-color: #28a44c; color: white;"><i class="fa fa-box me-2"></i> My Order</a>
+          </div>
 
-</div>
-            <div class="order-container">
-                <h3>My Cart</h3>
-                <h4 >Order Details</h4>
-                <hr style="width: 100%; ">
-                <table class="table table-borderless order-details border-bottom">
-                    <thead class="border-bottom">
-                        <tr>
-                           
-                            <th>Products</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
+        </div>
+           
+        <!-- القائمة الرئيسيه لتسجيل المعلومات -->
+            <div class="profile-container">
+                <h3 class="form-title mb-4">My Order</h3>
 
-                           
+                <div class="recent-orders">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Order Date</th>
+                                <th>Total Amount</th>
+                                <th>Order Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php 
+                        if($row){
 
-                        </tr>
+            $sql="Select*From order_table where user_id=$user_id";
+            $result=mysqli_query($conn,$sql);
+            while($row=mysqli_fetch_assoc($result)){
+                $order_id=$row['order_id'];
+                $order_amount=$row['order_amount'];
+                $order_date=$row['order_date'];
+                $status=$row['status'];
+                $user_id=$row['user_id'];
+                $sql_user_name="Select name from user where user_id=$user_id";
+                $result_user_name=mysqli_query($conn,$sql_user_name);
+                $row_user_name=mysqli_fetch_assoc($result_user_name);
+                $user_name=$row_user_name['name'];
 
-                    </thead>
-                    <tbody>
 
-                    <?php
-                   
-if($row){
+                echo ' 
+                
+                <tr>
+              <td>'.$order_id.'</td>
+              <td>'.$order_date.'</td>
+              <td>'.$user_name.'</td>
+              <td>'.$order_amount.'</td>
+              <td>'.$status.'</td>
+              <td>
+                <a href="viewOrder.php?i='.$order_id.'" class="btn btn-primary btn-sm">View</a>
+                <button class="btn btn-warning btn-sm">Update</button>
+                <button class="btn btn-danger btn-sm">Delete</button>
+              </td>
+            </tr>
+                
+                
+                
+                ';
 
 
 
 
-$sql="Select*from cart_item where cart_id=$cart_id";
-$result=mysqli_query($conn,$sql);
-while($row=mysqli_fetch_assoc($result)){
-    $cart_item_id=$row["cart_item_id"];
-    $product_id=$row['product_id'];
-    $quantity=$row['quantity'];
-    $total_price=$row['price'];
-    $sql="Select*from product where product_id=$product_id";  
-    $result2=mysqli_query($conn,$sql);
-    $row2=mysqli_fetch_assoc($result2);
-    $image=$row2['image'];
-    $name=$row2['name'];
-    $price=$row2['price'];
-   
-    echo ' 
-            <tr class="border-bottom">
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="../img/plant-image/'.$image.'" alt="Plant" class="product-image me-2">
-                                    <span>'.$name.'</span>
-                                </div>
-                            </td>
-                            <td>'.$price.'</td>
 
-                            <td>
+            }
 
-                                    <input type="number" value="'.$quantity.'" class="form-control text-center mx-2" value="1"
-                                        style="width: 60px; border: none;  background-color: #f0f0f0; box-shadow: none; background: none;">
-                            
-                                </td>
-                            <td>
-                                <a href="?remove='.$cart_item_id.'" class="delete-icon"><i class="fa fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-    
-    
-    
-    
-    ';
+          }
 
-}
-}
 ?>
-
-                    
-
-              
-                    </tbody>
-                </table>
-
-                <div class="d-flex justify-content-between align-items-center mt-4">
-                    <span class="total-price">Total Price :</span>
-                    <span class="fs-5">
-                    <?php 
-                    if($row){
-                      $sql="Select*from cart_item where cart_id=$cart_id";  
-                      $result2=mysqli_query($conn,$sql);
-                      $amount=0;
-                      while($row=mysqli_fetch_assoc($result2)){
-                     $amount+=$row['price'];
-                    }
-              
-                  
-
-              }
-              
-                      ?>
-
-
-                    </span>
-                </div>
-                <hr style="width: 100%; align-items: center;">
-                <div class="text-center mt-4">
-                    <a href="../pay.php" class="btn btn-confirmation " style="color: white; width: 30%; background-color: #28a44c;">Order Confirmation</a>
+                           
+                        </tbody>
+                    </table>
                 </div>
 
 
 
+        </div>
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     </main>
-
     <script>
         function goToCart(){
           window.location.href="../pay.php";

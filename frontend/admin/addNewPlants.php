@@ -41,7 +41,11 @@ if (!isset($_SESSION['name'])) {
     <link rel="icon" href="../img/icon.png" >
 
     <title>GHORSA</title>
-   
+   <style>
+    form{
+  height: 20%;
+}
+   </style>
     
 </head>
 
@@ -186,14 +190,14 @@ if (!isset($_SESSION['name'])) {
                 <a class="nav-link" id="home" href="../index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="IndoorPlants" href="products.php?id=1">Indoor Plants</a>
+                <a class="nav-link" id="IndoorPlants" href="../products.php?id=1">Indoor Plants</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="OutdoorPlants" href="products.php?id=2">
+                <a class="nav-link" id="OutdoorPlants" href="../products.php?id=2">
                   Outdoor Plants</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="AgriculturalSupplies" href="products.php?id=3">Agricultural Supplies</a>
+                <a class="nav-link" id="AgriculturalSupplies" href="../products.php?id=3">Agricultural Supplies</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="about" href="../about.php">About</a>

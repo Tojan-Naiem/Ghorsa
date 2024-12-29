@@ -109,13 +109,7 @@ include("../../backend/connect.php");
                     </button>
                 </div>
             </div>
-             <div class="mb-3 form-check" style="display: flex; gap: 60px;">
-                <div>
-                <input type="checkbox" class="form-check-input" id="rememberMe">
-                <label class="form-check-label" for="rememberMe">Remember me</label>
-            </div>
-            
-            </div> 
+             
             <input type="submit" name="submit"  class="btn" style="background-color:  #28a44c;color: white;" value="Register">
         </form>
 

@@ -116,15 +116,7 @@ if (isset($_SESSION['user_id'])) {
                     </button>
                 </div>
             </div>
-            <div class="mb-3 form-check" style="display: flex; gap: 60px;">
-                <div>
-                <input type="checkbox" class="form-check-input" id="rememberMe">
-                <label class="form-check-label" for="rememberMe">Remember me</label>
-            </div>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <a href="forgotPassword.html" class="link">Forgot your password?</a>
-                </div>
-            </div>
+            
             <button type="submit" class="btn" style="background-color: #28a44c; color: white;">Log in</button>
         </form>
         <?php
@@ -148,7 +140,7 @@ else {
             $_SESSION['phone']=$user['phone'];
             $_SESSION['email']=$user['email'];
             if($_SESSION['role_id']==1){
-                header('location:../admin/main.html');
+                header('location:../admin/main.php');
             
             
             }

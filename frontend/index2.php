@@ -22,7 +22,7 @@ else {
     // بعد عرض الرسالة، قم بإزالة الرسالة من الجلسة
     unset($_SESSION['cart_message']);
 }
-
+}
 
 
 if (isset($_GET['i'])) {
@@ -47,7 +47,7 @@ if (isset($_GET['i'])) {
     }
 }
 $product_id = $_SESSION['product_id'] ?? null;
-}
+
 
 
 ?> 
@@ -138,7 +138,7 @@ $product_id = $_SESSION['product_id'] ?? null;
       <div class="search-container" >
         <div class="search-box">
         <form class="form-inline" method="POST" action="index.php">
-    <div class="input-group col-md-5">
+    <div class="input-group">
         <input id="searchBox" type="text" class="form-control" placeholder="Search here..." name="keyword" required="required" value="<?php echo isset($_POST['keyword']) ? $_POST['keyword'] : '' ?>"/>
         <span class="input-group-btn" >
             <button class="btn" style="background-color: #28a44c; color:white" name="search"> <i class="fas fa-search"></i></button>
@@ -213,7 +213,7 @@ $product_id = $_SESSION['product_id'] ?? null;
         ob_start();
         if (isset($_SESSION['name'])) {
           echo '<form method="POST" action="">
-            <button type="submit" name="logout" style="background-color: red; border-radius: 8px; padding: 5px; color: white;">Log Out</button>
+            <button id="logOutSubmit" type="submit" name="logout" style=" border-radius: 8px; ">Log Out</button>
         </form>';
           ;
         }
@@ -320,55 +320,62 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addToCart'])){
 
 
                           $user_quantity=$_POST['user-quantity'];
-                          $total_price=$user_quantity*$price;                         
+                          $total_price=$user_quantity*$price;  
+                          if($_SESSION['user_id']){
                             $user_id=$_SESSION['user_id'];
-                          $sql="Select Count(*) as count_card from cart where user_id=$user_id";
-                           $result = mysqli_query($conn, $sql);
-                         $row = mysqli_fetch_assoc($result);
-                        if($row['count_card']==1){
+                            $sql="Select Count(*) as count_card from cart where user_id=$user_id";
+                             $result = mysqli_query($conn, $sql);
+                           $row = mysqli_fetch_assoc($result);
+                          if($row['count_card']==1){
+                              
+                           }
+                          else{
+                              $sql="Insert into cart(user_id) values ($user_id)";
+                              $result=mysqli_query($conn,$sql);
+                             
+                          }
+                          $sql="Select cart_id from cart where user_id =$user_id";
+                          $result=mysqli_query($conn,$sql);
+                          $row=mysqli_fetch_assoc($result);
+                          $cart_id=$row["cart_id"];
+                          $sql="Select quantity from cart_item where cart_id=$cart_id and product_id=$product_id";
+                          $result=mysqli_query($conn,$sql);
+                          if(mysqli_num_rows($result)>0){
+                              $row=mysqli_fetch_assoc($result);
+                              $prev_quantity=$row['quantity'];
+                              $new_quantity=$prev_quantity+$user_quantity;
+                              $total_price=$new_quantity*$price;                         
+                              $sql="Update cart_item set quantity=$new_quantity, price=$total_price where cart_id=$cart_id and product_id=$product_id";
+                              $result=mysqli_query($conn,$sql);
+  
+                          }
+                          else {
+                              $sql="Insert into cart_item(cart_id,product_id,quantity,price) values ($cart_id,$product_id,$user_quantity,$total_price)";
+                              $result = mysqli_query($conn, $sql);
+  
+                          }
+  
+  
+  
+                          if ($result) {
+                              $_SESSION['cart_message'] = 'The product has been added to your cart successfully!';
                             
-                         }
-                        else{
-                            $sql="Insert into cart(user_id) values ($user_id)";
-                            $result=mysqli_query($conn,$sql);
-                           
-                        }
-                        $sql="Select cart_id from cart where user_id =$user_id";
-                        $result=mysqli_query($conn,$sql);
-                        $row=mysqli_fetch_assoc($result);
-                        $cart_id=$row["cart_id"];
-                        $sql="Select quantity from cart_item where cart_id=$cart_id and product_id=$product_id";
-                        $result=mysqli_query($conn,$sql);
-                        if(mysqli_num_rows($result)>0){
-                            $row=mysqli_fetch_assoc($result);
-                            $prev_quantity=$row['quantity'];
-                            $new_quantity=$prev_quantity+$user_quantity;
-                            $total_price=$new_quantity*$price;                         
-                            $sql="Update cart_item set quantity=$new_quantity, price=$total_price where cart_id=$cart_id and product_id=$product_id";
-                            $result=mysqli_query($conn,$sql);
-
-                        }
-                        else {
-                            $sql="Insert into cart_item(cart_id,product_id,quantity,price) values ($cart_id,$product_id,$user_quantity,$total_price)";
-                            $result = mysqli_query($conn, $sql);
+                              
+                          } else {
+                              echo "حدث خطأ أثناء إضافة المنتج إلى السلة.";
+                          }
+                          header("Location: " . $_SERVER['PHP_SELF'] . "?i=" . $product_id);
+                          exit();    
+                      
+                          ob_end_flush();
 
                         }
 
 
-
-                        if ($result) {
-                            $_SESSION['cart_message'] = 'The product has been added to your cart successfully!';
-                          
-                            
-                        } else {
-                            echo "حدث خطأ أثناء إضافة المنتج إلى السلة.";
-                        }
-                        header("Location: " . $_SERVER['PHP_SELF'] . "?i=" . $product_id);
-                        exit();    
-                    }
+                          }                       
+                         
 
                     
-                    ob_end_flush();
 
 
 ?>
@@ -537,7 +544,11 @@ const suggestionsList = document.getElementById("suggestionsList");
     searchBox.addEventListener("blur", function() {
     suggestionsList.style.display = "none";
 });
-    
+function goToPage(index) {
+   
+   window.location.href = "index2.php?i="+index;
+   
+   }
      </script>
 </body>
 

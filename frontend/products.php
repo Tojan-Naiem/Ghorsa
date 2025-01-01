@@ -327,7 +327,7 @@ if (isset($_GET['id'])) {
       <div class="search-container" >
         <div class="search-box">
         <form class="form-inline" method="POST" action="index.php">
-    <div class="input-group col-md-5">
+    <div class="input-group">
         <input id="searchBox" type="text" class="form-control" placeholder="Search here..." name="keyword" required="required" value="<?php echo isset($_POST['keyword']) ? $_POST['keyword'] : '' ?>"/>
         <span class="input-group-btn" >
             <button class="btn" style="background-color: #28a44c; color:white" name="search"> <i class="fas fa-search"></i></button>
@@ -402,7 +402,7 @@ if (isset($_GET['id'])) {
         ob_start();
         if (isset($_SESSION['name'])) {
           echo '<form method="POST" action="">
-            <button type="submit" name="logout" style="background-color: red; border-radius: 8px; padding: 5px; color: white;">Log Out</button>
+            <button id="logOutSubmit" type="submit" name="logout" style=" border-radius: 8px; ">Log Out</button>
         </form>';
           ;
         }
@@ -453,7 +453,6 @@ if (isset($_GET['id'])) {
 
     <hr style="margin: 0" />
   </header>
-
 
 
 

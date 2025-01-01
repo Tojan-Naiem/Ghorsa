@@ -1,56 +1,4 @@
- <?php
-include("../../backend/connect.php");
 
-session_start();
-
-if(!isset($_SESSION['name'])){
-
-  echo $_SESSION['name'];
-   header('location:../auth/login.php');
-   exit();
-}
-$user_id=$_SESSION['user_id'];
-
-
-?> 
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="../header.css">
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-        crossorigin="anonymous"></script>
-    <title>Document</title>
-
-    <style>
-      .address-part{
-        padding: 10px;
-    border: 1px solid #28a44c;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-    </style>
-</head>
-
-<body>
 <header>
     <!-- <h1> ايقونات المواقع التواصل مع اللينكات الطرفية</h1> -->
     <div class="iconlink">
@@ -62,7 +10,7 @@ $user_id=$_SESSION['user_id'];
 
       <div>
         <nav class="link">
-          <a href="../setting.php">Setting</a>
+          <a href="setting.php">Setting</a>
          
         </nav>
       </div>
@@ -71,7 +19,7 @@ $user_id=$_SESSION['user_id'];
     <!-- <h1>عباره عن اسم الموقع وسيرش البحث وايقونات القلب والتسجيل والسله</h1> -->
     <div class="mid-header">
       <div class="col1">
-        <a href="../index.php" style="color: #28a44c">
+        <a href="index.php" style="color: #28a44c">
           <h4 style="
                 margin-bottom: 0;
                 margin-top: 0;
@@ -85,7 +33,7 @@ $user_id=$_SESSION['user_id'];
       <div class="search-container" >
         <div class="search-box">
         <form class="form-inline" method="POST" action="index.php">
-    <div class="input-group col-md-5">
+    <div class="input-group">
         <input id="searchBox" type="text" class="form-control" placeholder="Search here..." name="keyword" required="required" value="<?php echo isset($_POST['keyword']) ? $_POST['keyword'] : '' ?>"/>
         <span class="input-group-btn" >
             <button class="btn" style="background-color: #28a44c; color:white" name="search"> <i class="fas fa-search"></i></button>
@@ -101,7 +49,7 @@ $user_id=$_SESSION['user_id'];
             while ($fetch = mysqli_fetch_array($query)) {
     ?>
         <div style="word-wrap:break-word;">
-        <a href="../index2.php?i=<?php echo $fetch['product_id']; ?>">
+        <a href="index2.php?i=<?php echo $fetch['product_id']; ?>">
         <h4 style="padding=10px"><?php echo $fetch['name']?></h4>
             </a>
         </div>
@@ -148,26 +96,29 @@ $user_id=$_SESSION['user_id'];
                     }
                 }
                 }
+                else {
+
+                }
                
                 ?>
             </span>
         </button>
     </div>
        
- <a href="../favorites.php"><i class="fas fa-heart"></i></a>
-        <a href="../auth/login.php"><i class="fas fa-user"></i></a>
+ <a href="favorites.php"><i class="fas fa-heart"></i></a>
+        <a href="auth/login.php"><i class="fas fa-user"></i></a>
         <?php
         ob_start();
         if (isset($_SESSION['name'])) {
           echo '<form method="POST" action="">
-            <button type="submit" name="logout" style=" border-radius: 8px; ">Log Out</button>
+            <button type="submit" name="logout" style="background-color: #dc3545; border-radius: 8px; padding: 5px; color: white; width:100px">Log Out</button>
         </form>';
           ;
         }
         if (isset($_POST['logout'])) {
           session_unset();
           session_destroy();
-          header("Location: ../index.php");
+          header("Location: index.php");
           exit;
         }
 
@@ -188,7 +139,7 @@ $user_id=$_SESSION['user_id'];
           <div class="collapse navbar-collapse" id="navbarNav" style="align-items: center">
             <ul class="navbar-nav me-auto" style="align-items: center; margin: 0">
               <li class="nav-item">
-                <a class="nav-link" id="home" href="../index.php">Home</a>
+                <a class="nav-link" id="home" href="index.php">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="IndoorPlants" href="products.php?id=1">Indoor Plants</a>
@@ -201,7 +152,7 @@ $user_id=$_SESSION['user_id'];
                 <a class="nav-link" id="AgriculturalSupplies" href="products.php?id=3">Agricultural Supplies</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="about" href="../about.php">About</a>
+                <a class="nav-link" id="about" href="about.php">About</a>
               </li>
             </ul>
           </div>
@@ -210,88 +161,5 @@ $user_id=$_SESSION['user_id'];
     </div>
 
     <hr style="margin: 0" />
-  </header>
-
-    <main>
-
-    <div class="left-side">
-
-<div class="sidebar">
-    <h4>user name</h4>
-    <a href="main.php" style="background-color: #28a44c; color: white;"><i class="fa fa-user me-2"></i> My Profile</a>
-    <a href="favourite.php"><i class="fa fa-heart me-2"></i> Wish List</a>
-    <a href="myCart.php"><i class="fa fa-shopping-cart me-2"></i> My Cart</a>
-    <a href="myOrders.php"><i class="fa fa-box me-2"></i> My Order</a>
-</div>
-
-</div>
-      <div class="profile-container">
-
-        <form method="POST" action="<?php  htmlspecialchars($_SERVER['PHP_SELF'])?>">
-          <h5 class="form-title mb-3">Address</h5>
-
-              <div class="address-part">
-                <h5>Address 1</h5><br>
-              <div class="row">
-                  <div class="col-md-6 mb-3">
-                      <label for="city" class="form-label">City Name</label>
-                      <input type="text" name="city_name" class="form-control" id="city" placeholder="CityName"
-                          style="box-shadow: none;">
-                  </div>
-                  <div class="col-md-6 mb-3">
-                      <label for="street" class="form-label">Street Name</label>
-                      <input type="text" name="street_name" class="form-control" id="street" placeholder="Street Name"
-                          style="box-shadow: none;">
-                  </div>
-                  <div class="col-md-6 mb-3">
-                      <label for="number" class="form-label">Pin code</label>
-                      <input type="number" name="pin_code" class="form-control" id="number" placeholder="Pin Code"
-                          style="box-shadow: none;">
-                  </div>
-              </div>
-
-
-              </div>
-              <input type="submit" value="Add" name="submit" class="btn" style="width: 30%;color: white; background-color: #28a44c;">
-
-          </form>
-          <?php 
-          if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
-
-            $city = $_POST['city_name'];
-            $street_name = $_POST['street_name'];
-            $pin_code = $_POST['pin_code'];
-
-
-          $sql="insert into address(country,city,pin_code,user_id,street) values('Palestine','$city',$pin_code,$user_id,'$street_name')";
-          $result=mysqli_query($conn,$sql);
-          header("Location: " . $_SERVER['PHP_SELF'] . "?i=" . $product_id);
-          exit(); 
-          }
-
-          ?>
         
-      </div>
-    </main>
-    <script>
-        function goToCart(){
-          window.location.href="../pay.php";
-        }
-
-    const searchBox = document.getElementById("searchBox");
-const suggestionsList = document.getElementById("suggestionsList");
-
-    searchBox.addEventListener("blur", function() {
-    suggestionsList.style.display = "none";
-});
-    </script>
-
-
-
-
-
-
-    </body>
-
-
-    </html>
+    </header>

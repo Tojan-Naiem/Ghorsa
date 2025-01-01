@@ -26,59 +26,90 @@ include("../../backend/connect.php");
         crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="icon" href="img/icon.png" >
+    <link rel="icon" href="../img/icon.png" />
 
-    <title>GHORSA</title>
+<title>GHORSA</title>
     <style>
-        body {
+        a{
+            text-decoration: none;
+        }
+           body {
     background-color: #f8f9fa;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h3{
+    width: 20%;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #28a44c;
 }
 .login-container {
-    max-width: 400px;
-    margin: 50px auto;
+    width: 30%;
     padding: 20px;
     background: #ffffff;
     border-radius: 10px;
     border: 2px solid #d1d1d146;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    text-align: center;
-    width: 80%;
-
+  margin-top: 40%;
+  margin-left: 30%;
     transform: translate(-50% , -60%);
 }
-.login-container .form-check-label {
-    font-size: 0.9rem;
-}
+
+
 .login-container .btn {
     width: 100%;
     color: #28a44c;
     border-radius: 20px;
+    transition: 0.5s;
+    margin: 5px;
 }
-.login-container .link {
-    color: #28a44c;
-    text-decoration: none;
-    transition: 0.5s ease;
+.login-container button:hover{
+   transform: scale(1.05);
+   letter-spacing:2 ;
+}
 
-}
-.login-container .link:hover {
-    transform: scale(1.05);
-}
-#return {
+.return {
     margin-top: 10px;
     text-align: center;
     font-size: 12px;
     color: gray;
     font-weight: 700;
+    width: 100%;
+    text-decoration: none;
+
+
+}
+.return a{
+    color: black;
+}
+
+label{
+    margin-bottom: 10px;
+}
+input{
+    margin-bottom: 10px;
+}
+.account{
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
 
 }
-#return:hover{
-    color:black;
-
+.account a{
+    margin-bottom: 15px;
+    color: #28a44c;
+    transform: 0.5s;
+    margin-left: 5px;
+    text-decoration: none;
 }
-
+.account a:hover{
+    transform: scale(1.01);
+}
 
     </style>
 </head>
@@ -86,35 +117,28 @@ include("../../backend/connect.php");
 <body>
     
     <div class="login-container">
-        <h3 class="text-center mb-4">Register</h3>
+        <h3>Register</h3>
         <form method="POST" action="<?php  htmlspecialchars($_SERVER['PHP_SELF'])?>" >
      
 
-            <div class="mb-3">
-                <label for="text" class="form-label">Username</label>
-                <input type="text" name="username" class="form-control" id="text" placeholder="Your Username" required
+                <label for="text" >Username</label>
+                <input type="text" class="form-control"  name="username" id="text" placeholder="Your Username" required
                     style="box-shadow: none;">
-            </div>
-            <div class="mb-3">
-                <label for="email"  class="form-label">Email Address</label>
+  
+                <label for="email" >Email Address</label>
                 <input type="email" name="email" class="form-control" id="email" placeholder="Your Email" required
                     style="box-shadow: none;">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <div class="input-group">
+                <label for="password" >Password</label>
                     <input type="password" name="password" class="form-control" id="password" placeholder="Enter Your Password" required
                         style="box-shadow: none; border-radius: 5px;">
-                    <i class="bi bi-eye" style="color: #28a44c;"></i>
                     </button>
-                </div>
-            </div>
              
             <input type="submit" name="submit"  class="btn" style="background-color:  #28a44c;color: white;" value="Register">
         </form>
 
         <?php 
         if($_SERVER['REQUEST_METHOD']=="POST"){
+            echo"ggkaslj";
             $username=filter_input(INPUT_POST,"username",FILTER_SANITIZE_SPECIAL_CHARS);
             $password=filter_input(INPUT_POST,"password",FILTER_SANITIZE_SPECIAL_CHARS);
             $email=filter_input(INPUT_POST,"email",FILTER_SANITIZE_SPECIAL_CHARS);
@@ -127,24 +151,28 @@ include("../../backend/connect.php");
             $sql = " INSERT INTO user (name, email, role_id,password) VALUES ('$username', '$email', '2','$hash')";
             try{
                 mysqli_query($conn, $sql);
-                    header('location:../user/main.php');
+                 header('location:../user/main.php');
                 
                 
             }
            catch(mysqli_sql_exception $e){
+            echo $sql;
+
             echo "This email is using before";
            }
         }
         }
         
         ?>
-        <div class="text-center mt-3" style="display: grid; ">
-            <p>Already have account?
-            </p>
-            <a href="login.php" class="link">Click to Login</a>
+       
+        <div class="account" >
+            <p>Already have account? </p>
+            <a href="login.php" >Click to Login</a>
         </div>
-        <a href="../index.html" id="return">return to home page</a>
+        <div class="return">
+        <a href="../index.php" >return to home page</a>
 
+        </div>
     </div>
 
 

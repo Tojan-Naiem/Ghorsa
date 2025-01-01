@@ -5,7 +5,8 @@ session_start();
 ob_start();
 
 if(!isset($_SESSION['name'])){
-
+  header('location:auth/login.php');
+  exit();
 }
 else {
 

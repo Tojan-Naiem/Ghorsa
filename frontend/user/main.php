@@ -11,6 +11,8 @@ if(!isset($_SESSION['name'])){
 }
 $user_id=$_SESSION['user_id'];
 
+//remove adddress
+
 if (isset($_GET['remove'])) {
   $address_id = $_GET['remove'];
 
@@ -35,6 +37,7 @@ if (isset($_GET['remove'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/productsStyle.css">
     <link rel="stylesheet" href="../header.css">
 
 
@@ -77,7 +80,7 @@ form{
 
       <div>
         <nav class="link">
-          <a href="../setting.php">Setting</a>
+          <a href="setting.php">Setting</a>
          
         </nav>
       </div>
@@ -100,7 +103,7 @@ form{
       <div class="search-container" >
         <div class="search-box">
         <form class="form-inline" method="POST" action="index.php">
-    <div class="input-group col-md-5">
+    <div class="input-group">
         <input id="searchBox" type="text" class="form-control" placeholder="Search here..." name="keyword" required="required" value="<?php echo isset($_POST['keyword']) ? $_POST['keyword'] : '' ?>"/>
         <span class="input-group-btn" >
             <button class="btn" style="background-color: #28a44c; color:white" name="search"> <i class="fas fa-search"></i></button>
@@ -116,7 +119,7 @@ form{
             while ($fetch = mysqli_fetch_array($query)) {
     ?>
         <div style="word-wrap:break-word;">
-        <a href="../index2.php?i=<?php echo $fetch['product_id']; ?>">
+        <a href="index2.php?i=<?php echo $fetch['product_id']; ?>">
         <h4 style="padding=10px"><?php echo $fetch['name']?></h4>
             </a>
         </div>
@@ -169,20 +172,20 @@ form{
         </button>
     </div>
        
- <a href="../favorites.php"><i class="fas fa-heart"></i></a>
-        <a href="../auth/login.php"><i class="fas fa-user"></i></a>
+ <a href="favorites.php"><i class="fas fa-heart"></i></a>
+        <a href="auth/login.php"><i class="fas fa-user"></i></a>
         <?php
         ob_start();
         if (isset($_SESSION['name'])) {
           echo '<form method="POST" action="">
-            <button type="submit" name="logout" style="background-color: red; border-radius: 8px; padding: 5px; color: white;">Log Out</button>
+            <button id="logOutSubmit" type="submit" name="logout" style=" border-radius: 8px; ">Log Out</button>
         </form>';
           ;
         }
         if (isset($_POST['logout'])) {
           session_unset();
           session_destroy();
-          header("Location: ../index.php");
+          header("Location: index.php");
           exit;
         }
 
@@ -206,14 +209,14 @@ form{
                 <a class="nav-link" id="home" href="../index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="IndoorPlants" href="products.php?id=1">Indoor Plants</a>
+                <a class="nav-link" id="IndoorPlants" href="../products.php?id=1">Indoor Plants</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="OutdoorPlants" href="products.php?id=2">
+                <a class="nav-link" id="OutdoorPlants" href="../products.php?id=2">
                   Outdoor Plants</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="AgriculturalSupplies" href="products.php?id=3">Agricultural Supplies</a>
+                <a class="nav-link" id="AgriculturalSupplies" href="../products.php?id=3">Agricultural Supplies</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="about" href="../about.php">About</a>
@@ -235,18 +238,53 @@ form{
                   <div class="left-side">
 
                     <div class="sidebar">
-                        <h4>user name</h4>
-                        <a href="main.php" style="background-color: #28a44c; color: white;"><i class="fa fa-user me-2"></i> My Profile</a>
-                        <a href="favourite.php"><i class="fa fa-heart me-2"></i> Wish List</a>
-                        <a href="myCart.php"><i class="fa fa-shopping-cart me-2"></i> My Cart</a>
-                        <a href="myOrders.php"><i class="fa fa-box me-2"></i> My Order</a>
+                        <h4>
+                        <?php
+  
+  echo "Welcome back , " . $_SESSION['name'];
+
+  ?>
+                        </h4>
+                        <ul>
+        <li><a href="#" onclick="changeContent('Profile Information')">Profile Information</a></li>
+        <li><a href="#" onclick="changeContent('Favouties')">Favouties</a></li>
+        <li><a href="#" onclick="changeContent('My Cart')">My Cart</a></li>
+        <li><a href="#" onclick="changeContent('My Orders')">My Orders</a></li>
+    </ul>
                     </div>
 
                   </div>
                    
                 
-                    <div class="profile-container">
-                        <h3 class="form-title mb-4">My Profile</h3>
+                    <div id="content">
+                       
+                </div>
+      
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+        function goToCart(){
+          window.location.href="../pay.php";
+        }
+
+    const searchBox = document.getElementById("searchBox");
+const suggestionsList = document.getElementById("suggestionsList");
+
+    searchBox.addEventListener("blur", function() {
+    suggestionsList.style.display = "none";
+});
+window.onload = function() {
+        changeContent('Profile Information');
+    };
+function changeContent(page) {
+    let content = document.getElementById('content');
+    
+    // Change the content based on the selected option
+    if(page=='Profile Information') {
+      content.innerHTML = 
+        `
+         <h3 class="form-title mb-4">My Profile</h3>
                         <a href="editProfieInfo.php"><i class="fa-regular fa-pen-to-square"></i></a>
 
                         <form>
@@ -343,22 +381,257 @@ form{
                            
                         </form>
                       
+        
+        `;
+    } 
+    
+    else if(page== 'Favouties') {
+        content.innerHTML = 
+        `
+          <br>
+         <h3 class="form-title mb-4">My Profile</h3>
+
+               <section class="products-cards">
+     
+
+      <div class="box-container">
+      <?php  
+
+$sql="Select *from user_favorites where user_id=$user_id";
+$result=mysqli_query($conn,$sql);
+while($row=mysqli_fetch_assoc($result)){
+
+  $product_id=$row['product_id'];
+  $sql="Select*from product where product_id=$product_id";
+  $result2=mysqli_query($conn,$sql);
+  $row2=mysqli_fetch_assoc($result2);
+  $name=$row2["name"];
+  $price=$row2["price"];
+  $image=$row2["image"];
+
+
+
+
+  echo "
+  <div class=\"box\" onclick=\"goToPage($product_id)\">
+              <div class=\"img2\">
+                  <img src=\"../img/plant-image/$image\" alt=\"\">
+              </div>
+              <hr>
+              <div class=\"desc\">
+                  <div class=\"des\">
+                      <h5>$name</h5>
+                      <h6>$price<strong>₪</strong></h6>
+                  </div>
+                  <div class=\"icon2\">
+                      <a href=\"#\" >Add to Cart</a>
+                      <a href=\"\" style=\"padding-top: 3px;\"  class=\"fa-solid fa-cart-shopping \"></a>
+                  </div>
+
+               </div>
+                  
+
+          </div>
+  
+  ";
+
+
+}
+
+
+
+?>
+
+
+
+      </div>
+    </section>
+
+        `;
+    } 
+    else if(page === 'My Cart') {
+        content.innerHTML = `
+            <h3>My Cart</h3>
+                <h4 >Order Details</h4>
+                <hr style="width: 100%; ">
+                <table class="table table-borderless order-details border-bottom">
+                    <thead class="border-bottom">
+                        <tr>
+                           
+                            <th>Products</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+
+                           
+
+                        </tr>
+
+                    </thead>
+                    <tbody>
+
+                    <?php
+                   
+if($row){
+
+
+
+
+$sql="Select*from cart_item where cart_id=$cart_id";
+$result=mysqli_query($conn,$sql);
+while($row=mysqli_fetch_assoc($result)){
+    $cart_item_id=$row["cart_item_id"];
+    $product_id=$row['product_id'];
+    $quantity=$row['quantity'];
+    $total_price=$row['price'];
+    $sql="Select*from product where product_id=$product_id";  
+    $result2=mysqli_query($conn,$sql);
+    $row2=mysqli_fetch_assoc($result2);
+    $image=$row2['image'];
+    $name=$row2['name'];
+    $price=$row2['price'];
+   
+    echo ' 
+            <tr class="border-bottom">
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="../img/plant-image/'.$image.'" alt="Plant" class="product-image me-2">
+                                    <span>'.$name.'</span>
+                                </div>
+                            </td>
+                            <td>'.$price.'</td>
+
+                            <td>
+
+                                    <input type="number" value="'.$quantity.'" class="form-control text-center mx-2" value="1"
+                                        style="width: 60px; border: none;  background-color: #f0f0f0; box-shadow: none; background: none;">
+                            
+                                </td>
+                            <td>
+                                <a href="?remove='.$cart_item_id.'" class="delete-icon"><i class="fa fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+    
+    
+    
+    
+    ';
+
+}
+}
+?>
+
+                    
+
+              
+                    </tbody>
+                </table>
+
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <span class="total-price">Total Price :</span>
+                    <span class="fs-5">
+                    <?php 
+                    if($row){
+                      $sql="Select*from cart_item where cart_id=$cart_id";  
+                      $result2=mysqli_query($conn,$sql);
+                      $amount=0;
+                      while($row=mysqli_fetch_assoc($result2)){
+                     $amount+=$row['price'];
+                    }
+              
+                  
+
+              }
+              
+                      ?>
+
+
+                    </span>
                 </div>
-      
+                <hr style="width: 100%; align-items: center;">
+                <div class="text-center mt-4">
+                    <a href="../pay.php" class="btn btn-confirmation " style="color: white; width: 30%; background-color: #28a44c;">Order Confirmation</a>
+                </div>
 
-        <!-- Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-        function goToCart(){
-          window.location.href="../pay.php";
-        }
+        `;
+    }
+    else if(page === 'My Orders') {
+        content.innerHTML = `
+          <h3 class="form-title mb-4">My Order</h3>
 
-    const searchBox = document.getElementById("searchBox");
-const suggestionsList = document.getElementById("suggestionsList");
+                <div class="recent-orders">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Order Date</th>
+                                <th>Total Amount</th>
+                                <th>Order Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php 
+                        if($row){
 
-    searchBox.addEventListener("blur", function() {
-    suggestionsList.style.display = "none";
-});
+            $sql="Select*From order_table where user_id=$user_id";
+            $result=mysqli_query($conn,$sql);
+            while($row=mysqli_fetch_assoc($result)){
+                $order_id=$row['order_id'];
+                $order_amount=$row['order_amount'];
+                $order_date=$row['order_date'];
+                $status=$row['status'];
+                $user_id=$row['user_id'];
+                $sql_user_name="Select name from user where user_id=$user_id";
+                $result_user_name=mysqli_query($conn,$sql_user_name);
+                $row_user_name=mysqli_fetch_assoc($result_user_name);
+                $user_name=$row_user_name['name'];
+
+
+                echo ' 
+                
+                <tr>
+              <td>'.$order_id.'</td>
+              <td>'.$order_date.'</td>
+              <td>'.$user_name.'</td>
+              <td>'.$order_amount.'</td>
+              <td>'.$status.'</td>
+              <td>
+                <a href="viewOrder.php?i='.$order_id.'" class="btn btn-primary btn-sm">View</a>
+                <button class="btn btn-warning btn-sm">Update</button>
+                <button class="btn btn-danger btn-sm">Delete</button>
+              </td>
+            </tr>
+                
+                
+                
+                ';
+
+
+
+
+
+            }
+
+          }
+
+?>
+                           
+                        </tbody>
+                    </table>
+                </div>
+
+        
+        `;
+    }
+
+    var links = document.querySelectorAll('.sidebar ul li a');
+    links.forEach(function(link) {
+        link.classList.remove('active');
+    });
+
+    // Add the active class to the clicked link
+    element.classList.add('active');
+}
     </script>
     </main>
 </body>

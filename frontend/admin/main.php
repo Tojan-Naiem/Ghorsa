@@ -190,7 +190,7 @@ form{
         ob_start();
         if (isset($_SESSION['name'])) {
           echo '<form method="POST" action="">
-            <button type="submit" name="logout" style="background-color: red; border-radius: 8px; padding: 5px; color: white;">Log Out</button>
+            <button id="logOutSubmit" type="submit" name="logout" style=" border-radius: 8px; ">Log Out</button>
         </form>';
           ;
         }

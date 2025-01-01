@@ -6,13 +6,15 @@ session_start();
 
 if(!isset($_SESSION['name'])){
 
-   header('location:../auth/login.php');
+   header('location:auth/login.php');
    exit();
 }
 $user_id=$_SESSION['user_id'];
 
+
 $sql="Select cart_id from cart where user_id=$user_id";
 $result=mysqli_query($conn,$sql);
+if(mysqli_num_rows($result)>0){
 $row=mysqli_fetch_assoc($result);
 $cart_id=$row['cart_id'];
 
@@ -29,7 +31,7 @@ if (isset($_GET['remove'])) {
     }
 }
 
-
+}
 ?>
 
 
@@ -349,14 +351,14 @@ if (isset($_GET['remove'])) {
         ob_start();
         if (isset($_SESSION['name'])) {
           echo '<form method="POST" action="">
-            <button type="submit" name="logout" style="background-color: red; border-radius: 8px; padding: 5px; color: white;">Log Out</button>
+            <button id="logOutSubmit" type="submit" name="logout" style=" border-radius: 8px; ">Log Out</button>
         </form>';
           ;
         }
         if (isset($_POST['logout'])) {
           session_unset();
           session_destroy();
-          header("Location: index.php");
+          header("Location:index.php");
           exit;
         }
 
@@ -422,7 +424,8 @@ if (isset($_GET['remove'])) {
                     <tr>
                         <?php
 
-                    
+if(mysqli_num_rows($result)>0){
+
                         $sql="Select*from cart_item where cart_id=$cart_id";
                         $result=mysqli_query($conn,$sql);
                         while($row=mysqli_fetch_assoc($result)){
@@ -466,7 +469,10 @@ if (isset($_GET['remove'])) {
 
 
                         }
-
+                    } 
+                    else {
+                        echo 'Noting in the cart';
+                    }
 
 
 
@@ -477,6 +483,8 @@ if (isset($_GET['remove'])) {
             <p>Total: ₪
    
              <?php 
+                                     if(mysqli_num_rows($result)>0){
+
               $sql="Select*from cart_item where cart_id=$cart_id";  
               $result2=mysqli_query($conn,$sql);
               $amount=0;
@@ -484,11 +492,14 @@ if (isset($_GET['remove'])) {
              $amount+=$row['price'];
 
               }
+            
               
-             echo $amount;
+             echo $amount;}
                       ?>
             </p>
             <p>Final Total: ₪  <?php 
+                                    if(mysqli_num_rows($result)>0){
+
               $sql="Select*from cart_item where cart_id=$cart_id";  
               $result2=mysqli_query($conn,$sql);
               $amount=0;
@@ -497,8 +508,9 @@ if (isset($_GET['remove'])) {
 
               }
               
-             echo $amount;
+             echo $amount;}
                       ?>
+                      
             </p></p>
         </div>
 
@@ -534,10 +546,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
    $amount+=$row['price'];
 
     }
-    $sql_insert_order = "INSERT INTO order_table (order_amount,user_id, address_id)
-    VALUES ($amount, $user_id, $selected_address_id)";
-  $result=mysqli_query($conn, $sql_insert_order);
-  header("Location: " . $_SERVER['PHP_SELF'] . "?i=" . $product_id);
+    try {
+        // إدخال الطلب في الجدول
+        $sql_insert_order = "INSERT INTO order_table (order_amount, user_id, address_id)
+                             VALUES ($amount, $user_id, $selected_address_id)";
+        $result = mysqli_query($conn, $sql_insert_order);
+    
+        if ($result) {
+           
+            // $sql_delete_cart_items = "DELETE FROM cart_item WHERE cart_id = $cart_id";
+            // $result2 = mysqli_query($conn, $sql_delete_cart_items);
+    
+            // if ($result2) {
+            //     // إذا تم الحذف بنجاح، قم بتأكيد المعاملة
+            //     mysqli_commit($conn);
+            // } else {
+            //     // في حال حدوث خطأ في الحذف، تراجع عن المعاملة
+            //     mysqli_roll_back($conn);
+            // }
+        } else {
+            // إذا فشل إدخال الطلب، تراجع عن المعاملة
+            // mysqli_roll_back($conn);
+        }
+    } catch (Exception $e) {
+        // إذا حدث أي خطأ في أي جزء من العملية، تراجع عن المعاملة
+        mysqli_roll_back($conn);
+        echo "Error: " . $e->getMessage();
+    }
+    header("Location: pay.php"); 
   exit(); 
 
 }

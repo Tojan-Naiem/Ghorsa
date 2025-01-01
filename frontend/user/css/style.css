@@ -1,6 +1,6 @@
 main{
     display: flex;
-    /* grid-template-columns: 30% 1fr;
+    /* grid-template-columns: 150px 1fr;
     height: 100vh;
     gap: 0;
     width: 100%; */
@@ -14,9 +14,10 @@ main{
 }
 
 
-  .profile-container {
+ #content {
+    width: 800px;
     margin-top: 50px;
-margin-bottom: 50px;
+    margin-bottom: 50px;
     margin-right: 50px;
     background-color: #fff;
     padding: 20px;
@@ -24,6 +25,7 @@ margin-bottom: 50px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .left-side{
+ 
     width: 20%;
     display: flex;
     justify-content: center;
@@ -32,6 +34,7 @@ margin-bottom: 50px;
 
 }
 .sidebar {
+    margin-top: 70px;
     width: 100%;
     background-color: #f8f9fa;
     display: flex;
@@ -39,6 +42,7 @@ margin-bottom: 50px;
     align-items: center;
     padding-top: 50px;
     padding: 10px;
+    height: 50%;
 }
 
 .sidebar a {
@@ -50,11 +54,23 @@ margin-bottom: 50px;
     border-radius: 4px;
     width: 100%;
 }
+.sidebar ul{
+    list-style-type: none;
+    margin-left: 0;
+    width: 100%;
+
+}
+.active {
+    background-color: #4CAF50; /* Color when clicked */
+}
+.sidebar li{
+    width: 100%;
+}
 .sidebar a:hover {
     background-color: #28a745;
     color: #fff;
 }
-.profile-container a{
+#content a{
 color: #28a44c;
 float: right;
 

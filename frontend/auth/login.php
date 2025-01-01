@@ -39,86 +39,101 @@ if (isset($_SESSION['user_id'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
+        <link rel="icon" href="../img/icon.png" />
 
-        <link rel="icon" href="img/icon.png" >
-
-    <title>GHORSA</title>
+<title>GHORSA</title>
     <style>
         body {
     background-color: #f8f9fa;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: none;
+}
+h3{
+    width: 20%;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #28a44c;
 }
 .login-container {
-    max-width: 400px;
-    margin: 50px auto;
+    width: 30%;
     padding: 20px;
     background: #ffffff;
     border-radius: 10px;
     border: 2px solid #d1d1d146;
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    left: 50%;
+  margin-top: 30%;
+  margin-left: 30%;
     transform: translate(-50% , -60%);
 }
-.login-container .form-check-label {
-    font-size: 0.9rem;
-}
+
+
 .login-container .btn {
     width: 100%;
     color: #28a44c;
     border-radius: 20px;
     transition: 0.5s;
+    margin: 5px;
 }
-.login-container .btn:hover{
-   transform: scale(1.1);
+.login-container button:hover{
+   transform: scale(1.05);
    letter-spacing:2 ;
 }
-.login-container .link {
-    color: #28a44c;
-    text-decoration: none;
-    transition: 0.5s ease;
-}
-.login-container .link:hover {
-    transform: scale(1.05);
-}
-#return {
+
+.return {
     margin-top: 10px;
     text-align: center;
     font-size: 12px;
     color: gray;
     font-weight: 700;
+    width: 100%;
 
 }
-#return:hover{
-    color:black;
-
+.return a{
+    color: black;
 }
 
+label{
+    margin-bottom: 10px;
+}
+input{
+    margin-bottom: 10px;
+}
+.account{
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.account a{
+    margin-bottom: 15px;
+    color: #28a44c;
+    transform: 0.5s;
+    margin-left: 5px;
+}
+.account a:hover{
+    transform: scale(1.01);
+}
 
     </style>
 </head>
 
 <body>
     <div class="login-container">
-        <h3 class="text-center mb-4">Login</h3>
+        <h3 >Login</h3>
         <form method="POST" action="<?php  htmlspecialchars($_SERVER['PHP_SELF'])?>">
-            <div class="mb-3">
-                <label for="email" class="form-label">Email Address</label>
-                <input type="email" name="email" class="form-control" id="email" placeholder="Your Email" required
+                <label for="email" >Email Address</label>
+                <input style="text-transform: none;" type="email" name="email" class="form-control" id="email" placeholder="Your Email" required
                     style="box-shadow: none;">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <div class="input-group">
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Enter Your Password" required
+                <label for="password" >Password</label>
+                    <input   style="text-transform: none;"type="password"  class="form-control" name="password"  id="password" placeholder="Enter Your Password" required
                         style="box-shadow: none; border-radius: 5px;">
-                    <i class="bi bi-eye" style="color: #28a44c;"></i>
-                    </button>
-                </div>
-            </div>
             
             <button type="submit" class="btn" style="background-color: #28a44c; color: white;">Log in</button>
         </form>
+
         <?php
 
 
@@ -134,6 +149,7 @@ else {
     if(mysqli_num_rows($result)>0){
         $user=mysqli_fetch_assoc($result);
         if(password_verify($password,$user['password'])){
+            echo"11";
             $_SESSION['name']=$user['name'];
             $_SESSION['user_id']=$user['user_id'];
             $_SESSION['role_id']=$user['role_id'];
@@ -160,11 +176,14 @@ else {
 
 
 ?>
-        <div class="text-center mt-3" style="display: grid; ">
-            <p>Don't have an account? </p>
-            <a href="register.php" class="link">Click to Register</a>
+        <div class="account" >
+            <p  style="text-transform: none;">Don't have an account? </p>
+            <a  style="text-transform: none;" href="register.php" >Click to Register</a>
         </div>
-        <a href="../index.html" id="return">return to home page</a>
+        <div class="return">
+        <a  style="text-transform: none;" href="../index.php" >return to home page</a>
+
+        </div>
 
     </div>
 

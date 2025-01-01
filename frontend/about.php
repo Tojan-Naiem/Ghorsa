@@ -1,3 +1,18 @@
+<?php
+include("../backend/connect.php");
+
+
+session_start();
+
+
+if(!isset($_SESSION['name'])){
+
+}
+else $user_id=$_SESSION['user_id'];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +20,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="aboutstyle.css">
+    <link rel="stylesheet" href="header.css">
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
@@ -68,7 +85,7 @@
       <div class="search-container" >
         <div class="search-box">
         <form class="form-inline" method="POST" action="index.php">
-    <div class="input-group col-md-5">
+    <div class="input-group">
         <input id="searchBox" type="text" class="form-control" placeholder="Search here..." name="keyword" required="required" value="<?php echo isset($_POST['keyword']) ? $_POST['keyword'] : '' ?>"/>
         <span class="input-group-btn" >
             <button class="btn" style="background-color: #28a44c; color:white" name="search"> <i class="fas fa-search"></i></button>
@@ -143,7 +160,7 @@
         ob_start();
         if (isset($_SESSION['name'])) {
           echo '<form method="POST" action="">
-            <button type="submit" name="logout" style="background-color: red; border-radius: 8px; padding: 5px; color: white;">Log Out</button>
+            <button id="logOutBtn" type="submit" name="logout" style="background-color: #dc3545; border-radius: 8px; padding: 5px; color: white; width:100px">Log Out</button>
         </form>';
           ;
         }

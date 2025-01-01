@@ -50,40 +50,7 @@ else $user_id=$_SESSION['user_id'];
     src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
 <style>
-.form-inline {
-    margin: 20px 0;
-    margin-bottom: 20px;
-}
 
-.list {
-   
-}
-
-.list h2 {
-    margin-bottom: 15px;
-}
-
-.list a {
-    text-decoration: none;
-    color: #333;
-}
-
-.list h4 {
-    margin: 10px 0;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-
-.search-box{
-  width: 50%;
-}
-.list{
-  width: 50%;
-  background-color: #28a44c;
-  color: white;
-  
-}
 </style>
 
   </head>
@@ -123,7 +90,7 @@ else $user_id=$_SESSION['user_id'];
       <div class="search-container" >
         <div class="search-box">
         <form class="form-inline" method="POST" action="index.php">
-    <div class="input-group col-md-5">
+    <div class="input-group">
         <input id="searchBox" type="text" class="form-control" placeholder="Search here..." name="keyword" required="required" value="<?php echo isset($_POST['keyword']) ? $_POST['keyword'] : '' ?>"/>
         <span class="input-group-btn" >
             <button class="btn" style="background-color: #28a44c; color:white" name="search"> <i class="fas fa-search"></i></button>
@@ -198,7 +165,7 @@ else $user_id=$_SESSION['user_id'];
         ob_start();
         if (isset($_SESSION['name'])) {
           echo '<form method="POST" action="">
-            <button type="submit" name="logout" style="background-color: red; border-radius: 8px; padding: 5px; color: white;">Log Out</button>
+            <button id="logOutSubmit" type="submit" name="logout" style=" border-radius: 8px; ">Log Out</button>
         </form>';
           ;
         }
@@ -402,7 +369,6 @@ while($row=mysqli_fetch_array($result)){
         <div class=\"box\" onclick=\"goToPage($product_id)\">
                     <div class=\"img2\">
                         <img src=\"img/plant-image/$image\" alt=\"\">
-                        <a href=\"\" class=\"fa-regular fa-heart\"></a>
                     </div>
                     <hr>
                     <div class=\"desc\">
@@ -457,11 +423,11 @@ while($row=mysqli_fetch_array($result)){
       <div class="box-container">
       <?php  
 
-      $sql="Select*from category where name='Indoor Plants'";
+      $sql="Select * from category where name='Indoor Plants'";
       $result=mysqli_query($conn,$sql);
       $row=mysqli_fetch_array($result);
       $category_id=$row["category_id"];
-$sql="Select *from product where category_id=$category_id";
+$sql="Select * from product where category_id=$category_id";
 $result=mysqli_query($conn,$sql);
 while($row=mysqli_fetch_array($result)){
   $name=$row['name'];
@@ -473,7 +439,6 @@ while($row=mysqli_fetch_array($result)){
   <div class=\"box\" onclick=\"goToPage($product_id)\">
               <div class=\"img2\">
                   <img src=\"img/plant-image/$image\" alt=\"\">
-                  <a href=\"\" class=\"fa-regular fa-heart\"></a>
               </div>
               <hr>
               <div class=\"desc\">
@@ -526,7 +491,6 @@ while($row=mysqli_fetch_array($result)){
   <div class=\"box\" onclick=\"goToPage($product_id)\">
               <div class=\"img2\">
                   <img src=\"img/plant-image/$image\" alt=\"\">
-                  <a href=\"\" class=\"fa-regular fa-heart\"></a>
               </div>
               <hr>
               <div class=\"desc\">
